@@ -7,16 +7,21 @@
 //
 
 #import <CommonCrypto/CommonCrypto.h>
-#import "ViewController.h"
+#import "MainViewController.h"
+#import "PasswordInfoCell.h"
+
 #import "RNCryptor_iOS.h"
 
-@interface ViewController () {
+
+@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource> {
     NSData *_salt;
+    
+    __weak IBOutlet UITableView *_tableView;
 }
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +30,42 @@
     // 2. Build up database
     // 3. Design interface
 }
+
+
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PasswordInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
+    cell.itemTitleLabel.text = @"亚马逊密码";
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
+         segue.destinationViewController.title = @"Detail";
+    }
+}
+
+
+#pragma mark - Test
 
 - (IBAction)onTest:(id)sender {
     // Make keys!
