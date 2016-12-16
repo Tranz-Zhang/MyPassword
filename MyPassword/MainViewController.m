@@ -9,14 +9,17 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "MainViewController.h"
 #import "PasswordInfoCell.h"
-
+#import "PasswordDetailCell.h"
+#import "EditViewController.h"
 #import "RNCryptor_iOS.h"
 
 
-@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource> {
+@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource, PasswordDetailCellDelegate> {
     NSData *_salt;
     
     __weak IBOutlet UITableView *_tableView;
+    
+    NSIndexPath *_detailIndexPath;
 }
 
 @end
@@ -25,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    footerView.backgroundColor = [UIColor lightGrayColor];
+    _tableView.tableFooterView = footerView;
+    
     _salt = [self generateSalt256];
     // 1. Test aes256 encrpytion and decription
     // 2. Build up database
@@ -41,19 +48,47 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    if ([_detailIndexPath isEqual:indexPath]) {
+        return 148;
+    } else {
+        return 60;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PasswordInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-    cell.itemTitleLabel.text = @"亚马逊密码";
+    UITableViewCell *cell = nil;
+    if ([indexPath isEqual:_detailIndexPath]) {
+        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell"
+                                                                         forIndexPath:indexPath];
+        detailCell.delegate = self;
+        cell = detailCell;
+        
+    } else {
+        PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
+        infoCell.itemTitleLabel.text = @"亚马逊密码";
+        cell = infoCell;
+    }
+    
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray *reloadRows = nil;
+    if ([_detailIndexPath isEqual:indexPath]) {
+        _detailIndexPath = nil;
+        reloadRows = @[indexPath];
+        
+    } else {
+        reloadRows = _detailIndexPath ? @[indexPath, _detailIndexPath] : @[indexPath];
+        _detailIndexPath = indexPath;
+    }
+    [tableView reloadRowsAtIndexPaths:reloadRows withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
 }
 
@@ -62,6 +97,16 @@
     if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
          segue.destinationViewController.title = @"Detail";
     }
+}
+
+
+#pragma mark - PasswordDetailCellDelegate
+- (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
+    
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
+    [self presentViewController:nv animated:YES completion:nil];
 }
 
 

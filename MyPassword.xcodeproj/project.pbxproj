@@ -13,13 +13,14 @@
 		4C553C5A1DEDBD4D00764478 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C561DEDBD4D00764478 /* RNEncryptor.m */; };
 		4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */; };
 		4C5E19FB1DF6FD09002E2A0E /* PasswordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E19FA1DF6FD09002E2A0E /* PasswordInfo.m */; };
-		4C5E19FE1DF6FE8F002E2A0E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E19FD1DF6FE8F002E2A0E /* DetailViewController.m */; };
 		4C92696D1DEDB76F006952B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92696C1DEDB76F006952B9 /* main.m */; };
 		4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92696F1DEDB76F006952B9 /* AppDelegate.m */; };
 		4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9269721DEDB76F006952B9 /* MainViewController.m */; };
 		4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269741DEDB76F006952B9 /* Main.storyboard */; };
 		4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269771DEDB76F006952B9 /* Assets.xcassets */; };
 		4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */; };
+		4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */; };
+		4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40961E03DB91005BA735 /* EditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +38,6 @@
 		4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInfoCell.m; sourceTree = "<group>"; };
 		4C5E19F91DF6FD09002E2A0E /* PasswordInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordInfo.h; sourceTree = "<group>"; };
 		4C5E19FA1DF6FD09002E2A0E /* PasswordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInfo.m; sourceTree = "<group>"; };
-		4C5E19FC1DF6FE8F002E2A0E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		4C5E19FD1DF6FE8F002E2A0E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		4C9269681DEDB76F006952B9 /* MyPassword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPassword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C92696C1DEDB76F006952B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C92696E1DEDB76F006952B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,6 +48,10 @@
 		4C9269771DEDB76F006952B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C92697A1DEDB76F006952B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C92697C1DEDB76F006952B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordDetailCell.h; sourceTree = "<group>"; };
+		4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordDetailCell.m; sourceTree = "<group>"; };
+		4CFF40951E03DB91005BA735 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		4CFF40961E03DB91005BA735 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +106,14 @@
 				4C92696F1DEDB76F006952B9 /* AppDelegate.m */,
 				4C9269711DEDB76F006952B9 /* MainViewController.h */,
 				4C9269721DEDB76F006952B9 /* MainViewController.m */,
-				4C5E19FC1DF6FE8F002E2A0E /* DetailViewController.h */,
-				4C5E19FD1DF6FE8F002E2A0E /* DetailViewController.m */,
+				4CFF40951E03DB91005BA735 /* EditViewController.h */,
+				4CFF40961E03DB91005BA735 /* EditViewController.m */,
 				4C5E19F91DF6FD09002E2A0E /* PasswordInfo.h */,
 				4C5E19FA1DF6FD09002E2A0E /* PasswordInfo.m */,
 				4C5E19F61DF6FC83002E2A0E /* PasswordInfoCell.h */,
 				4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */,
+				4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */,
+				4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */,
 				4C9269741DEDB76F006952B9 /* Main.storyboard */,
 				4C9269771DEDB76F006952B9 /* Assets.xcassets */,
 				4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */,
@@ -198,14 +203,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C5E19FE1DF6FE8F002E2A0E /* DetailViewController.m in Sources */,
 				4C553C5A1DEDBD4D00764478 /* RNEncryptor.m in Sources */,
+				4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */,
 				4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */,
 				4C5E19FB1DF6FD09002E2A0E /* PasswordInfo.m in Sources */,
 				4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */,
 				4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */,
 				4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */,
 				4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */,
+				4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */,
 				4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */,
 				4C92696D1DEDB76F006952B9 /* main.m in Sources */,
 			);
