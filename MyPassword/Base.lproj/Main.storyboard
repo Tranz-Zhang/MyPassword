@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R2M-A3-etd" id="J9d-2G-hk3">
-                                            <frame key="frameInset" width="375" height="59"/>
+                                            <frame key="frameInset" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Item Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5V6-km-TXh">
@@ -57,7 +57,7 @@
                                         <rect key="frame" x="0.0" y="152" width="375" height="148"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Fi-QT-ETH" id="Qai-zZ-FK4">
-                                            <frame key="frameInset" width="375" height="147"/>
+                                            <frame key="frameInset" width="375" height="148"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亚马逊密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjy-Tb-xok">
@@ -143,6 +143,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Password" id="GWW-BO-AJM">
+                        <barButtonItem key="leftBarButtonItem" title="Test" id="tNU-eO-Tct">
+                            <connections>
+                                <action selector="onTest:" destination="BYZ-38-t0r" id="HPx-br-QMJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IQH-Sd-xbr">
                             <connections>
                                 <segue destination="Xw2-nT-5XO" kind="presentation" id="dcE-Er-Dzh"/>

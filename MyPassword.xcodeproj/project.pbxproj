@@ -19,6 +19,7 @@
 		4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269741DEDB76F006952B9 /* Main.storyboard */; };
 		4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269771DEDB76F006952B9 /* Assets.xcassets */; };
 		4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */; };
+		4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7A6321E0966B000BD1A22 /* VaultManager.m */; };
 		4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */; };
 		4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40961E03DB91005BA735 /* EditViewController.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 		4C9269771DEDB76F006952B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C92697A1DEDB76F006952B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C92697C1DEDB76F006952B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CA7A6311E0966B000BD1A22 /* VaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultManager.h; sourceTree = "<group>"; };
+		4CA7A6321E0966B000BD1A22 /* VaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManager.m; sourceTree = "<group>"; };
 		4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordDetailCell.h; sourceTree = "<group>"; };
 		4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordDetailCell.m; sourceTree = "<group>"; };
 		4CFF40951E03DB91005BA735 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		4C92696A1DEDB76F006952B9 /* MyPassword */ = {
 			isa = PBXGroup;
 			children = (
+				4CA7A6291E09654800BD1A22 /* DataManager */,
 				4C553C4C1DEDBD4D00764478 /* RNCryptor */,
 				4C92696E1DEDB76F006952B9 /* AppDelegate.h */,
 				4C92696F1DEDB76F006952B9 /* AppDelegate.m */,
@@ -129,6 +133,15 @@
 				4C92696C1DEDB76F006952B9 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CA7A6291E09654800BD1A22 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				4CA7A6311E0966B000BD1A22 /* VaultManager.h */,
+				4CA7A6321E0966B000BD1A22 /* VaultManager.m */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +222,7 @@
 				4C5E19FB1DF6FD09002E2A0E /* PasswordInfo.m in Sources */,
 				4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */,
 				4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */,
+				4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */,
 				4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */,
 				4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */,
 				4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */,

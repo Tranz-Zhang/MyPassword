@@ -104,7 +104,6 @@
 - (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
-    
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
     [self presentViewController:nv animated:YES completion:nil];
 }
@@ -113,6 +112,45 @@
 #pragma mark - Test
 
 - (IBAction)onTest:(id)sender {
+    
+    // ref: https://support.1password.com/1password-security/
+    // ref: https://support.1password.com/pbkdf2/
+    
+    // generate keys
+    RNCryptorKeyDerivationSettings keySettings = {
+        .keySize = kCCKeySizeAES256,
+        .saltSize = 32,
+        .PBKDFAlgorithm = kCCPBKDF2,
+        .PRF = kCCPRFHmacAlgSHA512,
+        .rounds = 10000
+    };
+    NSData *fixedSalt = [@"XXXXXXXXXX_XXXXXXXXXX_XXXXXXXXXX" dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *key = [RNCryptor keyForPassword:@"MyPassword1234" salt:fixedSalt settings:keySettings];
+//    NSData *key = [@"MyPassword1234" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // encrypt
+    NSData *text = [@"hello world" dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSData *encyptedData = [RNEncryptor encryptData:text withSettings:kRNCryptorAES256Settings password:@"MyPassword1234" error:&error];
+    if (!error) {
+        NSLog(@"EncryptedData: %@", encyptedData);
+    } else {
+        NSAssert(1, @"Fail to encrypt data");
+    }
+    
+    // decrypt
+    NSData *decrpytedData = [RNDecryptor decryptData:encyptedData withPassword:@"MyPassword1234" error:&error];
+    if (!error) {
+        NSString *decryptedText = [[NSString alloc] initWithData:decrpytedData encoding:NSUTF8StringEncoding];
+        NSLog(@"Decrypted text: %@", decryptedText);
+    }
+}
+
+
+
+
+
+- (void)oldTestMethods {
     // Make keys!
     NSString* myPass = @"MyPassword1234";
     NSData* myPassData = [myPass dataUsingEncoding:NSUTF8StringEncoding];
