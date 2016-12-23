@@ -12,9 +12,11 @@
 #import "PasswordDetailCell.h"
 #import "EditViewController.h"
 #import "RNCryptor_iOS.h"
+#import "IndexInfo.h"
+#import "PasswordItem.h"
 
-
-@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource, PasswordDetailCellDelegate> {
+@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
+PasswordDetailCellDelegate, EditViewControllerDelegate> {
     NSData *_salt;
     
     __weak IBOutlet UITableView *_tableView;
@@ -33,9 +35,6 @@
     _tableView.tableFooterView = footerView;
     
     _salt = [self generateSalt256];
-    // 1. Test aes256 encrpytion and decription
-    // 2. Build up database
-    // 3. Design interface
 }
 
 
@@ -109,10 +108,54 @@
 }
 
 
+#pragma mark - EditViewControllerDelegate
+
+- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordItem *)password {
+    NSLog(@"Add password: %@", [password toDictionary]);
+}
+
+
+- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordItem *)password {
+    NSLog(@"Update password: %@", [password toDictionary]);
+}
+
+
 #pragma mark - Test
 
 - (IBAction)onTest:(id)sender {
     
+//    [self testJsonModel];
+    [self testEditing];
+    
+}
+
+
+- (void)testJsonModel {
+    IndexInfo *info = [IndexInfo new];
+    info.title = @"hello me";
+    info.thumbnailURL = @"www.??";
+    info.passwordUUID = @"1234325";
+    NSLog(@"info: %@", [info toJSONString]);
+}
+
+
+- (void)testEditing {
+    PasswordItem *item = [PasswordItem new];
+    item.title = @"Facebook";
+    item.website = @"www.facebook.com";
+    item.account = @"tranz.zhang@gmail.com";
+    item.password = @"syncmaster";
+    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
+    editVC.delegate = self;
+    editVC.password = item;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
+    [self presentViewController:nv animated:YES completion:nil];
+}
+
+
+- (void)testRNCryptor {
     // ref: https://support.1password.com/1password-security/
     // ref: https://support.1password.com/pbkdf2/
     
@@ -125,8 +168,8 @@
         .rounds = 10000
     };
     NSData *fixedSalt = [@"XXXXXXXXXX_XXXXXXXXXX_XXXXXXXXXX" dataUsingEncoding:NSUTF8StringEncoding];
-//    NSData *key = [RNCryptor keyForPassword:@"MyPassword1234" salt:fixedSalt settings:keySettings];
-//    NSData *key = [@"MyPassword1234" dataUsingEncoding:NSUTF8StringEncoding];
+    //    NSData *key = [RNCryptor keyForPassword:@"MyPassword1234" salt:fixedSalt settings:keySettings];
+    //    NSData *key = [@"MyPassword1234" dataUsingEncoding:NSUTF8StringEncoding];
     
     // encrypt
     NSData *text = [@"hello world" dataUsingEncoding:NSUTF8StringEncoding];
@@ -145,9 +188,6 @@
         NSLog(@"Decrypted text: %@", decryptedText);
     }
 }
-
-
-
 
 
 - (void)oldTestMethods {

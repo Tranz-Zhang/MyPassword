@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0273C01E0D9991008A3D4D /* IndexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273BF1E0D9991008A3D4D /* IndexInfo.m */; };
+		4C0273D61E0D9B0F008A3D4D /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273CC1E0D9B0F008A3D4D /* JSONModel.m */; };
+		4C0273D71E0D9B0F008A3D4D /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273CE1E0D9B0F008A3D4D /* JSONModelClassProperty.m */; };
+		4C0273D81E0D9B0F008A3D4D /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273D01E0D9B0F008A3D4D /* JSONModelError.m */; };
+		4C0273D91E0D9B0F008A3D4D /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273D31E0D9B0F008A3D4D /* JSONKeyMapper.m */; };
+		4C0273DA1E0D9B0F008A3D4D /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273D51E0D9B0F008A3D4D /* JSONValueTransformer.m */; };
+		4C0273DD1E0D9B55008A3D4D /* PasswordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273DC1E0D9B55008A3D4D /* PasswordItem.m */; };
 		4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C501DEDBD4D00764478 /* RNCryptor.m */; };
 		4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C521DEDBD4D00764478 /* RNCryptorEngine.m */; };
 		4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C541DEDBD4D00764478 /* RNDecryptor.m */; };
@@ -25,6 +32,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0273BE1E0D9991008A3D4D /* IndexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexInfo.h; sourceTree = "<group>"; };
+		4C0273BF1E0D9991008A3D4D /* IndexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexInfo.m; sourceTree = "<group>"; };
+		4C0273CB1E0D9B0F008A3D4D /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
+		4C0273CC1E0D9B0F008A3D4D /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
+		4C0273CD1E0D9B0F008A3D4D /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
+		4C0273CE1E0D9B0F008A3D4D /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
+		4C0273CF1E0D9B0F008A3D4D /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
+		4C0273D01E0D9B0F008A3D4D /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
+		4C0273D21E0D9B0F008A3D4D /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
+		4C0273D31E0D9B0F008A3D4D /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
+		4C0273D41E0D9B0F008A3D4D /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
+		4C0273D51E0D9B0F008A3D4D /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
+		4C0273DB1E0D9B55008A3D4D /* PasswordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordItem.h; sourceTree = "<group>"; };
+		4C0273DC1E0D9B55008A3D4D /* PasswordItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordItem.m; sourceTree = "<group>"; };
 		4C553C4D1DEDBD4D00764478 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		4C553C4F1DEDBD4D00764478 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		4C553C501DEDBD4D00764478 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -68,6 +89,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0273C91E0D9B0F008A3D4D /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C0273CA1E0D9B0F008A3D4D /* JSONModel */,
+				4C0273D11E0D9B0F008A3D4D /* JSONModelTransformations */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		4C0273CA1E0D9B0F008A3D4D /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C0273CB1E0D9B0F008A3D4D /* JSONModel.h */,
+				4C0273CC1E0D9B0F008A3D4D /* JSONModel.m */,
+				4C0273CD1E0D9B0F008A3D4D /* JSONModelClassProperty.h */,
+				4C0273CE1E0D9B0F008A3D4D /* JSONModelClassProperty.m */,
+				4C0273CF1E0D9B0F008A3D4D /* JSONModelError.h */,
+				4C0273D01E0D9B0F008A3D4D /* JSONModelError.m */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		4C0273D11E0D9B0F008A3D4D /* JSONModelTransformations */ = {
+			isa = PBXGroup;
+			children = (
+				4C0273D21E0D9B0F008A3D4D /* JSONKeyMapper.h */,
+				4C0273D31E0D9B0F008A3D4D /* JSONKeyMapper.m */,
+				4C0273D41E0D9B0F008A3D4D /* JSONValueTransformer.h */,
+				4C0273D51E0D9B0F008A3D4D /* JSONValueTransformer.m */,
+			);
+			path = JSONModelTransformations;
+			sourceTree = "<group>";
+		};
 		4C553C4C1DEDBD4D00764478 /* RNCryptor */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +158,9 @@
 		4C92696A1DEDB76F006952B9 /* MyPassword */ = {
 			isa = PBXGroup;
 			children = (
-				4CA7A6291E09654800BD1A22 /* DataManager */,
 				4C553C4C1DEDBD4D00764478 /* RNCryptor */,
+				4C0273C91E0D9B0F008A3D4D /* JSONModel */,
+				4CA7A6291E09654800BD1A22 /* DataManager */,
 				4C92696E1DEDB76F006952B9 /* AppDelegate.h */,
 				4C92696F1DEDB76F006952B9 /* AppDelegate.m */,
 				4C9269711DEDB76F006952B9 /* MainViewController.h */,
@@ -140,6 +195,10 @@
 			children = (
 				4CA7A6311E0966B000BD1A22 /* VaultManager.h */,
 				4CA7A6321E0966B000BD1A22 /* VaultManager.m */,
+				4C0273BE1E0D9991008A3D4D /* IndexInfo.h */,
+				4C0273BF1E0D9991008A3D4D /* IndexInfo.m */,
+				4C0273DB1E0D9B55008A3D4D /* PasswordItem.h */,
+				4C0273DC1E0D9B55008A3D4D /* PasswordItem.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -216,14 +275,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0273D81E0D9B0F008A3D4D /* JSONModelError.m in Sources */,
 				4C553C5A1DEDBD4D00764478 /* RNEncryptor.m in Sources */,
 				4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */,
+				4C0273D71E0D9B0F008A3D4D /* JSONModelClassProperty.m in Sources */,
 				4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */,
 				4C5E19FB1DF6FD09002E2A0E /* PasswordInfo.m in Sources */,
+				4C0273DD1E0D9B55008A3D4D /* PasswordItem.m in Sources */,
 				4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */,
 				4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */,
 				4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */,
+				4C0273D61E0D9B0F008A3D4D /* JSONModel.m in Sources */,
 				4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */,
+				4C0273DA1E0D9B0F008A3D4D /* JSONValueTransformer.m in Sources */,
+				4C0273D91E0D9B0F008A3D4D /* JSONKeyMapper.m in Sources */,
+				4C0273C01E0D9991008A3D4D /* IndexInfo.m in Sources */,
 				4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */,
 				4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */,
 				4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */,
