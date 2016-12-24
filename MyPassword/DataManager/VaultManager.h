@@ -7,23 +7,42 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PasswordInfo.h"
+#import "PasswordItem.h"
+#import "IndexInfo.h"
+
+#define kVaultExtension @"vault"
 
 @interface VaultManager : NSObject
 
 @property (nonatomic, readonly) NSString *vaultPath;
-@property (nonatomic, readonly) BOOL islocked;
+@property (nonatomic, readonly) BOOL isLocked;
 
-- (instancetype)initWithVault:(NSString *)vaultPath;
+- (instancetype)initWithVaultPath:(NSString *)vaultPath;
 
 - (BOOL)unlockWithPassword:(NSString *)password;
 - (void)lock;
 
-- (NSArray <PasswordInfo *>*)allPasswordInfos;
-- (void)addPasswordInfo:(PasswordInfo *)passwordInfo;
-- (void)deletePasswordInfo:(PasswordInfo *)passwordInfo;
+- (NSArray <IndexInfo *>*)indexInfoList;
 
-- (NSString *)decrpytPassword:(PasswordInfo *)passwordInfo;
+- (PasswordItem *)passwordInfoWithUUID:(NSString *)passwordUUID;
+- (void)addPasswordInfo:(PasswordItem *)passwordInfo;
+- (void)deletePasswordInfo:(PasswordItem *)passwordInfo;
+
+
+/** Vault Management **/
+
+// vault creation
++ (BOOL)createVaultWithName:(NSString *)vaultName
+                     atPath:(NSString *)vaultPath
+              usingPassword:(NSString *)password;
+
+// check if the vault at specific path is vaild
++ (BOOL)verifyVaultWithPath:(NSString *)vaultPath;
+
 
 @end
+
+
+
+
 

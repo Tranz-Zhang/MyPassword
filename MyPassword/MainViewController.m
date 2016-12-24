@@ -14,6 +14,7 @@
 #import "RNCryptor_iOS.h"
 #import "IndexInfo.h"
 #import "PasswordItem.h"
+#import "VaultManager.h"
 
 @interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
 PasswordDetailCellDelegate, EditViewControllerDelegate> {
@@ -123,19 +124,51 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 #pragma mark - Test
 
 - (IBAction)onTest:(id)sender {
-    
 //    [self testJsonModel];
-    [self testEditing];
+    [self testVaultManager];
+//    [self testJsonModel];
+//    [self testEditing];
     
 }
 
 
+- (void)testVaultManager {
+    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *vaultPath = [document stringByAppendingFormat:@"/chance.vault"];
+    if (![VaultManager verifyVaultWithPath:vaultPath]) {
+        [VaultManager createVaultWithName:@"chance" atPath:document usingPassword:@"pwd1234"];
+        
+    } else {
+        VaultManager *vaultMgr = [[VaultManager alloc] initWithVaultPath:vaultPath];
+        BOOL isOK = [vaultMgr unlockWithPassword:@"pd1234"];
+        NSLog(@"unlock vault: %@", isOK ? @"OK" : @"Fail");
+    }
+}
+
+
 - (void)testJsonModel {
+    NSString *dataPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    dataPath = [dataPath stringByAppendingFormat:@"/index_info_list"];
+    
     IndexInfo *info = [IndexInfo new];
     info.title = @"hello me";
     info.thumbnailURL = @"www.??";
     info.passwordUUID = @"1234325";
     NSLog(@"info: %@", [info toJSONString]);
+    
+    NSArray *jsonList = @[info, info];
+    NSArray *dirList = [JSONModel arrayOfDictionariesFromModels:jsonList];
+    
+    NSData *indexListData = [NSJSONSerialization dataWithJSONObject:dirList options:0 error:nil];
+    indexListData = [RNEncryptor encryptData:indexListData withSettings:kRNCryptorAES256Settings password:@"pwd1234" error:nil];
+    
+    [indexListData writeToFile:dataPath atomically:YES];
+    
+    NSData *readData = [NSData dataWithContentsOfFile:dataPath];
+    readData = [RNDecryptor decryptData:readData withPassword:@"pwd1234" error:nil];
+    NSLog(@"%@", dirList);
+    NSArray<IndexInfo *> *models = [IndexInfo arrayOfModelsFromData:readData error:nil];
+    NSLog(@"");
 }
 
 
