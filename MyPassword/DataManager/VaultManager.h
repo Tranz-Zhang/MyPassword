@@ -26,6 +26,7 @@
 
 - (PasswordItem *)passwordInfoWithUUID:(NSString *)passwordUUID;
 - (void)addPasswordInfo:(PasswordItem *)passwordInfo;
+- (void)updatePasswordInfo:(PasswordItem *)passwordInfo;
 - (void)deletePasswordInfo:(PasswordItem *)passwordInfo;
 
 

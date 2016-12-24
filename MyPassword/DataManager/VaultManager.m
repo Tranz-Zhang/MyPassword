@@ -10,10 +10,13 @@
 #import "RNCryptor_iOS.h"
 
 #define kIndexInfoFileName @"index_info_list"
+#define kPasswordDataDirectoryName @"data"
 
 @implementation VaultManager {
+    NSString *_dataDirectory;
     NSArray *_indexInfoList;
 }
+
 
 - (instancetype)initWithVaultPath:(NSString *)vaultPath {
     self = [super init];
@@ -43,6 +46,7 @@
     
     NSArray *indexList = [IndexInfo arrayOfModelsFromData:indexData error:nil];
     _indexInfoList = [NSArray arrayWithArray:indexList];
+    _isLocked = NO;
     return YES;
 }
 
@@ -52,6 +56,64 @@
     _indexInfoList = nil;
 }
 
+
+- (NSArray<IndexInfo *> *)indexInfoList {
+    return _indexInfoList;
+}
+
+
+- (PasswordItem *)passwordInfoWithUUID:(NSString *)passwordUUID {
+    if (_isLocked) {
+        return nil;
+    }
+    
+    NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordUUID];
+    NSData *passwordData = [NSData dataWithContentsOfFile:filePath];
+    if (passwordData.length) {
+        return nil;
+    }
+    
+    // should keep password by text ???
+    
+    // password -> masterkey -> every password info
+    // so should i add vault info ???
+    
+    return nil;
+}
+
+
+- (void)addPasswordInfo:(PasswordItem *)passwordInfo {
+    
+}
+
+
+- (void)updatePasswordInfo:(PasswordItem *)passwordInfo {
+    
+}
+
+
+- (void)deletePasswordInfo:(PasswordItem *)passwordInfo {
+    
+}
+
+
+- (NSString *)dataDirectory {
+    @synchronized (self) {
+        if (_dataDirectory.length) {
+            return _dataDirectory;
+        }
+        
+        // create password data directory
+        NSError *error;
+        NSString *dataDirectory = [_vaultPath stringByAppendingPathComponent:kPasswordDataDirectoryName];
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:dataDirectory withIntermediateDirectories:YES attributes:nil error:&error]) {
+            NSLog(@"Fail to create data directory: %@", error);
+            return nil;
+        }
+        _dataDirectory = [dataDirectory copy];
+        return _dataDirectory;
+    }
+}
 
 
 #pragma mark - Vault Management
@@ -87,7 +149,7 @@
     }
     
     // create empty index info
-    NSError *error;
+    NSError *error = nil;
     NSData *emptyIndexData = [NSJSONSerialization dataWithJSONObject:@[] options:0 error:&error];
     if (!emptyIndexData) {
         NSLog(@"Fail to create empty index data: %@", error);
