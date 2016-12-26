@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
 @property (weak, nonatomic) IBOutlet UITextField *accountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (nonatomic, strong) PasswordItem *editingPassword;
+@property (nonatomic, strong) PasswordInfo *editingPassword;
 
 @end
 
@@ -29,7 +29,7 @@
         
     } else {
         self.title = @"Add";
-        self.editingPassword = [PasswordItem new];
+        self.editingPassword = [PasswordInfo new];
         // new uuid for password
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         NSString *uuidString = CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuidRef));

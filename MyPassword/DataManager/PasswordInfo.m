@@ -1,17 +1,17 @@
 //
-//  PasswordItem.m
+//  PasswordInfo.m
 //  MyPassword
 //
 //  Created by chance on 24/12/2016.
 //  Copyright © 2016 bychance. All rights reserved.
 //
 
-#import "PasswordItem.h"
+#import "PasswordInfo.h"
 
-@implementation PasswordItem
+@implementation PasswordInfo
 
 - (id)copyWithZone:(NSZone *)zone {
-    PasswordItem *item = [[PasswordItem allocWithZone:zone] init];
+    PasswordInfo *item = [[PasswordInfo allocWithZone:zone] init];
     item.UUID = [_UUID copy];
     item.title = [_title copy];
     item.website = [_website copy];
@@ -24,7 +24,7 @@
 }
 
 
-- (BOOL)isEqual:(PasswordItem *)object {
+- (BOOL)isEqual:(PasswordInfo *)object {
     return [_UUID isEqualToString:object.UUID];
 }
 

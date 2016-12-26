@@ -6,13 +6,19 @@
 //  Copyright © 2016 bychance. All rights reserved.
 //
 
+#import <CommonCrypto/CommonCrypto.h>
+
 #import "VaultManager.h"
 #import "RNCryptor_iOS.h"
+#import "VaultInfo.h"
 
-#define kIndexInfoFileName @"index_info_list"
+#define kCurrentVaultVersion 1
+#define kVaultInfoFileName @"vault_info"
+#define kIndexInfoFileName @"index_info"
 #define kPasswordDataDirectoryName @"data"
 
 @implementation VaultManager {
+    VaultInfo *_vaultInfo;
     NSString *_dataDirectory;
     NSArray *_indexInfoList;
 }
@@ -62,7 +68,7 @@
 }
 
 
-- (PasswordItem *)passwordInfoWithUUID:(NSString *)passwordUUID {
+- (PasswordInfo *)passwordInfoWithUUID:(NSString *)passwordUUID {
     if (_isLocked) {
         return nil;
     }
@@ -82,17 +88,17 @@
 }
 
 
-- (void)addPasswordInfo:(PasswordItem *)passwordInfo {
+- (void)addPasswordInfo:(PasswordInfo *)passwordInfo {
     
 }
 
 
-- (void)updatePasswordInfo:(PasswordItem *)passwordInfo {
+- (void)updatePasswordInfo:(PasswordInfo *)passwordInfo {
     
 }
 
 
-- (void)deletePasswordInfo:(PasswordItem *)passwordInfo {
+- (void)deletePasswordInfo:(PasswordInfo *)passwordInfo {
     
 }
 
@@ -148,24 +154,36 @@
         }
     }
     
-    // create empty index info
+    // create master key
+    RNCryptorKeyDerivationSettings masterKeySettings = {
+        .keySize = kCCKeySizeAES256,
+        .saltSize = 32,
+        .PBKDFAlgorithm = kCCPBKDF2,
+        .PRF = kCCPRFHmacAlgSHA512,
+        .rounds = 10000
+    };
+    NSData *salt = [RNCryptor randomDataOfLength:masterKeySettings.saltSize];
+    NSData *masterKey = [RNCryptor keyForPassword:password salt:salt settings:masterKeySettings];
+    
+    // create vault info
+    VaultInfo *vaultInfo = [VaultInfo new];
+    vaultInfo.name = vaultName;
+    vaultInfo.createdDate = [[NSDate date] timeIntervalSince1970];
+    vaultInfo.version = kCurrentVaultVersion;
+    vaultInfo.masterKey = masterKey;
+    
     NSError *error = nil;
-    NSData *emptyIndexData = [NSJSONSerialization dataWithJSONObject:@[] options:0 error:&error];
-    if (!emptyIndexData) {
-        NSLog(@"Fail to create empty index data: %@", error);
-        return NO;
-    }
-    
-    // encrypt index data
-    error = nil;
-    NSData *encryptedData = [RNEncryptor encryptData:emptyIndexData withSettings:kRNCryptorAES256Settings password:password error:&error];
+    NSData *encryptedData = [RNEncryptor encryptData:[vaultInfo toJSONData]
+                                        withSettings:kRNCryptorAES256Settings
+                                            password:password
+                                               error:&error];
     if (!encryptedData.length || error) {
-        NSLog(@"Fail to encrypt empty index data: %@", error);
+        NSLog(@"Fail to encrypt empty vault data: %@", error);
         return NO;
     }
     
-    NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
-    if ([encryptedData writeToFile:indexInfoFilePath atomically:YES]) {
+    NSString *vaultInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kVaultInfoFileName];
+    if ([encryptedData writeToFile:vaultInfoFilePath atomically:YES]) {
         NSLog(@"Create vault success !!!");
         return YES;
         
@@ -173,6 +191,32 @@
         NSLog(@"Fail to create vault !");
         return NO;
     }
+    
+//    // create empty index info
+//    NSError *error = nil;
+//    NSData *emptyIndexData = [NSJSONSerialization dataWithJSONObject:@[] options:0 error:&error];
+//    if (!emptyIndexData) {
+//        NSLog(@"Fail to create empty index data: %@", error);
+//        return NO;
+//    }
+//    
+//    // encrypt index data
+//    error = nil;
+//    NSData *encryptedData = [RNEncryptor encryptData:emptyIndexData withSettings:kRNCryptorAES256Settings password:password error:&error];
+//    if (!encryptedData.length || error) {
+//        NSLog(@"Fail to encrypt empty index data: %@", error);
+//        return NO;
+//    }
+//    
+//    NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
+//    if ([encryptedData writeToFile:indexInfoFilePath atomically:YES]) {
+//        NSLog(@"Create vault success !!!");
+//        return YES;
+//        
+//    } else {
+//        NSLog(@"Fail to create vault !");
+//        return NO;
+//    }
 }
 
 

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PasswordItem.h"
+#import "PasswordInfo.h"
 
 @protocol EditViewControllerDelegate;
 @interface EditViewController : UIViewController
 
-@property (nonatomic, strong) PasswordItem *password;
+@property (nonatomic, strong) PasswordInfo *password;
 @property (nonatomic, weak) id<EditViewControllerDelegate> delegate;
 
 @end
@@ -20,7 +20,7 @@
 
 @protocol EditViewControllerDelegate  <NSObject>
 
-- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordItem *)password;
-- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordItem *)password;
+- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordInfo *)password;
+- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordInfo *)password;
 
 @end

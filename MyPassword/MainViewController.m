@@ -13,7 +13,7 @@
 #import "EditViewController.h"
 #import "RNCryptor_iOS.h"
 #import "IndexInfo.h"
-#import "PasswordItem.h"
+#import "PasswordInfo.h"
 #import "VaultManager.h"
 
 @interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
@@ -111,12 +111,12 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 
 #pragma mark - EditViewControllerDelegate
 
-- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordItem *)password {
+- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordInfo *)password {
     NSLog(@"Add password: %@", [password toDictionary]);
 }
 
 
-- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordItem *)password {
+- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordInfo *)password {
     NSLog(@"Update password: %@", [password toDictionary]);
 }
 
@@ -173,7 +173,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 
 
 - (void)testEditing {
-    PasswordItem *item = [PasswordItem new];
+    PasswordInfo *item = [PasswordInfo new];
     item.title = @"Facebook";
     item.website = @"www.facebook.com";
     item.account = @"tranz.zhang@gmail.com";

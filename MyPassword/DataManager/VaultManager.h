@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PasswordItem.h"
+#import "PasswordInfo.h"
 #import "IndexInfo.h"
 
 #define kVaultExtension @"vault"
@@ -19,15 +19,17 @@
 
 - (instancetype)initWithVaultPath:(NSString *)vaultPath;
 
+- (BOOL)changePassword:(NSString *)newPassword;
+
 - (BOOL)unlockWithPassword:(NSString *)password;
 - (void)lock;
 
 - (NSArray <IndexInfo *>*)indexInfoList;
 
-- (PasswordItem *)passwordInfoWithUUID:(NSString *)passwordUUID;
-- (void)addPasswordInfo:(PasswordItem *)passwordInfo;
-- (void)updatePasswordInfo:(PasswordItem *)passwordInfo;
-- (void)deletePasswordInfo:(PasswordItem *)passwordInfo;
+- (PasswordInfo *)passwordInfoWithUUID:(NSString *)passwordUUID;
+- (void)addPasswordInfo:(PasswordInfo *)passwordInfo;
+- (void)updatePasswordInfo:(PasswordInfo *)passwordInfo;
+- (void)deletePasswordInfo:(PasswordInfo *)passwordInfo;
 
 
 /** Vault Management **/
