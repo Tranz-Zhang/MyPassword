@@ -140,7 +140,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
         
     } else {
         VaultManager *vaultMgr = [[VaultManager alloc] initWithVaultPath:vaultPath];
-        BOOL isOK = [vaultMgr unlockWithPassword:@"pd1234"];
+        BOOL isOK = [vaultMgr unlockWithPassword:@"pwd1234"];
         NSLog(@"unlock vault: %@", isOK ? @"OK" : @"Fail");
     }
 }

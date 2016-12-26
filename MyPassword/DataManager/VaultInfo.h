@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) NSTimeInterval createdDate;
 @property (nonatomic, assign) NSInteger version;
-@property (nonatomic, strong) NSData *masterKey;
+@property (nonatomic, strong) NSString *masterKey;
 
 @end

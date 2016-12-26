@@ -6,16 +6,16 @@
 //  Copyright © 2016 bychance. All rights reserved.
 //
 
-#import <CommonCrypto/CommonCrypto.h>
 
 #import "VaultManager.h"
-#import "RNCryptor_iOS.h"
+#import "VaultCrpytionUtils.h"
 #import "VaultInfo.h"
 
 #define kCurrentVaultVersion 1
 #define kVaultInfoFileName @"vault_info"
 #define kIndexInfoFileName @"index_info"
 #define kPasswordDataDirectoryName @"data"
+
 
 @implementation VaultManager {
     VaultInfo *_vaultInfo;
@@ -34,24 +34,35 @@
 
 
 - (BOOL)unlockWithPassword:(NSString *)password {
+    if (!_isLocked) {
+        return YES;
+    }
     if (!password.length || !_vaultPath.length) {
         return NO;
     }
     
-    NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
-    NSData *indexData = [NSData dataWithContentsOfFile:indexInfoFilePath];
-    if (!indexData.length) {
+    // get vault info
+    NSString *vaultInfoFilePath = [_vaultPath stringByAppendingPathComponent:kVaultInfoFileName];
+    NSData *vaultInfoData = DecryptFile(vaultInfoFilePath, password);
+    if (!vaultInfoData) {
         return NO;
     }
     NSError *error;
-    indexData = [RNDecryptor decryptData:indexData withPassword:password error:&error];
-    if (!indexData.length) {
-        NSLog(@"Fail to decrypt index info: %@", error);
+    VaultInfo *vaultInfo = [[VaultInfo alloc] initWithData:vaultInfoData error:&error];
+    if (error) {
+        NSLog(@"Fail to parse vault info: %@", error);
         return NO;
     }
+    _vaultInfo = vaultInfo;
     
-    NSArray *indexList = [IndexInfo arrayOfModelsFromData:indexData error:nil];
-    _indexInfoList = [NSArray arrayWithArray:indexList];
+    // get index info list
+    NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
+    NSData *indexData = DecryptFile(indexInfoFilePath ,_vaultInfo.masterKey);
+    if (indexData.length) {
+        NSArray *indexList = [IndexInfo arrayOfModelsFromData:indexData error:nil];
+        _indexInfoList = [NSArray arrayWithArray:indexList];
+    }
+    
     _isLocked = NO;
     return YES;
 }
@@ -60,6 +71,8 @@
 - (void)lock {
     _isLocked = YES;
     _indexInfoList = nil;
+    _vaultInfo = nil;
+    
 }
 
 
@@ -154,69 +167,37 @@
         }
     }
     
-    // create master key
-    RNCryptorKeyDerivationSettings masterKeySettings = {
-        .keySize = kCCKeySizeAES256,
-        .saltSize = 32,
-        .PBKDFAlgorithm = kCCPBKDF2,
-        .PRF = kCCPRFHmacAlgSHA512,
-        .rounds = 10000
-    };
-    NSData *salt = [RNCryptor randomDataOfLength:masterKeySettings.saltSize];
-    NSData *masterKey = [RNCryptor keyForPassword:password salt:salt settings:masterKeySettings];
-    
     // create vault info
     VaultInfo *vaultInfo = [VaultInfo new];
     vaultInfo.name = vaultName;
     vaultInfo.createdDate = [[NSDate date] timeIntervalSince1970];
     vaultInfo.version = kCurrentVaultVersion;
-    vaultInfo.masterKey = masterKey;
+    vaultInfo.masterKey = GenerateMasterKey(password);
     
-    NSError *error = nil;
-    NSData *encryptedData = [RNEncryptor encryptData:[vaultInfo toJSONData]
-                                        withSettings:kRNCryptorAES256Settings
-                                            password:password
-                                               error:&error];
-    if (!encryptedData.length || error) {
-        NSLog(@"Fail to encrypt empty vault data: %@", error);
-        return NO;
-    }
-    
+    // write to file
+    NSData *vaultData = [vaultInfo toJSONData];
     NSString *vaultInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kVaultInfoFileName];
-    if ([encryptedData writeToFile:vaultInfoFilePath atomically:YES]) {
-        NSLog(@"Create vault success !!!");
-        return YES;
+    BOOL isOK = EncryptDataToFile(vaultData, vaultInfoFilePath, password);
+    
+    // write test index
+    if (isOK) {
+        IndexInfo *info = [IndexInfo new];
+        info.title = @"hello me";
+        info.thumbnailURL = @"www.??";
+        info.passwordUUID = @"1234325";
+        NSLog(@"info: %@", [info toJSONString]);
         
-    } else {
-        NSLog(@"Fail to create vault !");
-        return NO;
+        NSArray *jsonList = @[info, info];
+        NSArray *dirList = [JSONModel arrayOfDictionariesFromModels:jsonList];
+        
+        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:dirList options:0 error:nil];
+        NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
+        BOOL ok = EncryptDataToFile(indexListData, indexInfoFilePath, vaultInfo.masterKey);
+        NSLog(@"Write test index info: %@", ok ? @"Success" : @"Fail !!!");
     }
     
-//    // create empty index info
-//    NSError *error = nil;
-//    NSData *emptyIndexData = [NSJSONSerialization dataWithJSONObject:@[] options:0 error:&error];
-//    if (!emptyIndexData) {
-//        NSLog(@"Fail to create empty index data: %@", error);
-//        return NO;
-//    }
-//    
-//    // encrypt index data
-//    error = nil;
-//    NSData *encryptedData = [RNEncryptor encryptData:emptyIndexData withSettings:kRNCryptorAES256Settings password:password error:&error];
-//    if (!encryptedData.length || error) {
-//        NSLog(@"Fail to encrypt empty index data: %@", error);
-//        return NO;
-//    }
-//    
-//    NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
-//    if ([encryptedData writeToFile:indexInfoFilePath atomically:YES]) {
-//        NSLog(@"Create vault success !!!");
-//        return YES;
-//        
-//    } else {
-//        NSLog(@"Fail to create vault !");
-//        return NO;
-//    }
+    NSLog(@"Create vault: %@", isOK ? @"Success" : @"Fail !!!");
+    return isOK;
 }
 
 
@@ -234,13 +215,13 @@
         return NO;
     }
     
-    NSString *indexFilePath = [vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:indexFilePath]) {
-        NSLog(@"index file is not existed");
+    NSString *infoFilePath = [vaultPath stringByAppendingPathComponent:kVaultInfoFileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:infoFilePath]) {
+        NSLog(@"vault info file is not existed");
         return NO;
     }
     
-    unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:indexFilePath error:nil] fileSize];
+    unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:infoFilePath error:nil] fileSize];
     if (fileSize <= 0) {
         NSLog(@"Invalid file size: %llu", fileSize);
         return NO;
@@ -248,6 +229,7 @@
     
     return YES;
 }
+
 
 
 @end
