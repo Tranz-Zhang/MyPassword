@@ -152,7 +152,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     
     IndexInfo *info = [IndexInfo new];
     info.title = @"hello me";
-    info.thumbnailURL = @"www.??";
+    info.iconURL = @"www.??";
     info.passwordUUID = @"1234325";
     NSLog(@"info: %@", [info toJSONString]);
     

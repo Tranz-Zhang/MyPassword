@@ -20,18 +20,40 @@
 @implementation VaultManager {
     VaultInfo *_vaultInfo;
     NSString *_dataDirectory;
-    NSArray *_indexInfoList;
+    NSArray<IndexInfo *> *_indexInfoList;
 }
 
 
 - (instancetype)initWithVaultPath:(NSString *)vaultPath {
     self = [super init];
     if (self) {
+        _isLocked = YES;
         _vaultPath = [vaultPath copy];
     }
     return self;
 }
 
+
+- (NSString *)dataDirectory {
+    @synchronized (self) {
+        if (_dataDirectory.length) {
+            return _dataDirectory;
+        }
+        
+        // create password data directory
+        NSError *error;
+        NSString *dataDirectory = [_vaultPath stringByAppendingPathComponent:kPasswordDataDirectoryName];
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:dataDirectory withIntermediateDirectories:YES attributes:nil error:&error]) {
+            NSLog(@"Fail to create data directory: %@", error);
+            return nil;
+        }
+        _dataDirectory = [dataDirectory copy];
+        return _dataDirectory;
+    }
+}
+
+
+#pragma mark - lock & unlock
 
 - (BOOL)unlockWithPassword:(NSString *)password {
     if (!_isLocked) {
@@ -75,6 +97,7 @@
     
 }
 
+#pragma mark - data
 
 - (NSArray<IndexInfo *> *)indexInfoList {
     return _indexInfoList;
@@ -101,39 +124,59 @@
 }
 
 
-- (void)addPasswordInfo:(PasswordInfo *)passwordInfo {
-    
-}
-
-
-- (void)updatePasswordInfo:(PasswordInfo *)passwordInfo {
-    
-}
-
-
-- (void)deletePasswordInfo:(PasswordInfo *)passwordInfo {
-    
-}
-
-
-- (NSString *)dataDirectory {
-    @synchronized (self) {
-        if (_dataDirectory.length) {
-            return _dataDirectory;
-        }
-        
-        // create password data directory
-        NSError *error;
-        NSString *dataDirectory = [_vaultPath stringByAppendingPathComponent:kPasswordDataDirectoryName];
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:dataDirectory withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"Fail to create data directory: %@", error);
-            return nil;
-        }
-        _dataDirectory = [dataDirectory copy];
-        return _dataDirectory;
+- (BOOL)addPasswordInfo:(PasswordInfo *)passwordInfo {
+    if (!passwordInfo.account.length || !passwordInfo.password.length) {
+        NSLog(@"Fail to add password info: invalid password info");
+        return NO;
     }
+    
+    // check passwordInfo
+    if (!passwordInfo.UUID) {
+        passwordInfo.UUID = [self generateUUID];
+    }
+    if (passwordInfo.createdDate <= 0) {
+        passwordInfo.createdDate = [[NSDate date] timeIntervalSince1970];
+        passwordInfo.updatedDate = passwordInfo.createdDate;
+    }
+    
+    NSData *passwordData = [passwordInfo toJSONData];
+    NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordInfo.UUID];
+    BOOL isOK = EncryptDataToFile(passwordData, filePath, _vaultInfo.masterKey);
+    
+    // add index info
+    if (isOK) {
+        IndexInfo *indexInfo = [IndexInfo new];
+        indexInfo.title = passwordInfo.title;
+        indexInfo.passwordUUID = passwordInfo.UUID;
+        indexInfo.iconURL = passwordInfo.iconURL;
+        NSMutableArray *tempList = [NSMutableArray arrayWithArray:_indexInfoList];
+        [tempList addObject:indexInfo];
+        _indexInfoList = tempList.copy;
+        
+        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:_indexInfoList options:0 error:nil];
+        NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
+        isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
+    }
+    
+    NSLog(@"add password: %@", isOK ? @"OK" : @"Fail");
+    return isOK;
 }
 
+
+- (BOOL)updatePasswordInfo:(PasswordInfo *)passwordInfo {
+    return NO;
+}
+
+
+- (BOOL)deletePasswordInfo:(PasswordInfo *)passwordInfo {
+    return NO;
+}
+
+
+- (NSString *)generateUUID {
+    NSString *uuidString = [[NSUUID UUID] UUIDString];
+    return [uuidString stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
 
 #pragma mark - Vault Management
 
@@ -183,7 +226,7 @@
     if (isOK) {
         IndexInfo *info = [IndexInfo new];
         info.title = @"hello me";
-        info.thumbnailURL = @"www.??";
+        info.iconURL = @"www.??";
         info.passwordUUID = @"1234325";
         NSLog(@"info: %@", [info toJSONString]);
         

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *website;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *iconURL;
 @property (nonatomic, assign) NSTimeInterval updatedDate;
 @property (nonatomic, assign) NSTimeInterval createdDate;
 

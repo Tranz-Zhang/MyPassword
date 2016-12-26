@@ -16,6 +16,8 @@
 		4C0273DD1E0D9B55008A3D4D /* PasswordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273DC1E0D9B55008A3D4D /* PasswordInfo.m */; };
 		4C3C30401E10C729004788CF /* VaultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C303F1E10C729004788CF /* VaultInfo.m */; };
 		4C3C30461E111020004788CF /* VaultCrpytionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30451E111020004788CF /* VaultCrpytionUtils.m */; };
+		4C3C304E1E1138C4004788CF /* MyPasswordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C304D1E1138C4004788CF /* MyPasswordTests.m */; };
+		4C3C30561E1138DF004788CF /* VaultManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30551E1138DF004788CF /* VaultManagerTest.m */; };
 		4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C501DEDBD4D00764478 /* RNCryptor.m */; };
 		4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C521DEDBD4D00764478 /* RNCryptorEngine.m */; };
 		4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C541DEDBD4D00764478 /* RNDecryptor.m */; };
@@ -31,6 +33,16 @@
 		4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */; };
 		4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40961E03DB91005BA735 /* EditViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C3C30501E1138C4004788CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C9269601DEDB76F006952B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C9269671DEDB76F006952B9;
+			remoteInfo = MyPassword;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C0273BE1E0D9991008A3D4D /* IndexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexInfo.h; sourceTree = "<group>"; };
@@ -51,6 +63,10 @@
 		4C3C303F1E10C729004788CF /* VaultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultInfo.m; sourceTree = "<group>"; };
 		4C3C30441E111020004788CF /* VaultCrpytionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultCrpytionUtils.h; sourceTree = "<group>"; };
 		4C3C30451E111020004788CF /* VaultCrpytionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultCrpytionUtils.m; sourceTree = "<group>"; };
+		4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyPasswordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C3C304D1E1138C4004788CF /* MyPasswordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPasswordTests.m; sourceTree = "<group>"; };
+		4C3C304F1E1138C4004788CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C3C30551E1138DF004788CF /* VaultManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManagerTest.m; sourceTree = "<group>"; };
 		4C553C4D1DEDBD4D00764478 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		4C553C4F1DEDBD4D00764478 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		4C553C501DEDBD4D00764478 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -82,6 +98,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C3C30481E1138C4004788CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9269651DEDB76F006952B9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,6 +148,16 @@
 			path = JSONModelTransformations;
 			sourceTree = "<group>";
 		};
+		4C3C304C1E1138C4004788CF /* MyPasswordTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C3C30551E1138DF004788CF /* VaultManagerTest.m */,
+				4C3C304D1E1138C4004788CF /* MyPasswordTests.m */,
+				4C3C304F1E1138C4004788CF /* Info.plist */,
+			);
+			path = MyPasswordTests;
+			sourceTree = "<group>";
+		};
 		4C553C4C1DEDBD4D00764478 /* RNCryptor */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				4C92696A1DEDB76F006952B9 /* MyPassword */,
+				4C3C304C1E1138C4004788CF /* MyPasswordTests */,
 				4C9269691DEDB76F006952B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9269681DEDB76F006952B9 /* MyPassword.app */,
+				4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +246,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C3C304A1E1138C4004788CF /* MyPasswordTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MyPasswordTests" */;
+			buildPhases = (
+				4C3C30471E1138C4004788CF /* Sources */,
+				4C3C30481E1138C4004788CF /* Frameworks */,
+				4C3C30491E1138C4004788CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C3C30511E1138C4004788CF /* PBXTargetDependency */,
+			);
+			name = MyPasswordTests;
+			productName = MyPasswordTests;
+			productReference = 4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4C9269671DEDB76F006952B9 /* MyPassword */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C92697F1DEDB76F006952B9 /* Build configuration list for PBXNativeTarget "MyPassword" */;
@@ -237,6 +290,11 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = bychance;
 				TargetAttributes = {
+					4C3C304A1E1138C4004788CF = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4C9269671DEDB76F006952B9;
+					};
 					4C9269671DEDB76F006952B9 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = P5DSPX2CSH;
@@ -258,11 +316,19 @@
 			projectRoot = "";
 			targets = (
 				4C9269671DEDB76F006952B9 /* MyPassword */,
+				4C3C304A1E1138C4004788CF /* MyPasswordTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C3C30491E1138C4004788CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9269661DEDB76F006952B9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,6 +342,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C3C30471E1138C4004788CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C3C30561E1138DF004788CF /* VaultManagerTest.m in Sources */,
+				4C3C304E1E1138C4004788CF /* MyPasswordTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9269641DEDB76F006952B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +380,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4C3C30511E1138C4004788CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C9269671DEDB76F006952B9 /* MyPassword */;
+			targetProxy = 4C3C30501E1138C4004788CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4C9269741DEDB76F006952B9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -325,6 +408,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4C3C30531E1138C4004788CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MyPasswordTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.MyPasswordTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyPassword.app/MyPassword";
+			};
+			name = Debug;
+		};
+		4C3C30541E1138C4004788CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MyPasswordTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.MyPasswordTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyPassword.app/MyPassword";
+			};
+			name = Release;
+		};
 		4C92697D1DEDB76F006952B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -446,6 +555,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MyPasswordTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C3C30531E1138C4004788CF /* Debug */,
+				4C3C30541E1138C4004788CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4C9269631DEDB76F006952B9 /* Build configuration list for PBXProject "MyPassword" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

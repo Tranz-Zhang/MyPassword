@@ -11,7 +11,7 @@
 @interface IndexInfo : JSONModel
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *thumbnailURL;
+@property (nonatomic, strong) NSString *iconURL;
 @property (nonatomic, strong) NSString *passwordUUID;
 
 @end

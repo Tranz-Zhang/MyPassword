@@ -27,9 +27,9 @@
 - (NSArray <IndexInfo *>*)indexInfoList;
 
 - (PasswordInfo *)passwordInfoWithUUID:(NSString *)passwordUUID;
-- (void)addPasswordInfo:(PasswordInfo *)passwordInfo;
-- (void)updatePasswordInfo:(PasswordInfo *)passwordInfo;
-- (void)deletePasswordInfo:(PasswordInfo *)passwordInfo;
+- (BOOL)addPasswordInfo:(PasswordInfo *)passwordInfo;
+- (BOOL)updatePasswordInfo:(PasswordInfo *)passwordInfo;
+- (BOOL)deletePasswordWithUUID:(NSString *)passwordUUID;
 
 
 /** Vault Management **/

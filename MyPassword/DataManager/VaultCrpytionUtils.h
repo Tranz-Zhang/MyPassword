@@ -18,4 +18,3 @@ NSString *GenerateMasterKey(NSString *password);
 NSData *DecryptFile(NSString *filePath, NSString *password );
 BOOL EncryptDataToFile(NSData *data, NSString *filePath, NSString *password);
 
-
