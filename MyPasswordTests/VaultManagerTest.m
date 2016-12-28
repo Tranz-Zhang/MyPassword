@@ -132,6 +132,11 @@
     XCTAssertTrue(vault.isLocked);
     XCTAssertTrue([vault unlockWithPassword:newPassword]);
     XCTAssertFalse(vault.isLocked);
+    
+    // reopen vault
+    vault = nil;
+    vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+    XCTAssertTrue([vault unlockWithPassword:newPassword]);
 }
 
 
@@ -152,7 +157,6 @@
 }
 
 
-
 - (void)testGetPasswordInfo {
     NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *vaultPath = [documentPath stringByAppendingFormat:@"/DefaultTest.%@", kVaultExtension];
@@ -170,13 +174,19 @@
     // close and reopen vault
     vault = nil;
     vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
-    IndexInfo *idxInfo = vault.indexInfoList[0];
-    XCTAssertNil([vault passwordInfoWithUUID:idxInfo.passwordUUID]);
     
+    // unlock
     [vault unlockWithPassword:_password];
+    IndexInfo *idxInfo = vault.indexInfoList[0];
     XCTAssertNil([vault passwordInfoWithUUID:@""]);
     XCTAssertNil([vault passwordInfoWithUUID:nil]);
-    XCTAssertNotNil([vault passwordInfoWithUUID:idxInfo.passwordUUID]);
+    PasswordInfo *info = [vault passwordInfoWithUUID:idxInfo.passwordUUID];
+    XCTAssertNotNil(info);
+    XCTAssertEqualObjects(info.account, password.account);
+    XCTAssertEqualObjects(info.password, password.password);
+    
+    [vault lock];
+    XCTAssertNil([vault passwordInfoWithUUID:idxInfo.passwordUUID]);
 }
 
 

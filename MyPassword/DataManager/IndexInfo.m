@@ -10,4 +10,11 @@
 
 @implementation IndexInfo
 
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"passwordUUID"]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

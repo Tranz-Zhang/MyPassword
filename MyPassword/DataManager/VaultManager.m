@@ -55,6 +55,27 @@
 
 #pragma mark - lock & unlock
 
+- (BOOL)changePassword:(NSString *)newPassword {
+    if (_isLocked || !newPassword.length) {
+        return NO;
+    }
+    
+    // remove old
+    NSString *vaultInfoFilePath = [_vaultPath stringByAppendingPathComponent:kVaultInfoFileName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:vaultInfoFilePath]) {
+        NSError *error;
+        BOOL isOK = [[NSFileManager defaultManager] removeItemAtPath:vaultInfoFilePath error:&error];
+        NSLog(@"Remove old vault info: %@", isOK ? @"OK" : error);
+    }
+    
+    // write to file
+    NSData *vaultData = [_vaultInfo toJSONData];
+    BOOL isOK = EncryptDataToFile(vaultData, vaultInfoFilePath, newPassword);
+    NSLog(@"change password: %@", isOK ? @"OK" : @"Fail");
+    _isLocked = isOK;
+    return isOK;
+}
+
 - (BOOL)unlockWithPassword:(NSString *)password {
     if (!_isLocked) {
         return YES;
@@ -105,22 +126,23 @@
 
 
 - (PasswordInfo *)passwordInfoWithUUID:(NSString *)passwordUUID {
-    if (_isLocked) {
+    if (_isLocked || !passwordUUID.length) {
         return nil;
     }
     
     NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordUUID];
-    NSData *passwordData = [NSData dataWithContentsOfFile:filePath];
-    if (passwordData.length) {
+    NSData *passwordData = DecryptFile(filePath, _vaultInfo.masterKey);
+    if (!passwordData.length) {
+        NSLog(@"Error: nil password data");
         return nil;
     }
-    
-    // should keep password by text ???
-    
-    // password -> masterkey -> every password info
-    // so should i add vault info ???
-    
-    return nil;
+    NSError *error;
+    PasswordInfo *info = [[PasswordInfo alloc] initWithData:passwordData error:&error];
+    if (error) {
+        NSLog(@"Error parsing data: %@", error);
+        return nil;
+    }
+    return info;
 }
 
 
@@ -133,7 +155,16 @@
     // check passwordInfo
     if (!passwordInfo.UUID) {
         passwordInfo.UUID = [self generateUUID];
+        
+    } else {
+        // check if uuid duplicated
+        for (IndexInfo *indexInfo in _indexInfoList) {
+            if ([indexInfo.passwordUUID isEqualToString:passwordInfo.UUID]) {
+                return NO;
+            }
+        }
     }
+    
     if (passwordInfo.createdDate <= 0) {
         passwordInfo.createdDate = [[NSDate date] timeIntervalSince1970];
         passwordInfo.updatedDate = passwordInfo.createdDate;
@@ -153,7 +184,8 @@
         [tempList addObject:indexInfo];
         _indexInfoList = tempList.copy;
         
-        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:_indexInfoList options:0 error:nil];
+        NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:_indexInfoList];
+        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:jsonIndexList options:0 error:nil];
         NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
         isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
     }
@@ -222,22 +254,22 @@
     NSString *vaultInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kVaultInfoFileName];
     BOOL isOK = EncryptDataToFile(vaultData, vaultInfoFilePath, password);
     
-    // write test index
-    if (isOK) {
-        IndexInfo *info = [IndexInfo new];
-        info.title = @"hello me";
-        info.iconURL = @"www.??";
-        info.passwordUUID = @"1234325";
-        NSLog(@"info: %@", [info toJSONString]);
-        
-        NSArray *jsonList = @[info, info];
-        NSArray *dirList = [JSONModel arrayOfDictionariesFromModels:jsonList];
-        
-        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:dirList options:0 error:nil];
-        NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
-        BOOL ok = EncryptDataToFile(indexListData, indexInfoFilePath, vaultInfo.masterKey);
-        NSLog(@"Write test index info: %@", ok ? @"Success" : @"Fail !!!");
-    }
+//    // write test index
+//    if (isOK) {
+//        IndexInfo *info = [IndexInfo new];
+//        info.title = @"hello me";
+//        info.iconURL = @"www.??";
+//        info.passwordUUID = @"1234325";
+//        NSLog(@"info: %@", [info toJSONString]);
+//        
+//        NSArray *jsonList = @[info, info];
+//        NSArray *dirList = [JSONModel arrayOfDictionariesFromModels:jsonList];
+//        
+//        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:dirList options:0 error:nil];
+//        NSString *indexInfoFilePath = [vaultDirectory stringByAppendingPathComponent:kIndexInfoFileName];
+//        BOOL ok = EncryptDataToFile(indexListData, indexInfoFilePath, vaultInfo.masterKey);
+//        NSLog(@"Write test index info: %@", ok ? @"Success" : @"Fail !!!");
+//    }
     
     NSLog(@"Create vault: %@", isOK ? @"Success" : @"Fail !!!");
     return isOK;

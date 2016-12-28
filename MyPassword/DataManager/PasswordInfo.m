@@ -34,4 +34,13 @@
 }
 
 
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"account"] ||
+        [propertyName isEqualToString:@"password"]) {
+        return NO;
+    }
+    return YES;
+}
+
+
 @end

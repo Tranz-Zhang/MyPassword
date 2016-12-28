@@ -10,4 +10,12 @@
 
 @implementation VaultInfo
 
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"name"] ||
+        [propertyName isEqualToString:@"masterKey"]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end
