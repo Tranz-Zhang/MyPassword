@@ -197,7 +197,7 @@
     
     PasswordInfo *password = [PasswordInfo new];
     password.title = @"my password";
-    password.UUID = [[NSUUID UUID] UUIDString];
+//    password.UUID = [[NSUUID UUID] UUIDString];
     password.account = @"chance";
     password.password = @"Test Password";
     password.website = @"www.google.com";
@@ -328,6 +328,7 @@
     
     IndexInfo *idxInfo = vault.indexInfoList[0];
     PasswordInfo *updatedPassword = [vault passwordInfoWithUUID:idxInfo.passwordUUID];
+    XCTAssertNotNil(updatedPassword, @"Fail to get password");
     
     // lock and update
     [vault lock];
@@ -344,16 +345,18 @@
     updatedPassword.password = @"";
     XCTAssertFalse([vault updatePasswordInfo:updatedPassword]);
     updatedPassword.password = @"hallo";
+    NSString *originalUUID = updatedPassword.UUID;
     updatedPassword.UUID = [[NSUUID UUID] UUIDString];
     XCTAssertFalse([vault updatePasswordInfo:updatedPassword]);
     
     // actual update
+    updatedPassword.UUID = originalUUID;
     updatedPassword.title = @"Changed password title";
     updatedPassword.account = @"another account";
     updatedPassword.password = @"another Password";
     updatedPassword.website = @"www.google.com";
     updatedPassword.iconURL = @"www.icon.com";
-    XCTAssertTrue([vault updatePasswordInfo:updatedPassword]);
+    XCTAssertTrue([vault updatePasswordInfo:[updatedPassword copy]]);
     // check actual update
     vault = nil;
     vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
@@ -368,12 +371,14 @@
     XCTAssertTrue([updatedPassword2.iconURL isEqualToString:updatedPassword.iconURL]);
     XCTAssertTrue(updatedPassword2.createdDate == updatedPassword.createdDate);
     XCTAssertTrue(updatedPassword2.updatedDate > updatedPassword.updatedDate);
+    XCTAssertTrue([idxInfo.title isEqualToString:@"Changed password title"]);
+    XCTAssertTrue([idxInfo.iconURL isEqualToString:@"www.icon.com"]);
     
     // set nil update
     updatedPassword2.title = nil;
     updatedPassword2.website = nil;
     updatedPassword2.iconURL = nil;
-    XCTAssertTrue([vault updatePasswordInfo:updatedPassword2]);
+    XCTAssertTrue([vault updatePasswordInfo:[updatedPassword2 copy]]);
     // check set nil update
     vault = nil;
     vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
@@ -384,10 +389,76 @@
     XCTAssertNil(updatedPassword3.website);
     XCTAssertNil(updatedPassword3.iconURL);
     XCTAssertTrue(updatedPassword3.updatedDate > updatedPassword2.updatedDate);
+    XCTAssertNil(idxInfo.title);
+    XCTAssertNil(idxInfo.iconURL);
 }
 
 
+- (void)testPasswordWithCustomUUID {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *vaultPath = [documentPath stringByAppendingFormat:@"/DefaultTest.%@", kVaultExtension];
+    XCTAssert([VaultManager verifyVaultWithPath:vaultPath], @"Default test vault is no ready");
+    
+    NSString *customUUID = @"AAABBB";
+    PasswordInfo *password = [PasswordInfo new];
+    password.title = @"my password";
+    password.UUID = customUUID;
+    password.account = @"chance";
+    password.password = @"Test Password";
+    password.website = @"www.google.com";
+    password.iconURL = @"www.icon.com";
+    password.createdDate = [[NSDate date] timeIntervalSince1970];
+    password.updatedDate = [[NSDate date] timeIntervalSince1970];
+    
+    VaultManager *vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+    [vault unlockWithPassword:_password];
+    XCTAssertTrue([vault addPasswordInfo:password]);
+    
+    vault = nil;
+    vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+    XCTAssertTrue([vault unlockWithPassword:_password]);
+    
+    // test get
+    PasswordInfo *getPassword = [vault passwordInfoWithUUID:customUUID];
+    XCTAssertNotNil(getPassword);
+    
+    // test update
+    getPassword.title = @"comston Title";
+    XCTAssertTrue([vault updatePasswordInfo:getPassword]);
+    
+    // test delete
+    XCTAssertTrue([vault deletePasswordWithUUID:customUUID]);
+}
 
+
+- (void)testDuplicatedUUID {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *vaultPath = [documentPath stringByAppendingFormat:@"/DefaultTest.%@", kVaultExtension];
+    XCTAssert([VaultManager verifyVaultWithPath:vaultPath], @"Default test vault is no ready");
+    
+    NSString *customUUID = @"AAABBB";
+    PasswordInfo *password = [PasswordInfo new];
+    password.UUID = customUUID;
+    password.account = @"chance";
+    password.password = @"Test Password";
+    
+    VaultManager *vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+    [vault unlockWithPassword:_password];
+    XCTAssertTrue([vault addPasswordInfo:password]);
+    
+    // password2
+    PasswordInfo *password2 = [password copy];
+    XCTAssertTrue(password != password2);
+    XCTAssertFalse([vault addPasswordInfo:password2]);
+    
+    // duplicate update
+    password2.account = @"new account";
+    XCTAssertTrue([vault updatePasswordInfo:password2]);
+    
+    // delete
+    XCTAssertTrue([vault deletePasswordWithUUID:customUUID]);
+    XCTAssertTrue([vault deletePasswordWithUUID:customUUID]);
+}
 
 
 @end

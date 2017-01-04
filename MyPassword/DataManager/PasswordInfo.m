@@ -15,6 +15,7 @@
     item.UUID = [_UUID copy];
     item.title = [_title copy];
     item.website = [_website copy];
+    item.iconURL = [_iconURL copy];
     item.account = [_account copy];
     item.password = [_password copy];
     item.updatedDate = _updatedDate;

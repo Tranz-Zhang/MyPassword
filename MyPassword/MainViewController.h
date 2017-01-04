@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class VaultManager;
 @interface MainViewController : UIViewController
 
+@property (nonatomic, strong) VaultManager *vault;
 
 @end
 

@@ -99,12 +99,13 @@
     _vaultInfo = vaultInfo;
     
     // get index info list
+    NSArray *indexList;
     NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
     NSData *indexData = DecryptFile(indexInfoFilePath ,_vaultInfo.masterKey);
     if (indexData.length) {
-        NSArray *indexList = [IndexInfo arrayOfModelsFromData:indexData error:nil];
-        _indexInfoList = [NSArray arrayWithArray:indexList];
+         indexList = [IndexInfo arrayOfModelsFromData:indexData error:nil];
     }
+    _indexInfoList = [NSArray arrayWithArray:indexList];
     
     _isLocked = NO;
     return YES;
@@ -147,7 +148,7 @@
 
 
 - (BOOL)addPasswordInfo:(PasswordInfo *)passwordInfo {
-    if (!passwordInfo.account.length || !passwordInfo.password.length) {
+    if (!passwordInfo.account.length || !passwordInfo.password.length || _isLocked) {
         NSLog(@"Fail to add password info: invalid password info");
         return NO;
     }
@@ -196,12 +197,71 @@
 
 
 - (BOOL)updatePasswordInfo:(PasswordInfo *)passwordInfo {
-    return NO;
+    if (!passwordInfo.account.length ||
+        !passwordInfo.password.length ||
+        !passwordInfo.UUID.length ||
+        _isLocked) {
+        NSLog(@"Fail to update password info: invalid password info");
+        return NO;
+    }
+    
+    NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordInfo.UUID];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSLog(@"Can not find password file");
+        return NO;
+    }
+    
+    // save to file
+    passwordInfo.updatedDate = [[NSDate date] timeIntervalSince1970];
+    NSData *passwordData = [passwordInfo toJSONData];
+    BOOL isOK = EncryptDataToFile(passwordData, filePath, _vaultInfo.masterKey);
+    if (isOK) {
+        // update index info
+        for (IndexInfo *info in _indexInfoList) {
+            if ([info.passwordUUID isEqualToString:passwordInfo.UUID]) {
+                info.title = passwordInfo.title;
+                info.iconURL = passwordInfo.iconURL;
+            }
+        }
+        NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:_indexInfoList];
+        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:jsonIndexList options:0 error:nil];
+        NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
+        isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
+    }
+    
+    NSLog(@"update password: %@", isOK ? @"OK" : @"Fail");
+    return isOK;
 }
 
 
-- (BOOL)deletePasswordInfo:(PasswordInfo *)passwordInfo {
-    return NO;
+- (BOOL)deletePasswordWithUUID:(NSString *)passwordUUID {
+    if (!passwordUUID.length || _isLocked) {
+        NSLog(@"Fail to update password info: invalid password info");
+        return NO;
+    }
+    
+    IndexInfo *deletedIndexInfo = nil;
+    for (IndexInfo *indexInfo in _indexInfoList) {
+        if ([indexInfo.passwordUUID isEqualToString:passwordUUID]) {
+            deletedIndexInfo = indexInfo;
+            break;
+        }
+    }
+    if (deletedIndexInfo) {
+        NSMutableArray *tempList = [_indexInfoList mutableCopy];
+        [tempList removeObject:deletedIndexInfo];
+        _indexInfoList = tempList.copy;
+    }
+    
+    NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordUUID];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSError *error;
+        BOOL isOK = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        NSLog(@"Remove password file: %@", isOK ? @"OK" : error);
+        return isOK;
+    }
+    
+    return YES;
 }
 
 

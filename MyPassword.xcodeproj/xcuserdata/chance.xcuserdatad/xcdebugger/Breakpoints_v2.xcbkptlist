@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPassword/MainViewController.m"
-            timestampString = "504275329.467776"
+            timestampString = "505232791.853752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-testJsonModel"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPassword/MainViewController.m"
-            timestampString = "504275329.467776"
+            timestampString = "505232791.853752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-testJsonModel"
             landmarkType = "7">
          </BreakpointContent>
@@ -38,16 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPassword/DataManager/VaultManager.m"
-            timestampString = "504624429.389639"
+            filePath = "MyPassword/MainViewController.m"
+            timestampString = "505232791.853752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-indexInfoList"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-editViewController:didUpdatePassword:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

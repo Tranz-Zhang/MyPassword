@@ -18,11 +18,9 @@
 
 @interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
 PasswordDetailCellDelegate, EditViewControllerDelegate> {
-    NSData *_salt;
-    
     __weak IBOutlet UITableView *_tableView;
-    
     NSIndexPath *_detailIndexPath;
+    NSArray *_infoList;
 }
 
 @end
@@ -35,7 +33,23 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     footerView.backgroundColor = [UIColor lightGrayColor];
     _tableView.tableFooterView = footerView;
     
-    _salt = [self generateSalt256];
+    if (!_vault) {
+        NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *vaultPath = [documentPath stringByAppendingFormat:@"/%@.%@", @"chance", kVaultExtension];
+        if (![VaultManager verifyVaultWithPath:vaultPath]) {
+            BOOL isOK = [VaultManager createVaultWithName:@"chance" atPath:documentPath usingPassword:@"MyPassword"];
+            if (isOK) {
+                _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+            }
+            
+        } else {
+            _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+        }
+    }
+    [_vault unlockWithPassword:@"MyPassword"];
+    _infoList = [self.vault indexInfoList];
+    
+    NSLog(@"Vault %@", _vault.isLocked ? @"Locked" : @"Unlock!!!");
 }
 
 
@@ -43,7 +57,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 #pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _infoList.count;
 }
 
 
@@ -66,7 +80,8 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
         
     } else {
         PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-        infoCell.itemTitleLabel.text = @"亚马逊密码";
+        IndexInfo *info = _infoList[indexPath.row];
+        infoCell.itemTitleLabel.text = info.title;
         cell = infoCell;
     }
     
@@ -96,6 +111,11 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
          segue.destinationViewController.title = @"Detail";
+        
+    } else if ([segue.identifier isEqualToString:@"AddPassword"]) {
+        UINavigationController *nv = segue.destinationViewController;
+        EditViewController *editVC = nv.viewControllers[0];
+        editVC.delegate = self;
     }
 }
 
@@ -112,12 +132,24 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 #pragma mark - EditViewControllerDelegate
 
 - (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordInfo *)password {
-    NSLog(@"Add password: %@", [password toDictionary]);
+    BOOL isOK = [self.vault addPasswordInfo:password];
+    if (isOK) {
+        _infoList = [self.vault indexInfoList];
+        [_tableView reloadData];
+    }
+    
+    NSLog(@"Add password: %@", isOK ? [password toDictionary] : @"Fail");
 }
 
 
 - (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordInfo *)password {
-    NSLog(@"Update password: %@", [password toDictionary]);
+    BOOL isOK = [self.vault updatePasswordInfo:password];
+    if (isOK) {
+        _infoList = [self.vault indexInfoList];
+        [_tableView reloadData];
+    }
+    
+    NSLog(@"Update password: %@", isOK ? [password toDictionary] : @"Fail");
 }
 
 
@@ -228,7 +260,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     NSString* myPass = @"MyPassword1234";
     NSData* myPassData = [myPass dataUsingEncoding:NSUTF8StringEncoding];
     
-    
+    NSData *_salt = [self generateSalt256];
     // How many rounds to use so that it takes 0.1s ?
     int rounds = 10000;//CCCalibratePBKDF(kCCPBKDF2, myPassData.length, _salt.length, kCCPRFHmacAlgSHA1, 32, 100);
     NSLog(@"Rounds: %d", rounds);
