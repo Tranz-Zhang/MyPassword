@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="passwordTextField" destination="kd1-zW-4PJ" id="5eh-PH-BRA"/>
+                <outlet property="view" destination="iN0-l3-epB" id="23U-5x-0lC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="item_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="6sG-qB-NLN">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="3na-Fu-c3i"/>
+                        <constraint firstAttribute="width" constant="150" id="6cB-Kz-iDQ"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kd1-zW-4PJ">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="7aO-Hp-d16"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Vmc-aj-w88"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GP-u5-cF7">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="2xZ-H6-pMS"/>
+                        <constraint firstAttribute="height" constant="44" id="xE3-1I-2VO"/>
+                    </constraints>
+                    <state key="normal" title="Unlock"/>
+                    <connections>
+                        <action selector="onUnlockButtonClicked:" destination="-1" eventType="touchUpInside" id="Oz8-oW-ixb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6sG-qB-NLN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Du3-v8-WAB"/>
+                <constraint firstItem="6sG-qB-NLN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="120" id="Fe3-Va-V3N"/>
+                <constraint firstItem="2GP-u5-cF7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OAQ-Md-gT7"/>
+                <constraint firstItem="kd1-zW-4PJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QfI-EZ-v8i"/>
+                <constraint firstItem="2GP-u5-cF7" firstAttribute="top" secondItem="kd1-zW-4PJ" secondAttribute="bottom" constant="8" id="V9e-pc-t9R"/>
+                <constraint firstItem="kd1-zW-4PJ" firstAttribute="top" secondItem="6sG-qB-NLN" secondAttribute="bottom" constant="20" id="iuH-xe-egW"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="-524" y="52"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="item_placeholder" width="64" height="64"/>
+    </resources>
+</document>

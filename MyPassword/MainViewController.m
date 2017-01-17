@@ -11,13 +11,12 @@
 #import "PasswordInfoCell.h"
 #import "PasswordDetailCell.h"
 #import "EditViewController.h"
-#import "RNCryptor_iOS.h"
-#import "IndexInfo.h"
-#import "PasswordInfo.h"
 #import "VaultManager.h"
+#import "LoginViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
-PasswordDetailCellDelegate, EditViewControllerDelegate> {
+PasswordDetailCellDelegate, EditViewControllerDelegate, LoginViewControllerDelegate> {
+    LoginViewController *_loginVC;
     __weak IBOutlet UITableView *_tableView;
     NSIndexPath *_detailIndexPath;
     NSArray *_infoList;
@@ -50,8 +49,24 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     _infoList = [self.vault indexInfoList];
     
     NSLog(@"Vault %@", _vault.isLocked ? @"Locked" : @"Unlock!!!");
+    
+    _loginVC = [[LoginViewController alloc] init];
+    _loginVC.view.frame = self.view.frame;
+    _loginVC.delegate = self;
+    [self.view addSubview:_loginVC.view];
 }
 
+
+#pragma mark - LoginViewController
+- (void)loginViewControllerDidFinishLogin:(LoginViewController *)loginVC {
+    [UIView animateWithDuration:0.5f animations:^{
+        _loginVC.view.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [_loginVC.view removeFromSuperview];
+        _loginVC = nil;
+    }];
+}
 
 
 #pragma mark - Table View
@@ -157,13 +172,13 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
 
 - (IBAction)onTest:(id)sender {
 //    [self testJsonModel];
-    [self testVaultManager];
+//    [self testVaultManager];
 //    [self testJsonModel];
 //    [self testEditing];
     
 }
 
-
+/*
 - (void)testVaultManager {
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *vaultPath = [document stringByAppendingFormat:@"/chance.vault"];
@@ -218,6 +233,7 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
     [self presentViewController:nv animated:YES completion:nil];
 }
+
 
 
 - (void)testRNCryptor {
@@ -282,5 +298,6 @@ PasswordDetailCellDelegate, EditViewControllerDelegate> {
     }
     return [NSData dataWithBytes:salt length:32];
 }
+//*/
 
 @end

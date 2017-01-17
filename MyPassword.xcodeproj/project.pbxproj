@@ -29,6 +29,9 @@
 		4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269741DEDB76F006952B9 /* Main.storyboard */; };
 		4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269771DEDB76F006952B9 /* Assets.xcassets */; };
 		4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */; };
+		4CA6E4F81E2E148E00207BE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */; };
+		4CA6E4FB1E2E176C00207BE7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CA6E4FA1E2E176C00207BE7 /* Login.storyboard */; };
+		4CA6E4FD1E2E3F3B00207BE7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA6E4FC1E2E3F3B00207BE7 /* LoginViewController.xib */; };
 		4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7A6321E0966B000BD1A22 /* VaultManager.m */; };
 		4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */; };
 		4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40961E03DB91005BA735 /* EditViewController.m */; };
@@ -89,6 +92,10 @@
 		4C9269771DEDB76F006952B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C92697A1DEDB76F006952B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C92697C1DEDB76F006952B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CA6E4F51E2E148E00207BE7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4CA6E4FA1E2E176C00207BE7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4CA6E4FC1E2E3F3B00207BE7 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4CA7A6311E0966B000BD1A22 /* VaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultManager.h; sourceTree = "<group>"; };
 		4CA7A6321E0966B000BD1A22 /* VaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManager.m; sourceTree = "<group>"; };
 		4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordDetailCell.h; sourceTree = "<group>"; };
@@ -209,6 +216,10 @@
 				4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */,
 				4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */,
 				4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */,
+				4CA6E4F51E2E148E00207BE7 /* LoginViewController.h */,
+				4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */,
+				4CA6E4FC1E2E3F3B00207BE7 /* LoginViewController.xib */,
+				4CA6E4FA1E2E176C00207BE7 /* Login.storyboard */,
 				4C9269741DEDB76F006952B9 /* Main.storyboard */,
 				4C9269771DEDB76F006952B9 /* Assets.xcassets */,
 				4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */,
@@ -333,8 +344,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA6E4FD1E2E3F3B00207BE7 /* LoginViewController.xib in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
 				4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */,
+				4CA6E4FB1E2E176C00207BE7 /* Login.storyboard in Resources */,
 				4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +379,7 @@
 				4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */,
 				4C0273D61E0D9B0F008A3D4D /* JSONModel.m in Sources */,
 				4C3C30401E10C729004788CF /* VaultInfo.m in Sources */,
+				4CA6E4F81E2E148E00207BE7 /* LoginViewController.m in Sources */,
 				4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */,
 				4C0273DA1E0D9B0F008A3D4D /* JSONValueTransformer.m in Sources */,
 				4C0273D91E0D9B0F008A3D4D /* JSONKeyMapper.m in Sources */,
@@ -562,6 +576,7 @@
 				4C3C30541E1138C4004788CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C9269631DEDB76F006952B9 /* Build configuration list for PBXProject "MyPassword" */ = {
 			isa = XCConfigurationList;
