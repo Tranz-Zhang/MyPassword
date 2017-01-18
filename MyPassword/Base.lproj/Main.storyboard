@@ -420,6 +420,7 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
+                                            <action selector="onConfirmTextFieldChanged:" destination="pLG-cd-lKB" eventType="editingChanged" id="pdM-JL-ajC"/>
                                             <outlet property="delegate" destination="pLG-cd-lKB" id="RVc-dj-vU8"/>
                                         </connections>
                                     </textField>
@@ -485,7 +486,7 @@
                     <navigationItem key="navigationItem" title="Create Your Vault" id="2Xe-Av-5b1"/>
                     <connections>
                         <outlet property="accountTextField" destination="824-Ra-PS7" id="7g9-V8-e9J"/>
-                        <outlet property="confirmPasswordTextFiled" destination="gNS-tJ-u5T" id="MPc-JW-ta1"/>
+                        <outlet property="confirmPasswordTextFiled" destination="gNS-tJ-u5T" id="vhz-OW-3r7"/>
                         <outlet property="iconView" destination="77x-oj-fnd" id="uND-Za-2H3"/>
                         <outlet property="infoContentView" destination="8Nh-gW-i3G" id="Xmf-SC-dC3"/>
                         <outlet property="passwordTextField" destination="iBs-Cr-WX7" id="6vM-26-fi5"/>

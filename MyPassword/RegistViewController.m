@@ -87,6 +87,19 @@
 
 - (BOOL)onCreateVault {
     NSLog(@"onCreateVault");
+    if (!self.accountTextField.text.length) {
+        [self showInputErrorBoundaryInView:self.accountTextField];
+        return NO;
+    }
+    if (!self.passwordTextField.text.length) {
+        [self showInputErrorBoundaryInView:self.passwordTextField];
+        return NO;
+    }
+    if (![self.confirmPasswordTextFiled.text isEqualToString:self.passwordTextField.text]) {
+        [self showInputErrorBoundaryInView:self.confirmPasswordTextFiled];
+        return NO;
+    }
+    
     return NO;
 }
 
@@ -124,6 +137,12 @@
     }
     return YES;
 }
+
+
+- (IBAction)onConfirmTextFieldChanged:(UITextField *)sender {
+    NSLog(@"confirm: %@", sender.text);
+}
+
 
 
 @end
