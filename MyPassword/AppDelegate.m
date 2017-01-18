@@ -19,7 +19,7 @@
     
     // custom theme
     UIColor *themeColor = [UIColor colorWithHue:214 / 360.0f saturation:0.41 brightness:0.33 alpha:1];
-//    self.window.tintColor = themeColor;
+    self.window.tintColor = themeColor;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
     
     return YES;

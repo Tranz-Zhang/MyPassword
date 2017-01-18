@@ -8,29 +8,30 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 #import "MainViewController.h"
-#import "PasswordInfoCell.h"
-#import "PasswordDetailCell.h"
-#import "EditViewController.h"
-#import "VaultManager.h"
 #import "LoginViewController.h"
+#import "RegistViewController.h"
+#import "ContentViewController.h"
+#import "VaultManager.h"
 
-@interface MainViewController ()<UITableViewDelegate, UITableViewDataSource,
-PasswordDetailCellDelegate, EditViewControllerDelegate, LoginViewControllerDelegate> {
-    LoginViewController *_loginVC;
-    __weak IBOutlet UITableView *_tableView;
-    NSIndexPath *_detailIndexPath;
-    NSArray *_infoList;
+#define kUserDefaultKey_DefaultVaultName @"default_vault_name"
+
+
+@interface MainViewController () {
+    ContentViewController *_contentVC;
+    VaultManager *_vault;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIView *registView;
+@property (weak, nonatomic) IBOutlet UIView *loginView;
+
 @end
+
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-    footerView.backgroundColor = [UIColor lightGrayColor];
-    _tableView.tableFooterView = footerView;
     
     if (!_vault) {
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -45,138 +46,28 @@ PasswordDetailCellDelegate, EditViewControllerDelegate, LoginViewControllerDeleg
             _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
         }
     }
+    
+    for (UIViewController *childVC in self.childViewControllers) {
+        if ([childVC isKindOfClass:[ContentViewController class]]) {
+            _contentVC = (ContentViewController *)childVC;
+        }
+        if ([childVC isKindOfClass:[UINavigationController class]]) {
+            UIViewController *rootVC = [[(UINavigationController *)childVC viewControllers] objectAtIndex:0];
+            if ([rootVC isKindOfClass:[ContentViewController class]]) {
+                _contentVC = (ContentViewController *)rootVC;
+            }
+        }
+    }
+    
     [_vault unlockWithPassword:@"MyPassword"];
-    _infoList = [self.vault indexInfoList];
     
-    NSLog(@"Vault %@", _vault.isLocked ? @"Locked" : @"Unlock!!!");
-    
-    _loginVC = [[LoginViewController alloc] init];
-    _loginVC.view.frame = self.view.frame;
-    _loginVC.delegate = self;
-    [self.view addSubview:_loginVC.view];
+    _contentVC.vault = _vault;
+    [_contentVC refreshList];
 }
 
-
-#pragma mark - LoginViewController
-- (void)loginViewControllerDidFinishLogin:(LoginViewController *)loginVC {
-    [UIView animateWithDuration:0.5f animations:^{
-        _loginVC.view.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        [_loginVC.view removeFromSuperview];
-        _loginVC = nil;
-    }];
-}
-
-
-#pragma mark - Table View
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _infoList.count;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_detailIndexPath isEqual:indexPath]) {
-        return 148;
-    } else {
-        return 60;
-    }
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
-    if ([indexPath isEqual:_detailIndexPath]) {
-        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell"
-                                                                         forIndexPath:indexPath];
-        detailCell.delegate = self;
-        cell = detailCell;
-        
-    } else {
-        PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-        IndexInfo *info = _infoList[indexPath.row];
-        infoCell.itemTitleLabel.text = info.title;
-        cell = infoCell;
-    }
-    
-    return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *reloadRows = nil;
-    if ([_detailIndexPath isEqual:indexPath]) {
-        _detailIndexPath = nil;
-        reloadRows = @[indexPath];
-        
-    } else {
-        reloadRows = _detailIndexPath ? @[indexPath, _detailIndexPath] : @[indexPath];
-        _detailIndexPath = indexPath;
-    }
-    [tableView reloadRowsAtIndexPaths:reloadRows withRowAnimation:UITableViewRowAnimationFade];
-}
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
-         segue.destinationViewController.title = @"Detail";
-        
-    } else if ([segue.identifier isEqualToString:@"AddPassword"]) {
-        UINavigationController *nv = segue.destinationViewController;
-        EditViewController *editVC = nv.viewControllers[0];
-        editVC.delegate = self;
-    }
-}
-
-
-#pragma mark - PasswordDetailCellDelegate
-- (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
-    [self presentViewController:nv animated:YES completion:nil];
-}
-
-
-#pragma mark - EditViewControllerDelegate
-
-- (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordInfo *)password {
-    BOOL isOK = [self.vault addPasswordInfo:password];
-    if (isOK) {
-        _infoList = [self.vault indexInfoList];
-        [_tableView reloadData];
-    }
-    
-    NSLog(@"Add password: %@", isOK ? [password toDictionary] : @"Fail");
-}
-
-
-- (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordInfo *)password {
-    BOOL isOK = [self.vault updatePasswordInfo:password];
-    if (isOK) {
-        _infoList = [self.vault indexInfoList];
-        [_tableView reloadData];
-    }
-    
-    NSLog(@"Update password: %@", isOK ? [password toDictionary] : @"Fail");
-}
 
 
 #pragma mark - Test
-
-- (IBAction)onTest:(id)sender {
-//    [self testJsonModel];
-//    [self testVaultManager];
-//    [self testJsonModel];
-//    [self testEditing];
-    
-}
 
 /*
 - (void)testVaultManager {
