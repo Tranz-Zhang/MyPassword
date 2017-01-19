@@ -76,7 +76,7 @@
                                                         <constraint firstAttribute="width" secondItem="5kd-la-jat" secondAttribute="height" multiplier="1:1" id="xlF-Fo-grR"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hkC-cm-cJP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_button" translatesAutoresizingMaskIntoConstraints="NO" id="hkC-cm-cJP">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="db9-ro-VUh"/>
                                                     </constraints>

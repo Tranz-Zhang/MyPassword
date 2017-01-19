@@ -61,6 +61,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_detailIndexPath isEqual:indexPath]) {
         return 148;
+        
     } else {
         return 60;
     }
@@ -73,6 +74,8 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell"
                                                                          forIndexPath:indexPath];
         detailCell.delegate = self;
+        IndexInfo *indexInfo = _infoList[indexPath.row];
+        detailCell.passwordInfo = [_vault passwordInfoWithUUID:indexInfo.passwordUUID];
         cell = detailCell;
         
     } else {
@@ -116,6 +119,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
+    editVC.password = cell.passwordInfo;
     editVC.delegate = self;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
     [self presentViewController:nv animated:YES completion:nil];

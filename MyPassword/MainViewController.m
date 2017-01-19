@@ -41,9 +41,10 @@
     NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", vaultName, kVaultExtension];
     if (vaultName && [VaultManager verifyVaultWithPath:vaultPath]) {
         // show login interface
+        _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
         LoginViewController *loginVC = (LoginViewController *)[self childViewControllerWithClass:[LoginViewController class]];
         loginVC.accountName = vaultName;
-        loginVC.vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+        loginVC.vault = _vault;
         loginVC.delegate = self;
         
         [_registView removeFromSuperview];
@@ -61,22 +62,6 @@
     }
     
     _contentVC = (ContentViewController *)[self childViewControllerWithClass:[ContentViewController class]];
-    
-    /*
-    if (!_vault) {
-        NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *vaultPath = [documentPath stringByAppendingFormat:@"/%@.%@", @"chance", kVaultExtension];
-        if (![VaultManager verifyVaultWithPath:vaultPath]) {
-            BOOL isOK = [VaultManager createVaultWithName:@"chance" atPath:documentPath usingPassword:@"MyPassword"];
-            if (isOK) {
-                _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
-            }
-            
-        } else {
-            _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
-        }
-    }
-    //*/
 }
 
 

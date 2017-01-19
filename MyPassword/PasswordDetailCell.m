@@ -26,9 +26,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UIImage *bgImage = [[UIImage imageNamed:@"default_button_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:5];
-    self.passwordBackgroundView.image = bgImage;
     [self.passwordButton setTitle:@"{ ********** }" forState:UIControlStateNormal];
+}
+
+
+- (void)setPasswordInfo:(PasswordInfo *)passwordInfo {
+    _passwordInfo = passwordInfo;
+    self.itemTitleLabel.text = passwordInfo.title;
+    self.accountLabel.text = passwordInfo.account;
+    
 }
 
 
@@ -39,9 +45,8 @@
         
     } else {
         _isShowingPassword = YES;
-        [button setTitle:@"XXXXXXXXXX" forState:UIControlStateNormal];
+        [button setTitle:self.passwordInfo.password forState:UIControlStateNormal];
     }
-    
 }
 
 
