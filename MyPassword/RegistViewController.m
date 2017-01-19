@@ -46,6 +46,11 @@
 }
 
 
+- (void)dealloc {
+    NSLog(@"RegistViewController dealloc");
+}
+
+
 - (IBAction)onShowRegistInfoView:(UIButton *)sender {
     [UIView animateWithDuration:0.3 animations:^{
         self.infoContentView.alpha = 1;
@@ -67,7 +72,7 @@
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Create Vault" forState:UIControlStateNormal];
+        [_confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onConfirmButtonClick) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];
@@ -80,7 +85,6 @@
 
 
 - (void)onConfirmButtonClick {
-    [self showInputErrorBoundaryInView:self.accountTextField];
     [self onCreateVault];
 }
 
@@ -100,7 +104,17 @@
         return NO;
     }
     
-    return NO;
+    [_accountTextField resignFirstResponder];
+    [_passwordTextField resignFirstResponder];
+    [_confirmPasswordTextFiled resignFirstResponder];
+    
+    if ([self.delegate respondsToSelector:@selector(registViewController:didCreateAccount:password:)]) {
+        [self.delegate registViewController:self
+                           didCreateAccount:self.accountTextField.text
+                                   password:self.passwordTextField.text];
+    }
+    
+    return YES;
 }
 
 
@@ -127,12 +141,12 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _accountTextField) {
-        [_passwordTextField becomeFirstResponder];
+        [self.passwordTextField becomeFirstResponder];
         
-    } else if (textField == _passwordTextField) {
-        [_confirmPasswordTextFiled becomeFirstResponder];
+    } else if (textField == self.passwordTextField) {
+        [self.confirmPasswordTextFiled becomeFirstResponder];
         
-    } else if (textField == _confirmPasswordTextFiled) {
+    } else if (textField == self.confirmPasswordTextFiled) {
         [self onCreateVault];
     }
     return YES;
@@ -140,7 +154,15 @@
 
 
 - (IBAction)onConfirmTextFieldChanged:(UITextField *)sender {
-    NSLog(@"confirm: %@", sender.text);
+    if (!self.passwordTextField.text.length) {
+        return;
+    }
+    if ([self.passwordTextField.text isEqualToString:self.confirmPasswordTextFiled.text]) {
+        self.confirmPasswordTextFiled.background = [UIImage imageNamed:@"input_boundary_green"];
+        
+    } else {
+        self.confirmPasswordTextFiled.background = [UIImage imageNamed:@"input_boundary"];
+    }
 }
 
 

@@ -13,6 +13,7 @@
 @interface LoginViewController : UIViewController
 
 @property (nonatomic, strong) VaultManager *vault;
+@property (nonatomic, copy) NSString *accountName;
 @property (nonatomic, weak) id<LoginViewControllerDelegate> delegate;
 
 @end

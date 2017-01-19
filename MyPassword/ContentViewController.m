@@ -116,6 +116,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
+    editVC.delegate = self;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
     [self presentViewController:nv animated:YES completion:nil];
 }

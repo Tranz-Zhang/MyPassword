@@ -16,8 +16,11 @@
 #define kUserDefaultKey_DefaultVaultName @"default_vault_name"
 
 
-@interface MainViewController () {
+@interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
     ContentViewController *_contentVC;
+    LoginViewController *_loginVC;
+    
+    NSString *_documentPath;
     VaultManager *_vault;
 }
 
@@ -33,6 +36,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *vaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
+    NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", vaultName, kVaultExtension];
+    if (vaultName && [VaultManager verifyVaultWithPath:vaultPath]) {
+        // show login interface
+        LoginViewController *loginVC = (LoginViewController *)[self childViewControllerWithClass:[LoginViewController class]];
+        loginVC.accountName = vaultName;
+        loginVC.vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+        loginVC.delegate = self;
+        
+        [_registView removeFromSuperview];
+        _registView = nil;
+        [self removeChildViewControllerWithClass:[RegistViewController class]];
+        
+    } else  {
+        // show regist interface
+        RegistViewController *registVC = (RegistViewController *)[self childViewControllerWithClass:[RegistViewController class]];
+        registVC.delegate = self;
+        
+        [_loginView removeFromSuperview];
+        _loginView = nil;
+        [self removeChildViewControllerWithClass:[LoginViewController class]];
+    }
+    
+    _contentVC = (ContentViewController *)[self childViewControllerWithClass:[ContentViewController class]];
+    
+    /*
     if (!_vault) {
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *vaultPath = [documentPath stringByAppendingFormat:@"/%@.%@", @"chance", kVaultExtension];
@@ -46,28 +76,140 @@
             _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
         }
     }
-    
+    //*/
+}
+
+
+- (UIViewController *)childViewControllerWithClass:(Class)clazz {
     for (UIViewController *childVC in self.childViewControllers) {
-        if ([childVC isKindOfClass:[ContentViewController class]]) {
-            _contentVC = (ContentViewController *)childVC;
+        if ([childVC isKindOfClass:[clazz class]]) {
+            return childVC;
         }
         if ([childVC isKindOfClass:[UINavigationController class]]) {
             UIViewController *rootVC = [[(UINavigationController *)childVC viewControllers] objectAtIndex:0];
-            if ([rootVC isKindOfClass:[ContentViewController class]]) {
-                _contentVC = (ContentViewController *)rootVC;
+            if ([rootVC isKindOfClass:[clazz class]]) {
+                return rootVC;
             }
         }
     }
     
-    [_vault unlockWithPassword:@"MyPassword"];
-    
-    _contentVC.vault = _vault;
-    [_contentVC refreshList];
+    return nil;
 }
 
 
+- (void)removeChildViewControllerWithClass:(Class)clazz {
+    for (UIViewController *childVC in self.childViewControllers) {
+        BOOL shouldRemove = NO;
+        if ([childVC isKindOfClass:[clazz class]]) {
+            shouldRemove = YES;
+        }
+        if ([childVC isKindOfClass:[UINavigationController class]]) {
+            UIViewController *rootVC = [[(UINavigationController *)childVC viewControllers] objectAtIndex:0];
+            if ([rootVC isKindOfClass:[clazz class]]) {
+                shouldRemove = YES;
+            }
+        }
+        if (shouldRemove) {
+            [childVC removeFromParentViewController];
+            break;
+        }
+    }
+}
+
+
+#pragma mark - regist
+- (void)registViewController:(RegistViewController *)registVC
+            didCreateAccount:(NSString *)accountName
+                    password:(NSString *)password {
+    NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", accountName, kVaultExtension];
+    // check duplicated names
+    if ([VaultManager verifyVaultWithPath:vaultPath]) {
+        NSString *message = [NSString stringWithFormat:@"Account name \'%@\' has already existed. Overwrite existed account?", accountName];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Duplicated Account" message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Overwrite" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"overwrite");
+            [[NSFileManager defaultManager] removeItemAtPath:vaultPath error:nil];
+            if ([self createVaultWithName:accountName password:password]) {
+                _contentVC.vault = _vault;
+                [_contentVC refreshList];
+                [self dismissRegistView];
+            }
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:ok];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    if ([self createVaultWithName:accountName password:password]) {
+        _contentVC.vault = _vault;
+        [_contentVC refreshList];
+        [self dismissRegistView];
+    }
+}
+
+
+- (BOOL)createVaultWithName:(NSString *)name password:(NSString *)password {
+    NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", name, kVaultExtension];
+    BOOL isOK = [VaultManager createVaultWithName:name atPath:_documentPath usingPassword:password];
+    if (isOK) {
+        _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+        [_vault unlockWithPassword:password];
+        // save vault name
+        [[NSUserDefaults standardUserDefaults] setObject:name forKey:kUserDefaultKey_DefaultVaultName];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail to create Account" message:@"Please try again. Or change another name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    NSLog(@"Create vault: %@", isOK ? @"OK" : @"Fail");
+    return isOK;
+}
+
+
+- (void)dismissRegistView {
+    if (!_registView) {
+        return;
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        _registView.frame = CGRectOffset(_registView.frame, 0, CGRectGetHeight(_registView.frame));
+        
+    } completion:^(BOOL finished) {
+        [_registView removeFromSuperview];
+        _registView = nil;
+        [self removeChildViewControllerWithClass:[RegistViewController class]];
+    }];
+}
+
+
+#pragma mark - Login
+- (void)loginViewControllerDidFinishLogin:(LoginViewController *)loginVC {
+    _contentVC.vault = _vault;
+    [_contentVC refreshList];
+    [self dismissLoginView];
+}
+
+
+- (void)dismissLoginView {
+    if (!_loginView) {
+        return;
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        _loginView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [_loginView removeFromSuperview];
+        _loginView = nil;
+        [self removeChildViewControllerWithClass:[LoginViewController class]];
+    }];
+}
+
 
 #pragma mark - Test
+
+
 
 /*
 - (void)testVaultManager {
