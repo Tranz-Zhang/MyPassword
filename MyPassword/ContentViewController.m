@@ -12,6 +12,9 @@
 #import "PasswordDetailCell.h"
 #import "VaultManager.h"
 
+#define kLocalWidth self.view.bounds.size.width
+#define kLocalHeight self.view.bounds.size.height
+
 @interface ContentViewController () <UITableViewDelegate, UITableViewDataSource,
 EditViewControllerDelegate, PasswordDetailCellDelegate> {
     NSIndexPath *_detailIndexPath;
@@ -39,8 +42,8 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     _infoList = [self.vault indexInfoList];
     // adjust footer view
     if (_infoList.count && !_tableView.tableFooterView) {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 0.5)];
-        footerView.backgroundColor = [UIColor lightGrayColor];
+        UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
+        footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
         _tableView.tableFooterView = footerView;
         
     } else if (!_infoList.count && _tableView.tableFooterView ) {
@@ -99,7 +102,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         reloadRows = _detailIndexPath ? @[indexPath, _detailIndexPath] : @[indexPath];
         _detailIndexPath = indexPath;
     }
-    [tableView reloadRowsAtIndexPaths:reloadRows withRowAnimation:UITableViewRowAnimationFade];
+    [tableView reloadRowsAtIndexPaths:reloadRows withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 
@@ -131,8 +134,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)editViewController:(EditViewController *)vc didAddPassword:(PasswordInfo *)password {
     BOOL isOK = [self.vault addPasswordInfo:password];
     if (isOK) {
-        _infoList = [self.vault indexInfoList];
-        [_tableView reloadData];
+        [self refreshList];
     }
     
     NSLog(@"Add password: %@", isOK ? [password toDictionary] : @"Fail");
@@ -142,14 +144,13 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)editViewController:(EditViewController *)vc didUpdatePassword:(PasswordInfo *)password {
     BOOL isOK = [self.vault updatePasswordInfo:password];
     if (isOK) {
-        _infoList = [self.vault indexInfoList];
-        [_tableView reloadData];
+        [self refreshList];
     }
     
     NSLog(@"Update password: %@", isOK ? [password toDictionary] : @"Fail");
 }
 
-
+//add empty view and footer view
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "EditViewController.h"
+#import "IconManager.h"
 
 @interface EditViewController ()
 
@@ -14,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
 @property (weak, nonatomic) IBOutlet UITextField *accountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+
+
 @property (nonatomic, strong) PasswordInfo *editingPassword;
 
 @end
@@ -43,6 +47,14 @@
     self.websiteTextField.text = self.editingPassword.website;
     self.accountTextField.text = self.editingPassword.account;
     self.passwordTextField.text = self.editingPassword.password;
+    
+//    NSString *urlString = @"http://www.google.com/cn";
+//    NSURL *iconURL = [NSURL URLWithString:urlString];
+//    NSLog(@"%@", [iconURL scheme]);
+//    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com" completion:nil];
+//    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com/cn" completion:nil];
+//    [[IconManager shareManager] fetchIconWithURLString:@"http://www.google.com" completion:nil];
+//    [[IconManager shareManager] fetchIconWithURLString:@"https://www.google.com/cn" completion:nil];
 }
 
 
@@ -77,6 +89,19 @@
 
 - (IBAction)onCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/favicon.ico"]];
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"");
+        
+        UIImage *image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.iconView.image = image;
+        });
+        
+    }];
+    [task resume];
 }
 
 
@@ -87,3 +112,9 @@
 
 
 @end
+
+
+
+
+
+
