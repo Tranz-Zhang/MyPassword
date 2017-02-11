@@ -51,11 +51,13 @@
 //    NSString *urlString = @"http://www.google.com/cn";
 //    NSURL *iconURL = [NSURL URLWithString:urlString];
 //    NSLog(@"%@", [iconURL scheme]);
-//    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com" completion:nil];
+    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com" completion:nil];
+    [[IconManager shareManager] fetchIconWithURLString:[@"www.google.com" mutableCopy] completion:nil];
 //    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com/cn" completion:nil];
 //    [[IconManager shareManager] fetchIconWithURLString:@"http://www.google.com" completion:nil];
 //    [[IconManager shareManager] fetchIconWithURLString:@"https://www.google.com/cn" completion:nil];
 }
+
 
 
 
