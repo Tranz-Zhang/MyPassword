@@ -108,7 +108,6 @@
             if (completion) {
                 dispatch_async(_iconProcessQueue, ^{
                     completion(iconImage);
-//                    completion([UIImage imageWithData:data]);
                 });
             }
         }];

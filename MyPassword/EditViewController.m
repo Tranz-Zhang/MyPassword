@@ -12,10 +12,14 @@
 @interface EditViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
 @property (weak, nonatomic) IBOutlet UITextField *accountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
+
+
+@property (weak, nonatomic) IBOutlet UIView *iconContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UISwitch *iconSwitch;
 
 
 @property (nonatomic, strong) PasswordInfo *editingPassword;
@@ -43,31 +47,66 @@
     }
     
     // update UI
+    UIView *paddingView0 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.titleTextField.leftView = paddingView0;
+    self.titleTextField.leftViewMode = UITextFieldViewModeAlways;
+    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.accountTextField.leftView = paddingView1;
+    self.accountTextField.leftViewMode = UITextFieldViewModeAlways;
+    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.passwordTextField.leftView = paddingView2;
+    self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.websiteTextField.leftView = paddingView3;
+    self.websiteTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.iconContainerView.alpha = 0;
+    
+    // update content
     self.titleTextField.text = self.editingPassword.title;
-    self.websiteTextField.text = self.editingPassword.website;
     self.accountTextField.text = self.editingPassword.account;
     self.passwordTextField.text = self.editingPassword.password;
+    self.websiteTextField.text = self.editingPassword.website;
     
-//    NSString *urlString = @"http://www.google.com/cn";
-//    NSURL *iconURL = [NSURL URLWithString:urlString];
-//    NSLog(@"%@", [iconURL scheme]);
-    
-//    [[IconManager shareManager] fetchIconWithURLString:[@"www.google.com" mutableCopy] completion:nil];
-//    [[IconManager shareManager] fetchIconWithURLString:@"www.google.com/cn" completion:nil];
-//    [[IconManager shareManager] fetchIconWithURLString:@"http://www.google.com" completion:nil];
-//    [[IconManager shareManager] fetchIconWithURLString:@"https://www.google.com/cn" completion:nil];
-    
-    [[IconManager shareManager] fetchIconWithURLString:@"www.taobao.com" completion:^(UIImage *iconImage) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.iconView.image = iconImage;
-        });
-    }];
+    //    [[IconManager shareManager] fetchIconWithURLString:@"www.taobao.com" completion:^(UIImage *iconImage) {
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            self.iconView.image = iconImage;
+    //        });
+    //    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    if (!self.titleTextField.text) {
+//        [self.titleTextField becomeFirstResponder];
+//    }
+    [self.titleTextField becomeFirstResponder];
 }
 
 
-
-
 - (IBAction)onDone:(id)sender {
+    [self onFinishEditing];
+}
+
+
+- (IBAction)onCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/favicon.ico"]];
+    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"");
+        
+        UIImage *image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.iconView.image = image;
+        });
+        
+    }];
+    [task resume];
+}
+
+
+- (void)onFinishEditing {
     if (![self verifyEditingContent]) {
         return;
     }
@@ -95,29 +134,34 @@
 }
 
 
-- (IBAction)onCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/favicon.ico"]];
-    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"");
-        
-        UIImage *image = [UIImage imageWithData:data];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.iconView.image = image;
-        });
-        
-    }];
-    [task resume];
-}
-
-
 // check if current editing content is OK
 - (BOOL)verifyEditingContent {
     return YES;
 }
 
+
+- (void)refreshIconView {
+    
+}
+
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.titleTextField) {
+        [self.accountTextField becomeFirstResponder];
+        
+    } else if (textField == self.accountTextField) {
+        [self.passwordTextField becomeFirstResponder];
+        
+    } else if (textField == self.passwordTextField) {
+        [self.websiteTextField becomeFirstResponder];
+        
+    } else {
+        [self.websiteTextField resignFirstResponder];
+        [self refreshIconView];
+    }
+    return YES;
+}
 
 @end
 

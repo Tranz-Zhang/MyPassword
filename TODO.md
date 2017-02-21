@@ -1,8 +1,10 @@
-# TODO
+# Things to do
 
-* vault master key design
-* password storage
-* editing ui logic
-* main list delete/add operation
-* login view
-* auto lock
+* Edit view (3h)
+* List View edit icon (1h)
+
+* SettingView? XXX (3h)
+  - version (2h)
+  - export (3h)
+  - import (replace only) (5h)
+  -
