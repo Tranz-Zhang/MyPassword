@@ -12,7 +12,7 @@
     BOOL _isShowingPassword;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordBackgroundView;
@@ -34,7 +34,7 @@
     _passwordInfo = passwordInfo;
     self.itemTitleLabel.text = passwordInfo.title;
     self.accountLabel.text = passwordInfo.account;
-    
+    self.iconView.image = SmallIconImageWithType(passwordInfo.iconType);
 }
 
 

@@ -74,8 +74,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     if ([indexPath isEqual:_detailIndexPath]) {
-        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell"
-                                                                         forIndexPath:indexPath];
+        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell" forIndexPath:indexPath];
         detailCell.delegate = self;
         IndexInfo *indexInfo = _infoList[indexPath.row];
         detailCell.passwordInfo = [_vault passwordInfoWithUUID:indexInfo.passwordUUID];
@@ -83,8 +82,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         
     } else {
         PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-        IndexInfo *info = _infoList[indexPath.row];
-        infoCell.itemTitleLabel.text = info.title;
+        infoCell.indexInfo = _infoList[indexPath.row];;
         cell = infoCell;
     }
     

@@ -180,7 +180,7 @@
         IndexInfo *indexInfo = [IndexInfo new];
         indexInfo.title = passwordInfo.title;
         indexInfo.passwordUUID = passwordInfo.UUID;
-        indexInfo.iconURL = passwordInfo.iconURL;
+        indexInfo.iconType = passwordInfo.iconType;
         NSMutableArray *tempList = [NSMutableArray arrayWithArray:_indexInfoList];
         [tempList addObject:indexInfo];
         _indexInfoList = tempList.copy;
@@ -220,7 +220,7 @@
         for (IndexInfo *info in _indexInfoList) {
             if ([info.passwordUUID isEqualToString:passwordInfo.UUID]) {
                 info.title = passwordInfo.title;
-                info.iconURL = passwordInfo.iconURL;
+                info.iconType = passwordInfo.iconType;
             }
         }
         NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:_indexInfoList];

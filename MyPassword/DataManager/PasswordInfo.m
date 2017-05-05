@@ -14,8 +14,8 @@
     PasswordInfo *item = [[PasswordInfo allocWithZone:zone] init];
     item.UUID = [_UUID copy];
     item.title = [_title copy];
-    item.website = [_website copy];
-    item.iconURL = [_iconURL copy];
+    item.notes = [_notes copy];
+    item.iconType = _iconType;
     item.account = [_account copy];
     item.password = [_password copy];
     item.updatedDate = _updatedDate;

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IndexInfo.h"
 
 @interface PasswordInfoCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
+@property (nonatomic, strong) IndexInfo *indexInfo;
 
 @end
