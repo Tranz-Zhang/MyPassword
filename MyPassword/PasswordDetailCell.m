@@ -26,6 +26,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
     [self.passwordButton setTitle:@"{ ********** }" forState:UIControlStateNormal];
 }
 
@@ -35,17 +36,40 @@
     self.itemTitleLabel.text = passwordInfo.title;
     self.accountLabel.text = passwordInfo.account;
     self.iconView.image = SmallIconImageWithType(passwordInfo.iconType);
+    
+    _isShowingPassword = NO;
+    [self updatePasswordVisiablilty];
 }
 
 
 - (IBAction)onPasswordButtonClicked:(UIButton *)button {
+    _isShowingPassword = !_isShowingPassword;
+    [self updatePasswordVisiablilty];
+}
+
+
+- (void)updatePasswordVisiablilty {
+    if (!self.passwordInfo.password.length) {
+        [self.passwordButton setTitle:@"{ NO PASSWORD }" forState:UIControlStateNormal];
+        self.passwordButton.enabled = NO;
+        return;
+    }
+    
+    self.passwordButton.enabled = YES;
     if (_isShowingPassword) {
-        _isShowingPassword = NO;
-        [button setTitle:@"{ ********** }" forState:UIControlStateNormal];
+        [self.passwordButton setTitle:self.passwordInfo.password
+                             forState:UIControlStateNormal];
         
     } else {
-        _isShowingPassword = YES;
-        [button setTitle:self.passwordInfo.password forState:UIControlStateNormal];
+        NSString *originalPwd = self.passwordInfo.password;
+        NSMutableString *hiddenPwd = [NSMutableString stringWithString:@"{ "];
+        [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:0]];
+        [hiddenPwd appendString:@"********"];
+        [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:originalPwd.length - 1]];
+        [hiddenPwd appendString:@" }"];
+        [self.passwordButton setTitle:[hiddenPwd copy]
+                             forState:UIControlStateNormal];
+        
     }
 }
 

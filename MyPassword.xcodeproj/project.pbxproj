@@ -35,6 +35,7 @@
 		4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9269791DEDB76F006952B9 /* LaunchScreen.storyboard */; };
 		4CA6E4F81E2E148E00207BE7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */; };
 		4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7A6321E0966B000BD1A22 /* VaultManager.m */; };
+		4CDBDDD71EBD7661009701D9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */; };
 		4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */; };
 		4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF40961E03DB91005BA735 /* EditViewController.m */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,8 @@
 		4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4CA7A6311E0966B000BD1A22 /* VaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultManager.h; sourceTree = "<group>"; };
 		4CA7A6321E0966B000BD1A22 /* VaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManager.m; sourceTree = "<group>"; };
+		4CDBDDD51EBD7661009701D9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4CFF40921E03D44F005BA735 /* PasswordDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordDetailCell.h; sourceTree = "<group>"; };
 		4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordDetailCell.m; sourceTree = "<group>"; };
 		4CFF40951E03DB91005BA735 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -244,6 +247,7 @@
 				4CA7A6291E09654800BD1A22 /* DataManager */,
 				4C4F8A341E2F6170007D5882 /* Login */,
 				4C4F8A351E2F617E007D5882 /* Content */,
+				4CDBDDD41EBD762C009701D9 /* Settings */,
 				4C92696E1DEDB76F006952B9 /* AppDelegate.h */,
 				4C92696F1DEDB76F006952B9 /* AppDelegate.m */,
 				4C9269711DEDB76F006952B9 /* MainViewController.h */,
@@ -282,6 +286,15 @@
 				4C0273DC1E0D9B55008A3D4D /* PasswordInfo.m */,
 			);
 			path = DataManager;
+			sourceTree = "<group>";
+		};
+		4CDBDDD41EBD762C009701D9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4CDBDDD51EBD7661009701D9 /* SettingsViewController.h */,
+				4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +434,7 @@
 				4CFF40971E03DB91005BA735 /* EditViewController.m in Sources */,
 				4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */,
 				4C92696D1DEDB76F006952B9 /* main.m in Sources */,
+				4CDBDDD71EBD7661009701D9 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
