@@ -107,6 +107,8 @@
     }
     _indexInfoList = [NSArray arrayWithArray:indexList];
     
+#warning TODO: clean up password items which has no index info
+    
     _isLocked = NO;
     return YES;
 }

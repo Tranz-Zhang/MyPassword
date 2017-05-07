@@ -7,6 +7,10 @@
 //
 
 #import "SettingsViewController.h"
+#import "SSZipArchive.h"
+
+#define kLocalWidth self.view.bounds.size.width
+#define kLocalHeight self.view.bounds.size.height
 
 @interface SettingsViewController ()
 
@@ -19,19 +23,70 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)onClose:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)onGroupSortingSwitherChanged:(UISwitch *)switcher {
+    NSLog(@"%s", __FUNCTION__);
 }
-*/
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"%s", __FUNCTION__);
+    
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        [self onExportVaultData];
+    }
+}
+
+
+- (void)onExportVaultData {
+    if (!self.currentVault) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Can not find your valut" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:confrimAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    
+    NSString *vaultName = [NSString stringWithFormat:@"%@.zip", [self.currentVault.vaultPath lastPathComponent]];
+    NSString *zipFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:vaultName];
+//    NSString *zipFile = []
+//    [SSZipArchive createZipFileAtPath:<#(nonnull NSString *)#> withContentsOfDirectory:<#(nonnull NSString *)#>]
+    if ([[NSFileManager defaultManager] fileExistsAtPath:zipFilePath]) {
+        NSError *error;
+        BOOL isOK = [[NSFileManager defaultManager] removeItemAtPath:zipFilePath error:nil];
+        NSLog(@"Remove existed zip file: %@", isOK ? @"OK" : error);
+    }
+    
+    BOOL isOK = [SSZipArchive createZipFileAtPath:zipFilePath
+                          withContentsOfDirectory:self.currentVault.vaultPath];
+    NSLog(@"Create zip %@", isOK ? @"Success!" : @"Fail");
+    
+    // show share UI
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSURL *fileUrl = [NSURL fileURLWithPath:zipFilePath];
+        UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:
+                                         @[fileUrl] applicationActivities:nil];
+        if ([avc respondsToSelector:@selector(popoverPresentationController)]) {
+            avc.popoverPresentationController.sourceView = self.view;
+            avc.popoverPresentationController.sourceRect = CGRectMake(0, kLocalHeight - 1, kLocalWidth, 1);
+        }
+        [self presentViewController:avc animated:YES completion:nil];
+    });
+}
+
 
 @end
+
+
+
+
+
+

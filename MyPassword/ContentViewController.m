@@ -8,9 +8,11 @@
 
 #import "ContentViewController.h"
 #import "EditViewController.h"
+#import "SettingsViewController.h"
 #import "PasswordInfoCell.h"
 #import "PasswordDetailCell.h"
 #import "VaultManager.h"
+
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
@@ -105,13 +107,15 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
-        segue.destinationViewController.title = @"Detail";
-        
-    } else if ([segue.identifier isEqualToString:@"AddPassword"]) {
+    if ([segue.identifier isEqualToString:@"AddOrEditPassword"]) {
         UINavigationController *nv = segue.destinationViewController;
         EditViewController *editVC = nv.viewControllers[0];
         editVC.delegate = self;
+        
+    } else if ([segue.identifier isEqualToString:@"ShowSettingsVC"]) {
+        UINavigationController *nv = segue.destinationViewController;
+        SettingsViewController *editVC = nv.viewControllers[0];
+        editVC.currentVault = self.vault;
     }
 }
 

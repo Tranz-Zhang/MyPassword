@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VaultManager.h"
 
 /**
  Functions:
@@ -15,6 +16,8 @@
  - Version
  */
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UITableViewController
+
+@property (nonatomic, strong) VaultManager *currentVault;
 
 @end
