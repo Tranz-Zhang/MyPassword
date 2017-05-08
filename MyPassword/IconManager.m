@@ -9,7 +9,6 @@
 #import "IconManager.h"
 
 #define kIconDirectoryName @"password_icons"
-
 #define kIconEdge 36
 
 @implementation IconManager {

@@ -26,4 +26,13 @@
 }
 
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+//    我们需要一个导入界面，负责库的导入，融合，替换等功能
+    pop import view
+    
+    return NO;
+}
+
+
 @end

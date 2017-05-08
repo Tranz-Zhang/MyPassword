@@ -8,9 +8,11 @@
 
 #import "ContentViewController.h"
 #import "EditViewController.h"
+#import "SettingsViewController.h"
 #import "PasswordInfoCell.h"
 #import "PasswordDetailCell.h"
 #import "VaultManager.h"
+
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
@@ -74,8 +76,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     if ([indexPath isEqual:_detailIndexPath]) {
-        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell"
-                                                                         forIndexPath:indexPath];
+        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell" forIndexPath:indexPath];
         detailCell.delegate = self;
         IndexInfo *indexInfo = _infoList[indexPath.row];
         detailCell.passwordInfo = [_vault passwordInfoWithUUID:indexInfo.passwordUUID];
@@ -83,8 +84,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         
     } else {
         PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-        IndexInfo *info = _infoList[indexPath.row];
-        infoCell.itemTitleLabel.text = info.title;
+        infoCell.indexInfo = _infoList[indexPath.row];;
         cell = infoCell;
     }
     
@@ -107,13 +107,15 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowPasswordDetail"]) {
-        segue.destinationViewController.title = @"Detail";
-        
-    } else if ([segue.identifier isEqualToString:@"AddPassword"]) {
+    if ([segue.identifier isEqualToString:@"AddOrEditPassword"]) {
         UINavigationController *nv = segue.destinationViewController;
         EditViewController *editVC = nv.viewControllers[0];
         editVC.delegate = self;
+        
+    } else if ([segue.identifier isEqualToString:@"ShowSettingsVC"]) {
+        UINavigationController *nv = segue.destinationViewController;
+        SettingsViewController *editVC = nv.viewControllers[0];
+        editVC.currentVault = self.vault;
     }
 }
 

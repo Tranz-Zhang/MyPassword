@@ -7,15 +7,16 @@
 //
 
 #import "JSONModel.h"
+#import "VaultDefines.h"
 
 @interface PasswordInfo : JSONModel <NSCopying>
 
 @property (nonatomic, strong) NSString *UUID;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *website;
+@property (nonatomic, strong) NSString *notes;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *iconURL;
+@property (nonatomic, assign) PasswordIconType iconType;
 @property (nonatomic, assign) NSTimeInterval updatedDate;
 @property (nonatomic, assign) NSTimeInterval createdDate;
 

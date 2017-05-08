@@ -7,11 +7,12 @@
 //
 
 #import "JSONModel.h"
+#import "VaultDefines.h"
 
 @interface IndexInfo : JSONModel
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *iconURL;
+@property (nonatomic, assign) PasswordIconType iconType;
 @property (nonatomic, strong) NSString *passwordUUID;
 
 @end

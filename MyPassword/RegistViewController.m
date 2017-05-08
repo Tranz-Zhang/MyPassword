@@ -133,7 +133,6 @@
             [errorView removeFromSuperview];
         }];
     }];
-
 }
 
 
