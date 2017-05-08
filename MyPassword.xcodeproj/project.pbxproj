@@ -18,7 +18,7 @@
 		4C3C30461E111020004788CF /* VaultCrpytionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30451E111020004788CF /* VaultCrpytionUtils.m */; };
 		4C3C304E1E1138C4004788CF /* MyPasswordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C304D1E1138C4004788CF /* MyPasswordTests.m */; };
 		4C3C30561E1138DF004788CF /* VaultManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30551E1138DF004788CF /* VaultManagerTest.m */; };
-		4C4F8A2D1E2F4469007D5882 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2C1E2F4469007D5882 /* ContentViewController.m */; };
+		4C4F8A2D1E2F4469007D5882 /* MainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */; };
 		4C4F8A311E2F5547007D5882 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */; };
 		4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C501DEDBD4D00764478 /* RNCryptor.m */; };
 		4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C521DEDBD4D00764478 /* RNCryptorEngine.m */; };
@@ -27,7 +27,11 @@
 		4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */; };
 		4C7446111EBC7CA1008F57C4 /* VaultDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7446101EBC7CA1008F57C4 /* VaultDefines.m */; };
 		4C79D7DB1E32061200D17CAA /* IconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79D7DA1E32061200D17CAA /* IconManager.m */; };
-		4C7F03091EC06510001FE3B5 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03081EC06510001FE3B5 /* ImportViewController.m */; };
+		4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */; };
+		4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F030D1EC06717001FE3B5 /* Login.storyboard */; };
+		4C7F03111EC06A3B001FE3B5 /* StoryboardLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */; };
+		4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03121EC06B64001FE3B5 /* MainList.storyboard */; };
+		4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03141EC072C6001FE3B5 /* Setting.storyboard */; };
 		4C92696D1DEDB76F006952B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92696C1DEDB76F006952B9 /* main.m */; };
 		4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92696F1DEDB76F006952B9 /* AppDelegate.m */; };
 		4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9269721DEDB76F006952B9 /* MainViewController.m */; };
@@ -89,8 +93,8 @@
 		4C3C304D1E1138C4004788CF /* MyPasswordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPasswordTests.m; sourceTree = "<group>"; };
 		4C3C304F1E1138C4004788CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3C30551E1138DF004788CF /* VaultManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManagerTest.m; sourceTree = "<group>"; };
-		4C4F8A2B1E2F4469007D5882 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		4C4F8A2C1E2F4469007D5882 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		4C4F8A2B1E2F4469007D5882 /* MainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainListViewController.h; sourceTree = "<group>"; };
+		4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainListViewController.m; sourceTree = "<group>"; };
 		4C4F8A2E1E2F5547007D5882 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
 		4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		4C553C4D1DEDBD4D00764478 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -109,8 +113,13 @@
 		4C7446101EBC7CA1008F57C4 /* VaultDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultDefines.m; sourceTree = "<group>"; };
 		4C79D7D91E32061200D17CAA /* IconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconManager.h; sourceTree = "<group>"; };
 		4C79D7DA1E32061200D17CAA /* IconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconManager.m; sourceTree = "<group>"; };
-		4C7F03071EC06510001FE3B5 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
-		4C7F03081EC06510001FE3B5 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
+		4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
+		4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
+		4C7F030D1EC06717001FE3B5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4C7F030F1EC06A3B001FE3B5 /* StoryboardLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardLoader.h; sourceTree = "<group>"; };
+		4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardLoader.m; sourceTree = "<group>"; };
+		4C7F03121EC06B64001FE3B5 /* MainList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainList.storyboard; sourceTree = "<group>"; };
+		4C7F03141EC072C6001FE3B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4C9269681DEDB76F006952B9 /* MyPassword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPassword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C92696C1DEDB76F006952B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C92696E1DEDB76F006952B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -236,15 +245,18 @@
 				4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */,
 				4CA6E4F51E2E148E00207BE7 /* LoginViewController.h */,
 				4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */,
+				4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */,
+				4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */,
+				4C7F030D1EC06717001FE3B5 /* Login.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		4C4F8A351E2F617E007D5882 /* Content */ = {
+		4C4F8A351E2F617E007D5882 /* MainList */ = {
 			isa = PBXGroup;
 			children = (
-				4C4F8A2B1E2F4469007D5882 /* ContentViewController.h */,
-				4C4F8A2C1E2F4469007D5882 /* ContentViewController.m */,
+				4C4F8A2B1E2F4469007D5882 /* MainListViewController.h */,
+				4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */,
 				4CFF40951E03DB91005BA735 /* EditViewController.h */,
 				4CFF40961E03DB91005BA735 /* EditViewController.m */,
 				4C5E19F61DF6FC83002E2A0E /* PasswordInfoCell.h */,
@@ -253,8 +265,8 @@
 				4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */,
 				4C79D7D91E32061200D17CAA /* IconManager.h */,
 				4C79D7DA1E32061200D17CAA /* IconManager.m */,
+				4C7F03121EC06B64001FE3B5 /* MainList.storyboard */,
 			);
-			name = Content;
 			path = MainList;
 			sourceTree = "<group>";
 		};
@@ -300,7 +312,7 @@
 				4CDBDDD81EBEFD2E009701D9 /* Common */,
 				4CA7A6291E09654800BD1A22 /* DataManager */,
 				4C4F8A341E2F6170007D5882 /* Login */,
-				4C4F8A351E2F617E007D5882 /* Content */,
+				4C4F8A351E2F617E007D5882 /* MainList */,
 				4CDBDDD41EBD762C009701D9 /* Settings */,
 				4C92696E1DEDB76F006952B9 /* AppDelegate.h */,
 				4C92696F1DEDB76F006952B9 /* AppDelegate.m */,
@@ -347,8 +359,7 @@
 			children = (
 				4CDBDDD51EBD7661009701D9 /* SettingsViewController.h */,
 				4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */,
-				4C7F03071EC06510001FE3B5 /* ImportViewController.h */,
-				4C7F03081EC06510001FE3B5 /* ImportViewController.m */,
+				4C7F03141EC072C6001FE3B5 /* Setting.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -359,6 +370,8 @@
 				4CDBDDD91EBEFDA4009701D9 /* SSZipArchive */,
 				4C553C4C1DEDBD4D00764478 /* RNCryptor */,
 				4C0273C91E0D9B0F008A3D4D /* JSONModel */,
+				4C7F030F1EC06A3B001FE3B5 /* StoryboardLoader.h */,
+				4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -517,9 +530,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
 				4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */,
 				4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */,
+				4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */,
+				4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,7 +557,7 @@
 			files = (
 				4C0273D81E0D9B0F008A3D4D /* JSONModelError.m in Sources */,
 				4C553C5A1DEDBD4D00764478 /* RNEncryptor.m in Sources */,
-				4C4F8A2D1E2F4469007D5882 /* ContentViewController.m in Sources */,
+				4C4F8A2D1E2F4469007D5882 /* MainListViewController.m in Sources */,
 				4CFF40941E03D44F005BA735 /* PasswordDetailCell.m in Sources */,
 				4C79D7DB1E32061200D17CAA /* IconManager.m in Sources */,
 				4CDBDE0A1EBEFDA4009701D9 /* ioapi.c in Sources */,
@@ -549,7 +565,7 @@
 				4CDBDE2D1EBEFE01009701D9 /* pwd2key.c in Sources */,
 				4C0273D71E0D9B0F008A3D4D /* JSONModelClassProperty.m in Sources */,
 				4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */,
-				4C7F03091EC06510001FE3B5 /* ImportViewController.m in Sources */,
+				4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */,
 				4C4F8A311E2F5547007D5882 /* RegistViewController.m in Sources */,
 				4C0273DD1E0D9B55008A3D4D /* PasswordInfo.m in Sources */,
 				4CDBDE0C1EBEFDA4009701D9 /* unzip.c in Sources */,
@@ -558,6 +574,7 @@
 				4CDBDE291EBEFE01009701D9 /* entropy.c in Sources */,
 				4C7446111EBC7CA1008F57C4 /* VaultDefines.m in Sources */,
 				4C9269701DEDB76F006952B9 /* AppDelegate.m in Sources */,
+				4C7F03111EC06A3B001FE3B5 /* StoryboardLoader.m in Sources */,
 				4CA7A6331E0966B000BD1A22 /* VaultManager.m in Sources */,
 				4CDBDE2B1EBEFE01009701D9 /* hmac.c in Sources */,
 				4CDBDE2E1EBEFE01009701D9 /* sha1.c in Sources */,

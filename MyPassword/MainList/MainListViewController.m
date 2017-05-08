@@ -1,23 +1,24 @@
 //
-//  ContentViewController.m
+//  MainListViewController.m
 //  MyPassword
 //
 //  Created by chance on 1/18/17.
 //  Copyright © 2017 bychance. All rights reserved.
 //
 
-#import "ContentViewController.h"
+#import "MainListViewController.h"
 #import "EditViewController.h"
 #import "SettingsViewController.h"
 #import "PasswordInfoCell.h"
 #import "PasswordDetailCell.h"
 #import "VaultManager.h"
+#import "StoryboardLoader.h"
 
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
 
-@interface ContentViewController () <UITableViewDelegate, UITableViewDataSource,
+@interface MainListViewController () <UITableViewDelegate, UITableViewDataSource,
 EditViewControllerDelegate, PasswordDetailCellDelegate> {
     NSIndexPath *_detailIndexPath;
     NSArray *_infoList;
@@ -28,11 +29,26 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 @end
 
 
-@implementation ContentViewController
+@implementation MainListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)onAddNewPassword:(id)sender {
+    UINavigationController *editNC = [StoryboardLoader loadViewController:@"EditNavigationController" inStoryboard:@"MainList"];
+    EditViewController *editVC = editNC.viewControllers[0];
+    editVC.delegate = self;
+    [self presentViewController:editNC animated:YES completion:nil];
+}
+
+
+- (IBAction)onShowSettings:(id)sender {
+    UINavigationController *settingsNC = [StoryboardLoader loadViewController:@"SettingsNavigationController" inStoryboard:@"Setting"];
+    SettingsViewController *settingsVC = settingsNC.viewControllers[0];
+    settingsVC.currentVault = self.vault;
+    [self presentViewController:settingsNC animated:YES completion:nil];
 }
 
 
@@ -122,12 +138,11 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 #pragma mark - PasswordDetailCellDelegate
 - (void)passwordDetailCellDidClickEdit:(PasswordDetailCell *)cell {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    EditViewController *editVC = [storyBoard instantiateViewControllerWithIdentifier:@"EditViewController"];
+    UINavigationController *editNC = [StoryboardLoader loadViewController:@"EditNavigationController" inStoryboard:@"MainList"];
+    EditViewController *editVC = editNC.viewControllers[0];
     editVC.password = cell.passwordInfo;
     editVC.delegate = self;
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:editVC];
-    [self presentViewController:nv animated:YES completion:nil];
+    [self presentViewController:editNC animated:YES completion:nil];
 }
 
 

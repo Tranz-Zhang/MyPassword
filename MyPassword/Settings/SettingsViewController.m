@@ -24,6 +24,11 @@
 }
 
 
+- (void)dealloc {
+    NSLog(@"SettingsViewController dealloc");
+}
+
+
 - (IBAction)onClose:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

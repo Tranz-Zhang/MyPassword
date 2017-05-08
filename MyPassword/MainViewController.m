@@ -10,23 +10,24 @@
 #import "MainViewController.h"
 #import "LoginViewController.h"
 #import "RegistViewController.h"
-#import "ContentViewController.h"
+#import "MainListViewController.h"
 #import "VaultManager.h"
+#import "StoryboardLoader.h"
 
 #define kUserDefaultKey_DefaultVaultName @"default_vault_name"
 
 
 @interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
-    ContentViewController *_contentVC;
-    LoginViewController *_loginVC;
+    UINavigationController *_loginNC;
+    UINavigationController *_registNC;
+    UINavigationController *_mainListNC;
+    UINavigationController *_importNC;
     
     NSString *_documentPath;
     VaultManager *_vault;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIView *registView;
-@property (weak, nonatomic) IBOutlet UIView *loginView;
 
 @end
 
@@ -39,29 +40,53 @@
     _documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *vaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
     NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", vaultName, kVaultExtension];
+    UIViewController *loginInterfaceVC = nil;
     if (vaultName && [VaultManager verifyVaultWithPath:vaultPath]) {
         // show login interface
         _vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
-        LoginViewController *loginVC = (LoginViewController *)[self childViewControllerWithClass:[LoginViewController class]];
-        loginVC.accountName = vaultName;
-        loginVC.vault = _vault;
-        loginVC.delegate = self;
-        
-        [_registView removeFromSuperview];
-        _registView = nil;
-        [self removeChildViewControllerWithClass:[RegistViewController class]];
+        _loginNC = [StoryboardLoader loadViewController:@"LoginNavigationController"
+                                           inStoryboard:@"Login"];
+        if (_loginNC) {
+            LoginViewController *loginVC = (LoginViewController *)_loginNC.viewControllers[0];
+            loginVC.accountName = vaultName;
+            loginVC.vault = _vault;
+            loginVC.delegate = self;
+        }
+        loginInterfaceVC = _loginNC;
         
     } else  {
         // show regist interface
-        RegistViewController *registVC = (RegistViewController *)[self childViewControllerWithClass:[RegistViewController class]];
-        registVC.delegate = self;
-        
-        [_loginView removeFromSuperview];
-        _loginView = nil;
-        [self removeChildViewControllerWithClass:[LoginViewController class]];
+        _registNC = [StoryboardLoader loadViewController:@"RegistNavigationController"
+                                            inStoryboard:@"Login"];
+        if (_registNC) {
+            RegistViewController *registVC = (RegistViewController *)_registNC.viewControllers[0];
+            registVC.delegate = self;
+        }
+        loginInterfaceVC = _registNC;
     }
     
-    _contentVC = (ContentViewController *)[self childViewControllerWithClass:[ContentViewController class]];
+    if (! loginInterfaceVC) {
+        NSLog(@"Fail to setup login interface");
+        return;
+    }
+    
+    // show first view
+    [self addChildViewController:loginInterfaceVC];
+    loginInterfaceVC.view.frame = self.view.bounds;
+    loginInterfaceVC.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:loginInterfaceVC.view];
+    
+    // setup content view
+    _mainListNC = [StoryboardLoader loadViewController:@"MainListNavigationController"
+                                          inStoryboard:@"MainList"];
+    if (!_mainListNC) {
+        NSLog(@"Error: Fail to load main list view");
+        return;
+    }
+    [self addChildViewController:_mainListNC];
+    _mainListNC.view.frame = self.view.bounds;
+    _mainListNC.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [self.view insertSubview:_mainListNC.view atIndex:0];
 }
 
 
@@ -115,8 +140,9 @@
             NSLog(@"overwrite");
             [[NSFileManager defaultManager] removeItemAtPath:vaultPath error:nil];
             if ([self createVaultWithName:accountName password:password]) {
-                _contentVC.vault = _vault;
-                [_contentVC refreshList];
+                MainListViewController *mainListVC = _mainListNC.viewControllers[0];
+                mainListVC.vault = _vault;
+                [mainListVC refreshList];
                 [self dismissRegistView];
             }
         }];
@@ -128,8 +154,9 @@
     }
     
     if ([self createVaultWithName:accountName password:password]) {
-        _contentVC.vault = _vault;
-        [_contentVC refreshList];
+        MainListViewController *mainListVC = _mainListNC.viewControllers[0];
+        mainListVC.vault = _vault;
+        [mainListVC refreshList];
         [self dismissRegistView];
     }
 }
@@ -155,39 +182,40 @@
 
 
 - (void)dismissRegistView {
-    if (!_registView) {
+    if (!_registNC) {
         return;
     }
     [UIView animateWithDuration:0.3 animations:^{
-        _registView.frame = CGRectOffset(_registView.frame, 0, CGRectGetHeight(_registView.frame));
+        _registNC.view.frame = CGRectOffset(_registNC.view.frame, 0, CGRectGetHeight(_registNC.view.frame));
         
     } completion:^(BOOL finished) {
-        [_registView removeFromSuperview];
-        _registView = nil;
-        [self removeChildViewControllerWithClass:[RegistViewController class]];
+        [_registNC.view removeFromSuperview];
+        [_registNC removeFromParentViewController];
+        _registNC = nil;
     }];
 }
 
 
 #pragma mark - Login
 - (void)loginViewControllerDidFinishLogin:(LoginViewController *)loginVC {
-    _contentVC.vault = _vault;
-    [_contentVC refreshList];
+    MainListViewController *mainListVC = _mainListNC.viewControllers[0];
+    mainListVC.vault = _vault;
+    [mainListVC refreshList];
     [self dismissLoginView];
 }
 
 
 - (void)dismissLoginView {
-    if (!_loginView) {
+    if (!_loginNC) {
         return;
     }
     [UIView animateWithDuration:0.3 animations:^{
-        _loginView.alpha = 0;
+        _loginNC.view.alpha = 0;
         
     } completion:^(BOOL finished) {
-        [_loginView removeFromSuperview];
-        _loginView = nil;
-        [self removeChildViewControllerWithClass:[LoginViewController class]];
+        [_loginNC.view removeFromSuperview];
+        [_loginNC removeFromParentViewController];
+        _loginNC = nil;
     }];
 }
 

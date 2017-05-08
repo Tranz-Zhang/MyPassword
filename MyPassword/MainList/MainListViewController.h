@@ -1,5 +1,5 @@
 //
-//  ContentViewController.h
+//  MainListViewController.h
 //  MyPassword
 //
 //  Created by chance on 1/18/17.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class VaultManager;
-@interface ContentViewController : UIViewController
+@interface MainListViewController : UIViewController
 
 @property (nonatomic, weak) VaultManager *vault;
 
