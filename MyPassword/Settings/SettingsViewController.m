@@ -55,10 +55,8 @@
         return;
     }
     
-    NSString *vaultName = [NSString stringWithFormat:@"%@.zip", [self.currentVault.vaultPath lastPathComponent]];
+    NSString *vaultName = [self.currentVault.vaultPath lastPathComponent];
     NSString *zipFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:vaultName];
-//    NSString *zipFile = []
-//    [SSZipArchive createZipFileAtPath:<#(nonnull NSString *)#> withContentsOfDirectory:<#(nonnull NSString *)#>]
     if ([[NSFileManager defaultManager] fileExistsAtPath:zipFilePath]) {
         NSError *error;
         BOOL isOK = [[NSFileManager defaultManager] removeItemAtPath:zipFilePath error:nil];
