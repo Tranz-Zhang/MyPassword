@@ -111,5 +111,69 @@
             </objects>
             <point key="canvasLocation" x="1690" y="-635"/>
         </scene>
+        <!--My Password-->
+        <scene sceneID="qM5-uk-zT1">
+            <objects>
+                <viewController id="1Hs-zm-RHe" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Y0-Ic-aic"/>
+                        <viewControllerLayoutGuide type="bottom" id="4JL-sd-S4W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wHl-Ve-Pf0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="rFM-C1-Ead">
+                                <rect key="frame" x="112.5" y="178.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="LOJ-SP-Hyk"/>
+                                    <constraint firstAttribute="height" constant="150" id="uHW-95-ATI"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password to unlock" textAlignment="center" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="BWk-mW-MrX">
+                                <rect key="frame" x="47.5" y="363.5" width="280" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="609-ss-V5Q"/>
+                                    <constraint firstAttribute="width" constant="280" id="Cj3-Tn-M91"/>
+                                </constraints>
+                                <color key="textColor" red="0.14754574000000001" green="0.1921969056" blue="0.26052874329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="light" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1Hs-zm-RHe" id="dVA-He-Nrt"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oJ-1m-GXy">
+                                <rect key="frame" x="148.5" y="322.5" width="78" height="27"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" red="0.14754574000000001" green="0.1921969056" blue="0.26052874329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BWk-mW-MrX" firstAttribute="centerX" secondItem="rFM-C1-Ead" secondAttribute="centerX" id="KKn-de-I0N"/>
+                            <constraint firstItem="0oJ-1m-GXy" firstAttribute="top" secondItem="rFM-C1-Ead" secondAttribute="bottom" constant="-6" id="Yzz-Fw-xQp"/>
+                            <constraint firstItem="rFM-C1-Ead" firstAttribute="centerX" secondItem="wHl-Ve-Pf0" secondAttribute="centerX" id="ob1-KU-ExY"/>
+                            <constraint firstItem="BWk-mW-MrX" firstAttribute="top" secondItem="rFM-C1-Ead" secondAttribute="bottom" constant="35" id="sph-Pl-zGv"/>
+                            <constraint firstItem="rFM-C1-Ead" firstAttribute="centerY" secondItem="wHl-Ve-Pf0" secondAttribute="centerY" constant="-80" id="ti6-wm-uaX"/>
+                            <constraint firstItem="0oJ-1m-GXy" firstAttribute="centerX" secondItem="rFM-C1-Ead" secondAttribute="centerX" id="xj5-V3-QR8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Password" id="Vac-Uy-KVv"/>
+                    <connections>
+                        <outlet property="accountNameLabel" destination="0oJ-1m-GXy" id="YLb-AP-XGJ"/>
+                        <outlet property="iconCenterYConstraint" destination="ti6-wm-uaX" id="JjQ-IL-DCs"/>
+                        <outlet property="passwordTextField" destination="BWk-mW-MrX" id="be1-q8-YgL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zv5-K1-Pka" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2526" y="73"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="icon_big" width="640" height="640"/>
+        <image name="input_boundary" width="11" height="11"/>
+    </resources>
 </document>
