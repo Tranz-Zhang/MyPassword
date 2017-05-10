@@ -14,6 +14,7 @@
 
 @interface VaultManager : NSObject
 
+@property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *vaultPath;
 @property (nonatomic, readonly) BOOL isLocked;
 
@@ -23,6 +24,7 @@
 
 - (BOOL)unlockWithPassword:(NSString *)password;
 - (void)lock;
+- (BOOL)verifyPassword:(NSString *)password;
 
 - (NSArray <IndexInfo *>*)indexInfoList;
 

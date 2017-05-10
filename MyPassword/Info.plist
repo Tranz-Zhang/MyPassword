@@ -8,7 +8,10 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>vault_file_icon_320x320</string>
+				<string>vault_file_icon_64x64</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>Vault File</string>
 			<key>LSHandlerRank</key>
@@ -58,6 +61,10 @@
 			<string>Vault File</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.bychance.vault</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>vault_file_icon_320x320</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>vault_file_icon_64x64</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

@@ -7,7 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-#import "SSZipArchive.h"
+#import "ExportViewController.h"
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
@@ -43,48 +43,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSLog(@"%s", __FUNCTION__);
     
-    if (indexPath.section == 1 && indexPath.row == 0) {
-        [self onExportVaultData];
-    }
+//    if (indexPath.section == 1 && indexPath.row == 0) {
+//        [self onExportVaultData];
+//    }
 }
 
 
-- (void)onExportVaultData {
-    if (!self.currentVault) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Can not find your valut" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [alertController dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alertController addAction:confrimAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowExportVC"]) {
+        ExportViewController *exportVC = segue.destinationViewController;
+        exportVC.exportVault = self.currentVault;
     }
-    
-    NSString *vaultName = [self.currentVault.vaultPath lastPathComponent];
-    NSString *zipFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:vaultName];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:zipFilePath]) {
-        NSError *error;
-        BOOL isOK = [[NSFileManager defaultManager] removeItemAtPath:zipFilePath error:nil];
-        NSLog(@"Remove existed zip file: %@", isOK ? @"OK" : error);
-    }
-    
-    BOOL isOK = [SSZipArchive createZipFileAtPath:zipFilePath
-                          withContentsOfDirectory:self.currentVault.vaultPath];
-    NSLog(@"Create zip %@", isOK ? @"Success!" : @"Fail");
-    
-    // show share UI
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSURL *fileUrl = [NSURL fileURLWithPath:zipFilePath];
-        UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:
-                                         @[fileUrl] applicationActivities:nil];
-        if ([avc respondsToSelector:@selector(popoverPresentationController)]) {
-            avc.popoverPresentationController.sourceView = self.view;
-            avc.popoverPresentationController.sourceRect = CGRectMake(0, kLocalHeight - 1, kLocalWidth, 1);
-        }
-        [self presentViewController:avc animated:YES completion:nil];
-    });
 }
-
 
 @end
 

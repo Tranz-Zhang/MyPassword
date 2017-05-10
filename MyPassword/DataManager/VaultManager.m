@@ -29,6 +29,9 @@
     if (self) {
         _isLocked = YES;
         _vaultPath = [vaultPath copy];
+        if ([vaultPath hasSuffix:kVaultExtension]) {
+            _name = [[vaultPath lastPathComponent] stringByDeletingPathExtension];
+        }
     }
     return self;
 }
@@ -120,6 +123,14 @@
     _vaultInfo = nil;
     
 }
+
+
+- (BOOL)verifyPassword:(NSString *)password {
+    NSString *vaultInfoFilePath = [_vaultPath stringByAppendingPathComponent:kVaultInfoFileName];
+    NSData *vaultInfoData = DecryptFile(vaultInfoFilePath, password);
+    return vaultInfoData != nil;
+}
+
 
 #pragma mark - data
 
@@ -339,7 +350,8 @@
 
 
 + (BOOL)verifyVaultWithPath:(NSString *)vaultPath {
-    if (!vaultPath.length) {
+    if (![vaultPath hasSuffix:kVaultExtension]) {
+        NSLog(@"Invaild vault suffix");
         return NO;
     }
     
