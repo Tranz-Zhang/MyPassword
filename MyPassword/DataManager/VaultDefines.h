@@ -23,3 +23,6 @@ UIImage *SmallIconImageWithType(PasswordIconType type);
 
 NSString *GeneratePasswordUUID();
 
+
+#define kVaultExtension @"vault"
+#define kUserDefaultKey_DefaultVaultName @"default_vault_name"

@@ -10,8 +10,6 @@
 #import "PasswordInfo.h"
 #import "IndexInfo.h"
 
-#define kVaultExtension @"vault"
-
 @interface VaultManager : NSObject
 
 @property (nonatomic, readonly) NSString *name;

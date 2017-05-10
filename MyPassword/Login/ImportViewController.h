@@ -10,6 +10,6 @@
 
 @interface ImportViewController : UIViewController
 
-@property (nonatomic, copy) NSURL *importFileURL;
+@property (nonatomic, copy) NSString *importFilePath;
 
 @end

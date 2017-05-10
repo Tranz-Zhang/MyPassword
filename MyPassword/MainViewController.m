@@ -14,8 +14,6 @@
 #import "VaultManager.h"
 #import "StoryboardLoader.h"
 
-#define kUserDefaultKey_DefaultVaultName @"default_vault_name"
-
 
 @interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
     UINavigationController *_loginNC;
