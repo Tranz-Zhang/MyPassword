@@ -134,17 +134,6 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     }];
 }
 
-
-- (void)showAlertMessage:(NSString *)alertMessage {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [alertController dismissViewControllerAnimated:YES completion:nil];
-    }];
-    [alertController addAction:confrimAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-
 // 清空目录下的文件
 - (void)cleanDirectory:(NSString *)directoryPath {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -173,6 +162,10 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         return;
     }
     
+    // post notifications
+    NSString *vaultName = [[destinatonPath lastPathComponent] stringByDeletingPathExtension];
+    [[NSUserDefaults standardUserDefaults] setObject:vaultName forKey:kUserDefaultKey_DefaultVaultName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     NSDictionary *userInfo = @{kImportedVaultPathKey : destinatonPath};
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishImportVaultNotification
                                                         object:nil
@@ -182,12 +175,75 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 
 
 - (IBAction)onReplaceVault:(UIButton *)sender {
+    NSString *currentVaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
+    NSString *message = [NSString stringWithFormat:@"All your data in current vault \"%@\" will be deleted!", currentVaultName];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Do you want to replace current vault?" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"Replace" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+        // do replace
+        [self replaceCurrentVault];
+    }];
+    [alertController addAction:confrimAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+- (void)replaceCurrentVault {
+    // copy new vault
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *newVaultPath = [documentPath stringByAppendingPathComponent:[self.importFilePath lastPathComponent]];
+    if ([fileManager fileExistsAtPath:newVaultPath]) {
+        NSError *error;
+        BOOL isOK = [fileManager removeItemAtPath:newVaultPath error:&error];
+        NSLog(@"Remove duplicated vault: %@", isOK ? @"OK" : error);
+    }
+    NSError *error;
+    BOOL isOK = [fileManager moveItemAtPath:_unzipFilePath toPath:newVaultPath error:&error];
+    NSLog(@"Replace vault: %@", isOK ? @"OK" : error);
+    if (!isOK || error) {
+        [self showAlertMessage:@"Fail to replace current vault, please try again"];
+        return;
+    }
+
+    // delete old vault
+    NSString *oldVaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
+    NSString *oldVaultPath = [documentPath stringByAppendingFormat:@"/%@.%@", oldVaultName, kVaultExtension];
+    if ([fileManager fileExistsAtPath:oldVaultPath]) {
+        NSError *error;
+        BOOL isOK = [fileManager removeItemAtPath:oldVaultPath error:&error];
+        NSLog(@"Remove old vault: %@", isOK ? @"OK" : error);
+    }
     
+    // post notifications
+    NSString *newVaultName = [[newVaultPath lastPathComponent] stringByDeletingPathExtension];
+    [[NSUserDefaults standardUserDefaults] setObject:newVaultName forKey:kUserDefaultKey_DefaultVaultName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSDictionary *userInfo = @{kImportedVaultPathKey : newVaultPath};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishImportVaultNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+    [self onFinishExport];
 }
 
 
 - (IBAction)onMergeVault:(UIButton *)sender {
     
+}
+
+
+
+- (void)showAlertMessage:(NSString *)alertMessage {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertMessage message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertController addAction:confrimAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

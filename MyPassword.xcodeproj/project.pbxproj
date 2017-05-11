@@ -20,6 +20,7 @@
 		4C3C30561E1138DF004788CF /* VaultManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30551E1138DF004788CF /* VaultManagerTest.m */; };
 		4C4F8A2D1E2F4469007D5882 /* MainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */; };
 		4C4F8A311E2F5547007D5882 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */; };
+		4C525A671EC43EE000F6E8F4 /* test.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C525A661EC43E5A00F6E8F4 /* test.vault */; };
 		4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C501DEDBD4D00764478 /* RNCryptor.m */; };
 		4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C521DEDBD4D00764478 /* RNCryptorEngine.m */; };
 		4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C541DEDBD4D00764478 /* RNDecryptor.m */; };
@@ -100,6 +101,7 @@
 		4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainListViewController.m; sourceTree = "<group>"; };
 		4C4F8A2E1E2F5547007D5882 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
 		4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
+		4C525A661EC43E5A00F6E8F4 /* test.vault */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.vault; sourceTree = "<group>"; };
 		4C553C4D1DEDBD4D00764478 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		4C553C4F1DEDBD4D00764478 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		4C553C501DEDBD4D00764478 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 		4CE568191EC2BB6A005B10EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C525A661EC43E5A00F6E8F4 /* test.vault */,
 				4CE5681A1EC2BB83005B10EB /* vault_file_icon_64x64.png */,
 				4CE5681B1EC2BB83005B10EB /* vault_file_icon_320x320.png */,
 			);
@@ -549,6 +552,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C525A671EC43EE000F6E8F4 /* test.vault in Resources */,
 				4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
 				4CE5681F1EC2BB83005B10EB /* vault_file_icon_320x320.png in Resources */,
