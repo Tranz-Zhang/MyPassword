@@ -7,6 +7,7 @@
 //
 
 #import "ImportViewController.h"
+#import "MainViewController.h"
 #import "SSZipArchive.h"
 #import "VaultManager.h"
 
@@ -232,9 +233,43 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 
 
 - (IBAction)onMergeVault:(UIButton *)sender {
+    MainViewController *mainVC = (MainViewController *)[[[UIApplication sharedApplication].delegate window] rootViewController];
+    if (!mainVC.vault) {
+        [self showAlertMessage:@"Can not find current vault, please try replace vault."];
+        return;
+    }
     
+    VaultManager *currentVault = mainVC.vault;
+    if ([currentVault isLocked]) {
+        // check if current vault is locked
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You need to unlock current vault to continue merging" message:[NSString stringWithFormat:@"Enter password for vault: %@", currentVault.name] preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.secureTextEntry = YES;
+        }];
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"Unlock" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+            
+            if (![currentVault unlockWithPassword:[alertController.textFields[0] text]]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showAlertMessage:[NSString stringWithFormat:@"Invalid password for vault: %@, please try again.", currentVault.name]];
+                });
+                
+            } else {
+                [self mergeWithVault:currentVault];
+            }
+        }];
+        [alertController addAction:confrimAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    
+    } else {
+        [self mergeWithVault:currentVault];
+    }
 }
 
+
+- (void)mergeWithVault:(VaultManager *)vault {
+    NSLog(@"%s", __FUNCTION__);
+}
 
 
 - (void)showAlertMessage:(NSString *)alertMessage {

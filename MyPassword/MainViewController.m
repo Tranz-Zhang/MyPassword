@@ -23,7 +23,6 @@
     UINavigationController *_importNC;
     
     NSString *_documentPath;
-    VaultManager *_vault;
 }
 
 @end

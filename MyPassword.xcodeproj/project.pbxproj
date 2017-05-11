@@ -21,6 +21,7 @@
 		4C4F8A2D1E2F4469007D5882 /* MainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */; };
 		4C4F8A311E2F5547007D5882 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */; };
 		4C525A671EC43EE000F6E8F4 /* test.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C525A661EC43E5A00F6E8F4 /* test.vault */; };
+		4C525A6E1EC4996C00F6E8F4 /* MergeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C525A6D1EC4996C00F6E8F4 /* MergeViewController.m */; };
 		4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C501DEDBD4D00764478 /* RNCryptor.m */; };
 		4C553C581DEDBD4D00764478 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C521DEDBD4D00764478 /* RNCryptorEngine.m */; };
 		4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C541DEDBD4D00764478 /* RNDecryptor.m */; };
@@ -102,6 +103,8 @@
 		4C4F8A2E1E2F5547007D5882 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
 		4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		4C525A661EC43E5A00F6E8F4 /* test.vault */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.vault; sourceTree = "<group>"; };
+		4C525A6C1EC4996C00F6E8F4 /* MergeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeViewController.h; sourceTree = "<group>"; };
+		4C525A6D1EC4996C00F6E8F4 /* MergeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeViewController.m; sourceTree = "<group>"; };
 		4C553C4D1DEDBD4D00764478 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		4C553C4F1DEDBD4D00764478 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		4C553C501DEDBD4D00764478 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				4CA6E4F61E2E148E00207BE7 /* LoginViewController.m */,
 				4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */,
 				4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */,
+				4C525A6C1EC4996C00F6E8F4 /* MergeViewController.h */,
+				4C525A6D1EC4996C00F6E8F4 /* MergeViewController.m */,
 				4C7F030D1EC06717001FE3B5 /* Login.storyboard */,
 			);
 			path = Login;
@@ -595,6 +600,7 @@
 				4C0273DD1E0D9B55008A3D4D /* PasswordInfo.m in Sources */,
 				4CDBDE0C1EBEFDA4009701D9 /* unzip.c in Sources */,
 				4CDBDE2A1EBEFE01009701D9 /* fileenc.c in Sources */,
+				4C525A6E1EC4996C00F6E8F4 /* MergeViewController.m in Sources */,
 				4C553C571DEDBD4D00764478 /* RNCryptor.m in Sources */,
 				4CDBDE291EBEFE01009701D9 /* entropy.c in Sources */,
 				4C7446111EBC7CA1008F57C4 /* VaultDefines.m in Sources */,
