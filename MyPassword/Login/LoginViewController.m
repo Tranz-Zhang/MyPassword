@@ -47,6 +47,14 @@
 }
 
 
+- (void)setAccountName:(NSString *)accountName {
+    if (_accountName != accountName) {
+        _accountName = accountName;
+        self.accountNameLabel.text = accountName;
+    }
+}
+
+
 - (void)onUnlockButtonClicked:(UIButton *)sender {
     [self checkPassword];
 }

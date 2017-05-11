@@ -54,21 +54,23 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (void)refreshList {
     if (!_vault || _vault.isLocked) {
+        _infoList = nil;
+        [self.tableView reloadData];
         return;
     }
     
     _infoList = [self.vault indexInfoList];
     // adjust footer view
-    if (_infoList.count && !_tableView.tableFooterView) {
+    if (_infoList.count && !self.tableView.tableFooterView) {
         UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
         footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
-        _tableView.tableFooterView = footerView;
+        self.tableView.tableFooterView = footerView;
         
-    } else if (!_infoList.count && _tableView.tableFooterView ) {
-        _tableView.tableFooterView = nil;
+    } else if (!_infoList.count && self.tableView.tableFooterView ) {
+        self.tableView.tableFooterView = nil;
     }
     
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 
 

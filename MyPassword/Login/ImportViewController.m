@@ -13,6 +13,9 @@
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
 
+NSNotificationName const kDidFinishImportVaultNotification = @"kDidFinishImportVaultNotification";
+NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
+
 @interface ImportViewController ()<UITextFieldDelegate> {
     UIButton *_confirmButton;
     NSString *_unzipFilePath;
@@ -63,7 +66,7 @@
 }
 
 
-- (IBAction)onFinishExport:(id)sender {
+- (IBAction)onFinishExport {
     [self cleanDirectory:NSTemporaryDirectory()];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -153,6 +156,38 @@
         [[NSFileManager defaultManager] removeItemAtPath:filePath error:&removeError];
         NSLog(@"Delete File: %@ %@", fileName, removeError ? removeError : @"OK");
     }
+}
+
+
+#pragma mark - Vault Processing
+- (IBAction)onAddVault:(UIButton *)sender {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *destinatonPath = [documentPath stringByAppendingPathComponent:[self.importFilePath lastPathComponent]];
+    NSError *error;
+    BOOL isOK = [[NSFileManager defaultManager] moveItemAtPath:_unzipFilePath
+                                                        toPath:destinatonPath
+                                                         error:&error];
+    NSLog(@"Add vault: %@", isOK ? @"OK" : error);
+    if (!isOK || error) {
+        [self showAlertMessage:@"Fail to add vault, please try again"];
+        return;
+    }
+    
+    NSDictionary *userInfo = @{kImportedVaultPathKey : destinatonPath};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishImportVaultNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+    [self onFinishExport];
+}
+
+
+- (IBAction)onReplaceVault:(UIButton *)sender {
+    
+}
+
+
+- (IBAction)onMergeVault:(UIButton *)sender {
+    
 }
 
 

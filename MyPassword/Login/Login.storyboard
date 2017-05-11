@@ -277,6 +277,7 @@
                                 <state key="selected" backgroundImage="default_button_clicked"/>
                                 <state key="highlighted" backgroundImage="default_button_clicked"/>
                                 <connections>
+                                    <action selector="onMergeVault:" destination="LDM-L1-p2B" eventType="touchUpInside" id="Ada-is-LCN"/>
                                     <action selector="onShowRegistInfoView:" destination="5CC-SM-3fz" eventType="touchUpInside" id="JM6-MI-VnL"/>
                                 </connections>
                             </button>
@@ -292,6 +293,7 @@
                                 <state key="selected" backgroundImage="default_button_clicked"/>
                                 <state key="highlighted" backgroundImage="default_button_clicked"/>
                                 <connections>
+                                    <action selector="onReplaceVault:" destination="LDM-L1-p2B" eventType="touchUpInside" id="SLL-RZ-kp2"/>
                                     <action selector="onShowRegistInfoView:" destination="5CC-SM-3fz" eventType="touchUpInside" id="xnh-P8-KnV"/>
                                 </connections>
                             </button>
@@ -307,6 +309,7 @@
                                 <state key="selected" backgroundImage="default_button_clicked"/>
                                 <state key="highlighted" backgroundImage="default_button_clicked"/>
                                 <connections>
+                                    <action selector="onAddVault:" destination="LDM-L1-p2B" eventType="touchUpInside" id="CXs-0g-brZ"/>
                                     <action selector="onShowRegistInfoView:" destination="5CC-SM-3fz" eventType="touchUpInside" id="IzV-lL-IsM"/>
                                 </connections>
                             </button>
@@ -330,7 +333,7 @@
                     <navigationItem key="navigationItem" title="Import" id="f6a-Ne-HRf">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="wCb-ur-cFo">
                             <connections>
-                                <action selector="onFinishExport:" destination="LDM-L1-p2B" id="fCc-bc-N6g"/>
+                                <action selector="onFinishExport" destination="LDM-L1-p2B" id="aXq-Wt-7vQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -349,10 +352,10 @@
         <!--View Controller-->
         <scene sceneID="guo-bW-t4O">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wYE-XS-qzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="IiV-sz-aFa" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="PpS-BD-PZw"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wYE-XS-qzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2604" y="2970.7646176911549"/>
         </scene>

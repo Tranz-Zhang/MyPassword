@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "RegistViewController.h"
 #import "MainListViewController.h"
+#import "ImportViewController.h"
 #import "VaultManager.h"
 #import "StoryboardLoader.h"
 
@@ -24,8 +25,6 @@
     NSString *_documentPath;
     VaultManager *_vault;
 }
-
-@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -85,6 +84,13 @@
     _mainListNC.view.frame = self.view.bounds;
     _mainListNC.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:_mainListNC.view atIndex:0];
+    
+    
+    // add notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onDidFinishImportVault:)
+                                                 name:kDidFinishImportVaultNotification
+                                               object:nil];
 }
 
 
@@ -215,6 +221,44 @@
         [_loginNC removeFromParentViewController];
         _loginNC = nil;
     }];
+}
+
+
+#pragma mark - On Import
+
+- (void)onDidFinishImportVault:(NSNotification *)notification {
+    if (_registNC) {
+        [_registNC.view removeFromSuperview];
+        [_registNC removeFromParentViewController];
+        _registNC = nil;
+    }
+    
+    NSString *importedVaultPath = notification.userInfo[kImportedVaultPathKey];
+    // update vault
+    if (!_vault || ![_vault.vaultPath isEqualToString:importedVaultPath]) {
+        _vault = [[VaultManager alloc] initWithVaultPath:importedVaultPath];
+        
+    } else {
+        [_vault lock];
+    }
+    
+    if (!_loginNC) {
+        _loginNC = [StoryboardLoader loadViewController:@"LoginNavigationController"
+                                           inStoryboard:@"Login"];
+        // show first view
+        [self addChildViewController:_loginNC];
+        _loginNC.view.frame = self.view.bounds;
+        _loginNC.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:_loginNC.view];
+    }
+    LoginViewController *loginVC = (LoginViewController *)_loginNC.viewControllers[0];
+    loginVC.accountName = _vault.name;
+    loginVC.vault = _vault;
+    loginVC.delegate = self;
+    
+    MainListViewController *mainListVC = _mainListNC.viewControllers[0];
+    mainListVC.vault = nil;
+    [mainListVC refreshList];
 }
 
 

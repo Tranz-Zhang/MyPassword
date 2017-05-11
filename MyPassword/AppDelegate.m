@@ -44,6 +44,10 @@
 
 - (BOOL)onReceiveFile:(NSURL *)fileURL {
     if (![[fileURL pathExtension] isEqualToString:kVaultExtension]) {
+        NSLog(@"Invalid file extension: %@", fileURL);
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+        NSLog(@"Remove file: %@", error ?: @"OK");
         return NO;
     }
     
