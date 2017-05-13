@@ -8,8 +8,10 @@
 
 #import "ImportViewController.h"
 #import "MainViewController.h"
+#import "MergeViewController.h"
 #import "SSZipArchive.h"
 #import "VaultManager.h"
+#import "StoryboardLoader.h"
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
@@ -99,12 +101,22 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         return NO;
     }
     
+    VaultManager *importedVault = [[VaultManager alloc] initWithVaultPath:_unzipFilePath];
+    if (![importedVault unlockWithPassword:self.passwordTextField.text]) {
+        NSLog(@"Fail to unlock temp vault");
+        [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
+        [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
+        _unzipFilePath = nil;
+        return NO;
+    }
+    
     NSString *vaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
     
     // show replace/merge ui
     [self.passwordTextField resignFirstResponder];
     [UIView animateWithDuration:0.3 animations:^{
         self.passwordTextField.alpha = 0;
+        self.passwordTextField.userInteractionEnabled = NO;
         if (vaultName.length) {
             self.mergeButton.alpha = 1;
             self.replaceButton.alpha = 1;
@@ -269,6 +281,20 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 
 - (void)mergeWithVault:(VaultManager *)vault {
     NSLog(@"%s", __FUNCTION__);
+    VaultManager *importedVault = [[VaultManager alloc] initWithVaultPath:_unzipFilePath];
+    if (![importedVault unlockWithPassword:self.passwordTextField.text]) {
+        NSLog(@"Fail to unlock temp vault");
+        [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
+        [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
+        _unzipFilePath = nil;
+        return;
+    }
+    
+    MergeViewController *mergeVC = [StoryboardLoader loadViewController:@"MergeViewController"
+                                                           inStoryboard:@"Login"];
+    mergeVC.originalVault = vault;
+    mergeVC.mergingVault = importedVault;
+    [self.navigationController pushViewController:mergeVC animated:YES];
 }
 
 

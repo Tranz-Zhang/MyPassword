@@ -29,7 +29,7 @@
     
     
     // move file to temporary directory
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"vault"];
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"merge_one" withExtension:@"vault"];
     NSError *error = nil;
     NSString *toFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileURL.lastPathComponent];
     BOOL isOK = NO;
