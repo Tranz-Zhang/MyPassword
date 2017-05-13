@@ -9,8 +9,12 @@
 #import "MergeViewController.h"
 #import "MergeInfoCell.h"
 
+#define kLocalWidth self.view.bounds.size.width
+#define kLocalHeight self.view.bounds.size.height
+
 @interface MergeViewController ()<MergeInfoCellDelegate> {
     NSMutableArray <MergeInfo *> *_infoList;
+    __weak UIView *_loadingView;
 }
 
 @end
@@ -20,13 +24,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
+    footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
+    self.tableView.tableFooterView = footerView;
+    
     if (self.originalVault.isLocked || self.mergingVault.isLocked) {
         NSLog(@"Error: merging vaults are locked");
         return;
     }
     
+    CGRect frame = CGRectOffset(self.view.bounds, 0, -64);
+    UILabel *loadLabel = [[UILabel alloc] initWithFrame:frame];
+    loadLabel.text = @"Calculating...";
+    loadLabel.font = [UIFont boldSystemFontOfSize:25];
+    loadLabel.textColor = [UIColor grayColor];
+    loadLabel.textAlignment = NSTextAlignmentCenter;
+    loadLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
+    [self.view addSubview:loadLabel];
+    _loadingView = loadLabel;
+    self.tableView.userInteractionEnabled = NO;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self generateMergeInfoList];
-    [self.tableView reloadData];
+    
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
+    self.tableView.userInteractionEnabled = YES;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -81,7 +108,7 @@
         }
     }
     
-    _infoList = [mergeList copy];
+    _infoList = mergeList;
 }
 
 
@@ -107,7 +134,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    MergeInfo *info = _infoList[indexPath.row];
+    return info.displayMode == MergeCellDisplayNew ? 120 : 150;
 }
 
 
@@ -116,6 +144,27 @@
     cell.mergeInfo = _infoList[indexPath.row];
     cell.delegate = self;
     return cell;
+}
+
+
+#pragma mark - Table view deletion
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle != UITableViewCellEditingStyleDelete) {
+        return;
+    }
+    
+    [_infoList removeObjectAtIndex:indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

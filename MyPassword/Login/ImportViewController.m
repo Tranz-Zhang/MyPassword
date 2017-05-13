@@ -97,7 +97,6 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     if (!isOK || error) {
         NSLog(@"Fail to unzip temp vault: %@", error);
         [self showAlertMessage:@"Fail to unlock vault file, please try another password."];
-        _unzipFilePath = nil;
         return NO;
     }
     
@@ -106,9 +105,10 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         NSLog(@"Fail to unlock temp vault");
         [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
         [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
-        _unzipFilePath = nil;
         return NO;
     }
+    
+    // TODO: check if empty
     
     NSString *vaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
     
@@ -252,6 +252,7 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     }
     
     VaultManager *currentVault = mainVC.vault;
+    [currentVault unlockWithPassword:@"123"];
     if ([currentVault isLocked]) {
         // check if current vault is locked
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You need to unlock current vault to continue merging" message:[NSString stringWithFormat:@"Enter password for vault: %@", currentVault.name] preferredStyle:UIAlertControllerStyleAlert];
@@ -286,7 +287,6 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         NSLog(@"Fail to unlock temp vault");
         [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
         [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
-        _unzipFilePath = nil;
         return;
     }
     

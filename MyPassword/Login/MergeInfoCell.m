@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notesLabel;
 @property (weak, nonatomic) IBOutlet UIButton *changeModeButton;
+@property (weak, nonatomic) IBOutlet UILabel *similarTagLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeight;
 
 
 @end
@@ -33,13 +35,24 @@
 
 - (void)setMergeInfo:(MergeInfo *)mergeInfo {
     _mergeInfo = mergeInfo;
-    PasswordInfo *displayInfo = mergeInfo.displayMode == MergeCellDisplayNew ? mergeInfo.passwordInfo : mergeInfo.similarPasswordInfo;
+    BOOL isNew = mergeInfo.displayMode == MergeCellDisplayNew;
+    PasswordInfo *displayInfo = isNew ? mergeInfo.passwordInfo : mergeInfo.similarPasswordInfo;
     self.itemTitleLabel.text = displayInfo.title;
     self.accountLabel.text = [NSString stringWithFormat:@"Account: %@", displayInfo.account];
     self.passwordLabel.text = [NSString stringWithFormat:@"Password: %@", displayInfo.password];
     self.iconView.image = SmallIconImageWithType(displayInfo.iconType);
     self.notesLabel.text = [NSString stringWithFormat:@"Notes: %@", displayInfo.notes];
     self.changeModeButton.hidden = (mergeInfo.similarPasswordInfo == nil);
+    self.similarTagLabel.hidden = isNew;
+    self.backgroundColor = isNew ? [UIColor whiteColor] : [UIColor colorWithWhite:0.95 alpha:1];
+    
+    // highlight changed content label
+    self.accountLabel.highlighted = !isNew && ![mergeInfo.passwordInfo.account isEqualToString:mergeInfo.similarPasswordInfo.account];
+    self.passwordLabel.highlighted = !isNew && ![mergeInfo.passwordInfo.password isEqualToString:mergeInfo.similarPasswordInfo.password];
+    self.notesLabel.highlighted = !isNew && ![mergeInfo.passwordInfo.notes isEqualToString:mergeInfo.similarPasswordInfo.notes];
+    self.topBarHeight.constant = isNew ? 0 : 26;
+    UIImage *iconImage = isNew ? [UIImage imageNamed:@"merge_cell_approx_icon"] : [UIImage imageNamed:@"merge_cell_back_icon"];
+    [self.changeModeButton setImage:[iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
 }
 
 
