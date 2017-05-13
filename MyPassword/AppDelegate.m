@@ -27,7 +27,6 @@
     self.window.tintColor = themeColor;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
     
-    
     // move file to temporary directory
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"merge_one" withExtension:@"vault"];
     NSError *error = nil;

@@ -7,6 +7,7 @@
 //
 
 #import "MergeViewController.h"
+#import "ImportViewController.h"
 #import "MergeInfoCell.h"
 
 #define kLocalWidth self.view.bounds.size.width
@@ -58,6 +59,32 @@
 
 
 - (IBAction)onFinshMerge:(UIBarButtonItem *)sender {
+    
+    // add item to current vault
+    BOOL mergeOK = YES;
+    for (MergeInfo *info in _infoList) {
+        PasswordInfo *insertedPasswordInfo = [info.passwordInfo copy];
+        insertedPasswordInfo.UUID = nil;
+        if (![self.originalVault addPasswordInfo:insertedPasswordInfo]) {
+            mergeOK = NO;
+        }
+    }
+    
+    if (!mergeOK) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Fail to merge vaults " message:@"Some passwords can not be inserted to current vault. Please check current vault and try to merge again." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:confrimAction];
+        [self.view.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    }
+    
+    // post notifications
+    NSDictionary *userInfo = @{kImportedVaultPathKey : self.originalVault.vaultPath};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishImportVaultNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+    
     if (self.navigationController) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -102,7 +129,6 @@
         if (!containSameInfo) {
             MergeInfo *info = [MergeInfo new];
             info.passwordInfo = newPasswordDict[newIndexInfo.passwordUUID];
-            info.vault = self.mergingVault;
             info.similarPasswordInfo = similarPasswordInfo;
             [mergeList addObject:info];
         }

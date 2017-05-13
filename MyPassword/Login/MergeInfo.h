@@ -18,7 +18,6 @@ typedef NS_ENUM(NSInteger, MergeCellDisplayMode) {
 
 @property (nonatomic, assign) MergeCellDisplayMode displayMode;
 @property (nonatomic, strong) PasswordInfo *passwordInfo;
-@property (nonatomic, strong) VaultManager *vault;
 @property (nonatomic, strong) PasswordInfo *similarPasswordInfo;
 
 @end
