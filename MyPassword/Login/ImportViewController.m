@@ -29,6 +29,7 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 @property (weak, nonatomic) IBOutlet UIButton *mergeButton;
 @property (weak, nonatomic) IBOutlet UIButton *replaceButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet UILabel *emptyTipLabel;
 
 @end
 
@@ -108,7 +109,14 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         return NO;
     }
     
-    // TODO: check if empty
+    // check if vault is empty
+    NSArray *indexInfos = [importedVault indexInfoList];
+    if (!indexInfos.count) {
+        self.passwordTextField.alpha = 0;
+        self.passwordTextField.userInteractionEnabled = NO;
+        self.emptyTipLabel.hidden = NO;
+        return YES;
+    }
     
     NSString *vaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
     

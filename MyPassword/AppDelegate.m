@@ -28,31 +28,31 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
     
     // move file to temporary directory
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"merge_one" withExtension:@"vault"];
-    NSError *error = nil;
-    NSString *toFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileURL.lastPathComponent];
-    BOOL isOK = NO;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:toFilePath]) {
-        isOK = [[NSFileManager defaultManager] copyItemAtURL:fileURL
-                                                            toURL:[NSURL fileURLWithPath:toFilePath]
-                                                            error:&error];
-        NSLog(@"Move File %@: %@", fileURL.lastPathComponent, isOK ? @"OK" : error);
-        
-    } else {
-        isOK = YES;
-    }
-    
-    if (isOK) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UINavigationController *importNV = [StoryboardLoader loadViewController:@"ImportNavigationController"
-                                                                       inStoryboard:@"Login"];
-            ImportViewController *importVC = importNV.viewControllers[0];
-            importVC.importFilePath = toFilePath;
-            [self.window.rootViewController presentViewController:importNV
-                                                         animated:YES
-                                                       completion:nil];
-        });
-    }
+//    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"merge_one" withExtension:@"vault"];
+//    NSError *error = nil;
+//    NSString *toFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileURL.lastPathComponent];
+//    BOOL isOK = NO;
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:toFilePath]) {
+//        isOK = [[NSFileManager defaultManager] copyItemAtURL:fileURL
+//                                                            toURL:[NSURL fileURLWithPath:toFilePath]
+//                                                            error:&error];
+//        NSLog(@"Move File %@: %@", fileURL.lastPathComponent, isOK ? @"OK" : error);
+//        
+//    } else {
+//        isOK = YES;
+//    }
+//    
+//    if (isOK) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            UINavigationController *importNV = [StoryboardLoader loadViewController:@"ImportNavigationController"
+//                                                                       inStoryboard:@"Login"];
+//            ImportViewController *importVC = importNV.viewControllers[0];
+//            importVC.importFilePath = toFilePath;
+//            [self.window.rootViewController presentViewController:importNV
+//                                                         animated:YES
+//                                                       completion:nil];
+//        });
+//    }
     
     return YES;
 }

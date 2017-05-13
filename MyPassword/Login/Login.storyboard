@@ -336,15 +336,23 @@
                                     <action selector="onShowRegistInfoView:" destination="5CC-SM-3fz" eventType="touchUpInside" id="IzV-lL-IsM"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This vault is empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXO-gl-HGT">
+                                <rect key="frame" x="97.5" y="401.5" width="180" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iXO-gl-HGT" firstAttribute="centerY" secondItem="hMk-Fo-ySf" secondAttribute="centerY" constant="80" id="E5q-bz-8DV"/>
                             <constraint firstItem="cew-mq-0ah" firstAttribute="centerX" secondItem="ijE-NH-cXH" secondAttribute="centerX" id="EVB-bB-5wF"/>
                             <constraint firstItem="cew-mq-0ah" firstAttribute="top" secondItem="ijE-NH-cXH" secondAttribute="bottom" constant="-6" id="EZV-HP-QZc"/>
                             <constraint firstItem="zhq-AG-qEr" firstAttribute="top" secondItem="ijE-NH-cXH" secondAttribute="bottom" constant="100" id="FFe-C2-6AW"/>
                             <constraint firstItem="pPt-HO-nUt" firstAttribute="centerX" secondItem="hMk-Fo-ySf" secondAttribute="centerX" id="KPl-GY-eG5"/>
                             <constraint firstItem="72N-hU-BtV" firstAttribute="centerX" secondItem="hMk-Fo-ySf" secondAttribute="centerX" id="KPm-C9-XKZ"/>
                             <constraint firstItem="ijE-NH-cXH" firstAttribute="centerX" secondItem="hMk-Fo-ySf" secondAttribute="centerX" id="O2l-CR-r8g"/>
+                            <constraint firstItem="iXO-gl-HGT" firstAttribute="centerX" secondItem="hMk-Fo-ySf" secondAttribute="centerX" id="Wd4-aB-4ug"/>
                             <constraint firstItem="RAM-NE-1ji" firstAttribute="centerX" secondItem="pPt-HO-nUt" secondAttribute="centerX" id="cXa-Ij-bwU"/>
                             <constraint firstItem="RAM-NE-1ji" firstAttribute="top" secondItem="pPt-HO-nUt" secondAttribute="bottom" constant="38" id="dh1-hw-Ocy"/>
                             <constraint firstItem="ijE-NH-cXH" firstAttribute="centerY" secondItem="hMk-Fo-ySf" secondAttribute="centerY" constant="-120" id="oSb-J0-aXe"/>
@@ -363,6 +371,7 @@
                     <connections>
                         <outlet property="accountNameLabel" destination="cew-mq-0ah" id="tiR-bj-mFb"/>
                         <outlet property="addButton" destination="zhq-AG-qEr" id="lZ1-G6-QY5"/>
+                        <outlet property="emptyTipLabel" destination="iXO-gl-HGT" id="gOr-wm-jgG"/>
                         <outlet property="mergeButton" destination="pPt-HO-nUt" id="m0f-lL-rVp"/>
                         <outlet property="passwordTextField" destination="72N-hU-BtV" id="bwX-PJ-WVM"/>
                         <outlet property="replaceButton" destination="RAM-NE-1ji" id="cPy-rH-gQI"/>
@@ -370,7 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmr-fO-XeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="2266"/>
+            <point key="canvasLocation" x="917.60000000000002" y="2265.5172413793107"/>
         </scene>
         <!--Merge Result-->
         <scene sceneID="Qbe-BL-ben">
