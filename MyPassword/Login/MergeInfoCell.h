@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PasswordInfo.h"
+#import "MergeInfo.h"
 
+
+@protocol MergeInfoCellDelegate;
 @interface MergeInfoCell : UITableViewCell
 
-@property (nonatomic, strong) PasswordInfo *passwordInfo;
-@property (nonatomic, assign) BOOL isNew;
+@property (nonatomic, strong) MergeInfo *mergeInfo;
+@property (nonatomic, weak) id<MergeInfoCellDelegate> delegate;
+
+@end
+
+
+@protocol MergeInfoCellDelegate <NSObject>
+
+- (void)mergeInfoCell:(MergeInfoCell *)cell didChangeDisplayMode:(MergeCellDisplayMode)displayMode;
 
 @end

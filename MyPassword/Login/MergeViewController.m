@@ -9,20 +9,7 @@
 #import "MergeViewController.h"
 #import "MergeInfoCell.h"
 
-@interface MergeInfo : NSObject
-
-@property (nonatomic, strong) PasswordInfo *passwordInfo;
-@property (nonatomic, strong) VaultManager *vault;
-@property (nonatomic, strong) PasswordInfo *similarPasswordInfo;
-
-@end
-
-@implementation MergeInfo
-@end
-
-
-
-@interface MergeViewController () {
+@interface MergeViewController ()<MergeInfoCellDelegate> {
     NSMutableArray <MergeInfo *> *_infoList;
 }
 
@@ -118,20 +105,34 @@
     return _infoList.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 148;
+    return 120;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MergeInfoCell *cell = (MergeInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"MergeInfoCell" forIndexPath:indexPath];
-    
-    MergeInfo *info = _infoList[indexPath.row];
-    cell.passwordInfo = info.passwordInfo;
-    cell.isNew = (info.similarPasswordInfo != nil);
-    
+    cell.mergeInfo = _infoList[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
 
+#pragma mark - MergeInfoCellDelegate
+- (void)mergeInfoCell:(MergeInfoCell *)cell didChangeDisplayMode:(MergeCellDisplayMode)displayMode {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if (!indexPath) {
+        NSLog(@"Fail to find cell!!!");
+        return;
+    }
+    
+    UITableViewRowAnimation animation = displayMode == MergeCellDisplaySimilar ? UITableViewRowAnimationLeft : UITableViewRowAnimationRight;
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
+}
+
 
 @end
+
+
+

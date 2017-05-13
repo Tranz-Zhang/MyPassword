@@ -16,10 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *itemTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *passwordBackgroundView;
-@property (weak, nonatomic) IBOutlet UIButton *passwordButton;
-@property (weak, nonatomic) IBOutlet UIImageView *newlyMarkView;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *changeModeButton;
+
 
 @end
 
@@ -28,61 +28,30 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    
-    [self.passwordButton setTitle:@"{ ********** }" forState:UIControlStateNormal];
 }
 
 
-- (void)setPasswordInfo:(PasswordInfo *)passwordInfo {
-    _passwordInfo = passwordInfo;
-    self.itemTitleLabel.text = passwordInfo.title;
-    self.accountLabel.text = passwordInfo.account;
-    self.iconView.image = SmallIconImageWithType(passwordInfo.iconType);
-    self.notesLabel.text = passwordInfo.notes;
-    
-    _isShowingPassword = NO;
-    [self updatePasswordVisiablilty];
+- (void)setMergeInfo:(MergeInfo *)mergeInfo {
+    _mergeInfo = mergeInfo;
+    PasswordInfo *displayInfo = mergeInfo.displayMode == MergeCellDisplayNew ? mergeInfo.passwordInfo : mergeInfo.similarPasswordInfo;
+    self.itemTitleLabel.text = displayInfo.title;
+    self.accountLabel.text = [NSString stringWithFormat:@"Account: %@", displayInfo.account];
+    self.passwordLabel.text = [NSString stringWithFormat:@"Password: %@", displayInfo.password];
+    self.iconView.image = SmallIconImageWithType(displayInfo.iconType);
+    self.notesLabel.text = [NSString stringWithFormat:@"Notes: %@", displayInfo.notes];
+    self.changeModeButton.hidden = (mergeInfo.similarPasswordInfo == nil);
 }
 
 
-- (void)setIsNew:(BOOL)isNew {
-    _isNew = isNew;
-    self.newlyMarkView.hidden = !isNew;
-    self.backgroundColor = isNew ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
-}
-
-
-- (IBAction)onPasswordButtonClicked:(UIButton *)button {
-    _isShowingPassword = !_isShowingPassword;
-    [self updatePasswordVisiablilty];
-}
-
-
-- (void)updatePasswordVisiablilty {
-    if (!self.passwordInfo.password.length) {
-        [self.passwordButton setTitle:@"{ NO PASSWORD }" forState:UIControlStateNormal];
-        self.passwordButton.enabled = NO;
-        return;
-    }
-    
-    self.passwordButton.enabled = YES;
-    if (_isShowingPassword) {
-        [self.passwordButton setTitle:self.passwordInfo.password
-                             forState:UIControlStateNormal];
-        
-    } else {
-        NSString *originalPwd = self.passwordInfo.password;
-        NSMutableString *hiddenPwd = [NSMutableString stringWithString:@"{ "];
-        [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:0]];
-        [hiddenPwd appendString:@"********"];
-        [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:originalPwd.length - 1]];
-        [hiddenPwd appendString:@" }"];
-        [self.passwordButton setTitle:[hiddenPwd copy]
-                             forState:UIControlStateNormal];
-        
+- (IBAction)onChangeDisplayMode:(UIButton *)sender {
+    MergeCellDisplayMode mode = self.mergeInfo.displayMode == MergeCellDisplayNew ? MergeCellDisplaySimilar : MergeCellDisplayNew;
+    self.mergeInfo.displayMode = mode;
+    if ([self.delegate respondsToSelector:@selector(mergeInfoCell:didChangeDisplayMode:)]) {
+        [self.delegate mergeInfoCell:self didChangeDisplayMode:mode];
     }
 }
+
+
 
 @end
 

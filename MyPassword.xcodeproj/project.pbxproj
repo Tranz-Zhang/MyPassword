@@ -35,6 +35,7 @@
 		4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03121EC06B64001FE3B5 /* MainList.storyboard */; };
 		4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03141EC072C6001FE3B5 /* Setting.storyboard */; };
 		4C7F03181EC076D7001FE3B5 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03171EC076D7001FE3B5 /* ExportViewController.m */; };
+		4C8ED2CD1EC6F9DB00E17E71 /* MergeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */; };
 		4C916ED01EC5603A00207ACB /* MergeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */; };
 		4C916ED21EC564BE00207ACB /* merge_one.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C916ED11EC564BE00207ACB /* merge_one.vault */; };
 		4C92696D1DEDB76F006952B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92696C1DEDB76F006952B9 /* main.m */; };
@@ -132,6 +133,8 @@
 		4C7F03141EC072C6001FE3B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4C7F03161EC076D7001FE3B5 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		4C7F03171EC076D7001FE3B5 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
+		4C8ED2CB1EC6F9DB00E17E71 /* MergeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfo.h; sourceTree = "<group>"; };
+		4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfo.m; sourceTree = "<group>"; };
 		4C916ECE1EC5603A00207ACB /* MergeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfoCell.h; sourceTree = "<group>"; };
 		4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfoCell.m; sourceTree = "<group>"; };
 		4C916ED11EC564BE00207ACB /* merge_one.vault */ = {isa = PBXFileReference; lastKnownFileType = file; path = merge_one.vault; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 				4C525A6D1EC4996C00F6E8F4 /* MergeViewController.m */,
 				4C916ECE1EC5603A00207ACB /* MergeInfoCell.h */,
 				4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */,
+				4C8ED2CB1EC6F9DB00E17E71 /* MergeInfo.h */,
+				4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */,
 			);
 			name = Merge;
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 				4CA6E4F81E2E148E00207BE7 /* LoginViewController.m in Sources */,
 				4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */,
 				4C0273DA1E0D9B0F008A3D4D /* JSONValueTransformer.m in Sources */,
+				4C8ED2CD1EC6F9DB00E17E71 /* MergeInfo.m in Sources */,
 				4C0273D91E0D9B0F008A3D4D /* JSONKeyMapper.m in Sources */,
 				4CDBDE0B1EBEFDA4009701D9 /* mztools.c in Sources */,
 				4C0273C01E0D9991008A3D4D /* IndexInfo.m in Sources */,
