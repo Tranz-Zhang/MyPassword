@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordBackgroundView;
 @property (weak, nonatomic) IBOutlet UIButton *passwordButton;
+@property (weak, nonatomic) IBOutlet UILabel *notesLabel;
 
 @end
 
@@ -36,6 +37,7 @@
     self.itemTitleLabel.text = passwordInfo.title;
     self.accountLabel.text = passwordInfo.account;
     self.iconView.image = SmallIconImageWithType(passwordInfo.iconType);
+    self.notesLabel.text = passwordInfo.notes;
     
     _isShowingPassword = NO;
     [self updatePasswordVisiablilty];

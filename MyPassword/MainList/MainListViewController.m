@@ -59,6 +59,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         return;
     }
     
+    _detailIndexPath = nil;
     _infoList = [self.vault indexInfoList];
     // adjust footer view
     if (_infoList.count && !self.tableView.tableFooterView) {
@@ -83,7 +84,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_detailIndexPath isEqual:indexPath]) {
-        return 148;
+        return 158;
         
     } else {
         return 60;
@@ -124,18 +125,45 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"AddOrEditPassword"]) {
-        UINavigationController *nv = segue.destinationViewController;
-        EditViewController *editVC = nv.viewControllers[0];
-        editVC.delegate = self;
-        
-    } else if ([segue.identifier isEqualToString:@"ShowSettingsVC"]) {
-        UINavigationController *nv = segue.destinationViewController;
-        SettingsViewController *editVC = nv.viewControllers[0];
-        editVC.currentVault = self.vault;
+#pragma mark - Table view deletion
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle != UITableViewCellEditingStyleDelete) {
+        return;
+    }
+    
+    IndexInfo *deletedIndex = _infoList[indexPath.row];
+    if ([self.vault deletePasswordWithUUID:deletedIndex.passwordUUID]) {
+        if ([indexPath isEqual:_detailIndexPath]) {
+            _detailIndexPath = nil;
+        }
+        _infoList = [self.vault indexInfoList];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"AddOrEditPassword"]) {
+//        UINavigationController *nv = segue.destinationViewController;
+//        EditViewController *editVC = nv.viewControllers[0];
+//        editVC.delegate = self;
+//        
+//    } else if ([segue.identifier isEqualToString:@"ShowSettingsVC"]) {
+//        UINavigationController *nv = segue.destinationViewController;
+//        SettingsViewController *editVC = nv.viewControllers[0];
+//        editVC.currentVault = self.vault;
+//    }
+//}
 
 
 #pragma mark - PasswordDetailCellDelegate

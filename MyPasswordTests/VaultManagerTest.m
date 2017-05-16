@@ -200,8 +200,7 @@
 //    password.UUID = [[NSUUID UUID] UUIDString];
     password.account = @"chance";
     password.password = @"Test Password";
-    password.website = @"www.google.com";
-    password.iconURL = @"www.icon.com";
+    password.iconType = PasswordIconLogin;
     password.createdDate = [[NSDate date] timeIntervalSince1970];
     password.updatedDate = [[NSDate date] timeIntervalSince1970];
     
@@ -226,8 +225,7 @@
     XCTAssertTrue([getPassword.UUID isEqualToString:password.UUID]);
     XCTAssertTrue([getPassword.account isEqualToString:password.account]);
     XCTAssertTrue([getPassword.password isEqualToString:password.password]);
-    XCTAssertTrue([getPassword.website isEqualToString:password.website]);
-    XCTAssertTrue([getPassword.iconURL isEqualToString:password.iconURL]);
+    XCTAssertTrue(getPassword.iconType == password.iconType);
     XCTAssertTrue(getPassword.createdDate == password.createdDate);
     XCTAssertTrue(getPassword.updatedDate == password.updatedDate);
 }
@@ -304,6 +302,11 @@
     [vault unlockWithPassword:_password];
     XCTAssertTrue([vault deletePasswordWithUUID:idxInfo.passwordUUID]);
     XCTAssert(vault.indexInfoList.count == 0);
+    
+    // close and reopen
+    vault = [[VaultManager alloc] initWithVaultPath:vaultPath];
+    [vault unlockWithPassword:_password];
+    XCTAssert(vault.indexInfoList.count == 0);
 }
 
 
@@ -354,8 +357,7 @@
     updatedPassword.title = @"Changed password title";
     updatedPassword.account = @"another account";
     updatedPassword.password = @"another Password";
-    updatedPassword.website = @"www.google.com";
-    updatedPassword.iconURL = @"www.icon.com";
+    updatedPassword.iconType = PasswordIconCreditCard;
     XCTAssertTrue([vault updatePasswordInfo:[updatedPassword copy]]);
     // check actual update
     vault = nil;
@@ -367,17 +369,15 @@
     XCTAssertTrue([updatedPassword2.UUID isEqualToString:updatedPassword.UUID]);
     XCTAssertTrue([updatedPassword2.account isEqualToString:updatedPassword.account]);
     XCTAssertTrue([updatedPassword2.password isEqualToString:updatedPassword.password]);
-    XCTAssertTrue([updatedPassword2.website isEqualToString:updatedPassword.website]);
-    XCTAssertTrue([updatedPassword2.iconURL isEqualToString:updatedPassword.iconURL]);
+    XCTAssertTrue(updatedPassword2.iconType == updatedPassword.iconType);
     XCTAssertTrue(updatedPassword2.createdDate == updatedPassword.createdDate);
     XCTAssertTrue(updatedPassword2.updatedDate > updatedPassword.updatedDate);
     XCTAssertTrue([idxInfo.title isEqualToString:@"Changed password title"]);
-    XCTAssertTrue([idxInfo.iconURL isEqualToString:@"www.icon.com"]);
+    XCTAssertTrue(idxInfo.iconType == PasswordIconCreditCard);
     
     // set nil update
     updatedPassword2.title = nil;
-    updatedPassword2.website = nil;
-    updatedPassword2.iconURL = nil;
+    updatedPassword2.iconType = 0;
     XCTAssertTrue([vault updatePasswordInfo:[updatedPassword2 copy]]);
     // check set nil update
     vault = nil;
@@ -386,11 +386,10 @@
     idxInfo = vault.indexInfoList[0];
     PasswordInfo *updatedPassword3 = [vault passwordInfoWithUUID:idxInfo.passwordUUID];
     XCTAssertNil(updatedPassword3.title);
-    XCTAssertNil(updatedPassword3.website);
-    XCTAssertNil(updatedPassword3.iconURL);
+    XCTAssertTrue(updatedPassword3.iconType == 0);
     XCTAssertTrue(updatedPassword3.updatedDate > updatedPassword2.updatedDate);
     XCTAssertNil(idxInfo.title);
-    XCTAssertNil(idxInfo.iconURL);
+    XCTAssertTrue(idxInfo.iconType == 0);
 }
 
 
@@ -405,8 +404,7 @@
     password.UUID = customUUID;
     password.account = @"chance";
     password.password = @"Test Password";
-    password.website = @"www.google.com";
-    password.iconURL = @"www.icon.com";
+    password.iconType = PasswordIconCreditCard;
     password.createdDate = [[NSDate date] timeIntervalSince1970];
     password.updatedDate = [[NSDate date] timeIntervalSince1970];
     

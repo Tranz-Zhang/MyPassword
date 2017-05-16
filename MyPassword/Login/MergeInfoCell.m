@@ -53,10 +53,13 @@
     self.topBarHeight.constant = isNew ? 0 : 26;
     UIImage *iconImage = isNew ? [UIImage imageNamed:@"merge_cell_approx_icon"] : [UIImage imageNamed:@"merge_cell_back_icon"];
     [self.changeModeButton setImage:[iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    UIImage *highlightedIconImage = isNew ? [UIImage imageNamed:@"merge_cell_approx_icon_clicked"] : [UIImage imageNamed:@"merge_cell_back_icon_clicked"];
+    [self.changeModeButton setImage:highlightedIconImage
+                           forState:UIControlStateHighlighted];
 }
 
 
-- (IBAction)onChangeDisplayMode:(UIButton *)sender {
+- (IBAction)onChangeDisplayMode:(UIButton *)button {
     MergeCellDisplayMode mode = self.mergeInfo.displayMode == MergeCellDisplayNew ? MergeCellDisplaySimilar : MergeCellDisplayNew;
     self.mergeInfo.displayMode = mode;
     if ([self.delegate respondsToSelector:@selector(mergeInfoCell:didChangeDisplayMode:)]) {

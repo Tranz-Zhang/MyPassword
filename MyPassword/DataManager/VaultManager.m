@@ -196,12 +196,15 @@
         indexInfo.iconType = passwordInfo.iconType;
         NSMutableArray *tempList = [NSMutableArray arrayWithArray:_indexInfoList];
         [tempList addObject:indexInfo];
-        _indexInfoList = tempList.copy;
         
-        NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:_indexInfoList];
-        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:jsonIndexList options:0 error:nil];
-        NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
-        isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
+        isOK = [self saveIndexInfoList:[tempList copy]];
+        if (isOK) {
+            _indexInfoList = tempList.copy;
+            
+        } else {
+            // remove password item
+            [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        }
     }
     
     NSLog(@"add password: %@", isOK ? @"OK" : @"Fail");
@@ -236,10 +239,8 @@
                 info.iconType = passwordInfo.iconType;
             }
         }
-        NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:_indexInfoList];
-        NSData *indexListData = [NSJSONSerialization dataWithJSONObject:jsonIndexList options:0 error:nil];
-        NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
-        isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
+        
+        isOK = [self saveIndexInfoList:_indexInfoList];
     }
     
     NSLog(@"update password: %@", isOK ? @"OK" : @"Fail");
@@ -263,7 +264,13 @@
     if (deletedIndexInfo) {
         NSMutableArray *tempList = [_indexInfoList mutableCopy];
         [tempList removeObject:deletedIndexInfo];
-        _indexInfoList = tempList.copy;
+        
+        if ([self saveIndexInfoList:[tempList copy]]) {
+            _indexInfoList = tempList.copy;
+            
+        } else {
+            return NO;
+        }
     }
     
     NSString *filePath = [[self dataDirectory] stringByAppendingPathComponent:passwordUUID];
@@ -282,6 +289,17 @@
     NSString *uuidString = [[NSUUID UUID] UUIDString];
     return [uuidString stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
+
+
+- (BOOL)saveIndexInfoList:(NSArray <IndexInfo *> *)indexList {
+    NSArray *jsonIndexList = [IndexInfo arrayOfDictionariesFromModels:indexList];
+    NSData *indexListData = [NSJSONSerialization dataWithJSONObject:jsonIndexList options:0 error:nil];
+    NSString *indexInfoFilePath = [_vaultPath stringByAppendingPathComponent:kIndexInfoFileName];
+    BOOL isOK = EncryptDataToFile(indexListData, indexInfoFilePath, _vaultInfo.masterKey);
+    NSLog(@"Save index list data: %@", isOK ? @"OK" : @"Fail");
+    return isOK;
+}
+
 
 #pragma mark - Vault Management
 

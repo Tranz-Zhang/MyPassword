@@ -13,6 +13,8 @@
  Functions:
  - Export
  - SortList
+ - change password
+ - delege account
  - Version
  */
 
