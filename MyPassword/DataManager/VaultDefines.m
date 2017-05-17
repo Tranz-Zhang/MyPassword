@@ -11,7 +11,7 @@
 UIImage *IconImageWithType(PasswordIconType type) {
     switch (type) {
         case PasswordIconLogin:
-            return [UIImage imageNamed:@"item_icon_default"];
+            return [UIImage imageNamed:@"item_icon_login"];
         case PasswordIconCreditCard:
             return [UIImage imageNamed:@"item_icon_card"];
         case PasswordIconOthers:
@@ -25,9 +25,9 @@ UIImage *IconImageWithType(PasswordIconType type) {
 UIImage *SmallIconImageWithType(PasswordIconType type) {
     switch (type) {
         case PasswordIconLogin:
-            return [UIImage imageNamed:@"item_icon_default_small"];
+            return [UIImage imageNamed:@"item_icon_login"];
         case PasswordIconCreditCard:
-            return [UIImage imageNamed:@"item_icon_card_small"];
+            return [UIImage imageNamed:@"item_icon_card"];
         case PasswordIconOthers:
             return [UIImage imageNamed:@"item_icon_others_small"];
         default:

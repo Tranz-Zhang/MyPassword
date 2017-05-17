@@ -362,7 +362,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Import" id="f6a-Ne-HRf">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="wCb-ur-cFo">
+                        <barButtonItem key="rightBarButtonItem" image="done_icon" id="wCb-ur-cFo">
                             <connections>
                                 <action selector="onFinishExport" destination="LDM-L1-p2B" id="aXq-Wt-7vQ"/>
                             </connections>
@@ -489,7 +489,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Merge Result" id="d4H-JW-kZ4">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="ZVN-Z6-o9k">
+                        <barButtonItem key="rightBarButtonItem" image="done_icon" id="ZVN-Z6-o9k">
                             <connections>
                                 <action selector="onFinshMerge:" destination="GG4-sz-18e" id="OM0-1J-kQs"/>
                             </connections>
@@ -523,6 +523,7 @@
     <resources>
         <image name="default_button" width="11" height="11"/>
         <image name="default_button_clicked" width="16" height="16"/>
+        <image name="done_icon" width="32" height="32"/>
         <image name="file_icon" width="160" height="160"/>
         <image name="icon_big" width="640" height="640"/>
         <image name="input_boundary" width="11" height="11"/>
