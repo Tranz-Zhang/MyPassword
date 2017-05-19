@@ -36,7 +36,7 @@
     _passwordInfo = passwordInfo;
     self.itemTitleLabel.text = passwordInfo.title;
     self.accountLabel.text = passwordInfo.account;
-    self.iconView.image = SmallIconImageWithType(passwordInfo.iconType);
+    self.iconView.image = SmallIconImageWithType(passwordInfo.type);
     self.notesLabel.text = passwordInfo.notes;
     
     _isShowingPassword = NO;

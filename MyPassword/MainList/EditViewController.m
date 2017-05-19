@@ -49,8 +49,8 @@
         self.accountTextField.text = self.password.account;
         self.passwordTextField.text = self.password.password;
         self.notesTextView.text = self.password.notes;
-        self.iconView.tag = self.password.iconType;
-        [self changeStyleWithPasswordType:self.password.iconType];
+        self.iconView.tag = self.password.type;
+        [self changeStyleWithPasswordType:self.password.type];
         
     } else {
         [self.titleTextField becomeFirstResponder];
@@ -74,8 +74,8 @@
     CATransition *fadeTextAnimation = [CATransition animation];
     fadeTextAnimation.duration = 0.3;
     fadeTextAnimation.type = kCATransitionFade;
-    [self.navigationController.navigationBar.layer addAnimation: fadeTextAnimation forKey: @"fadeText"];
-    
+    [self.navigationController.navigationBar.layer addAnimation:fadeTextAnimation
+                                                         forKey:@"fadeText"];
     switch (type) {
         case PasswordTypeLogin:
             self.navigationItem.title = @"Login Info";
@@ -86,7 +86,6 @@
         case PasswordTypeOthers:
             self.navigationItem.title = @"Other Info";
             break;
-            
         default:
             self.navigationItem.title = self.password ? @"Edit" : @"Add";
             break;
@@ -98,10 +97,7 @@
         [self.iconView setBackgroundImage:IconImageWithType(type)
                                  forState:UIControlStateNormal];
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : styleColor}];
-        
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
 }
 
 
@@ -125,7 +121,7 @@
     editingPassword.account = self.accountTextField.text;
     editingPassword.password = self.passwordTextField.text;
     editingPassword.notes = self.notesTextView.text;
-    editingPassword.iconType = self.iconView.tag;
+    editingPassword.type = self.iconView.tag;
     
     if (self.password) {
         editingPassword.updatedDate = [[NSDate date] timeIntervalSince1970];

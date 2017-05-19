@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSString *notes;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, assign) PasswordType iconType;
+@property (nonatomic, assign) PasswordType type;
 @property (nonatomic, assign) NSTimeInterval updatedDate;
 @property (nonatomic, assign) NSTimeInterval createdDate;
 

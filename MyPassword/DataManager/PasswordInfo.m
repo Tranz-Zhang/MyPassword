@@ -15,7 +15,7 @@
     item.UUID = [_UUID copy];
     item.title = [_title copy];
     item.notes = [_notes copy];
-    item.iconType = _iconType;
+    item.type = _type;
     item.account = [_account copy];
     item.password = [_password copy];
     item.updatedDate = _updatedDate;

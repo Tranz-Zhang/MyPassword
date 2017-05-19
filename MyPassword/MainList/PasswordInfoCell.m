@@ -35,7 +35,7 @@
         _indexInfo = indexInfo;
     }
     self.itemTitleLabel.text = indexInfo.title;
-    self.iconView.image = SmallIconImageWithType(indexInfo.iconType);
+    self.iconView.image = SmallIconImageWithType(indexInfo.passwordType);
 }
 
 

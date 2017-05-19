@@ -40,7 +40,7 @@
     self.itemTitleLabel.text = displayInfo.title;
     self.accountLabel.text = [NSString stringWithFormat:@"Account: %@", displayInfo.account];
     self.passwordLabel.text = [NSString stringWithFormat:@"Password: %@", displayInfo.password];
-    self.iconView.image = SmallIconImageWithType(displayInfo.iconType);
+    self.iconView.image = SmallIconImageWithType(displayInfo.type);
     self.notesLabel.text = [NSString stringWithFormat:@"Notes: %@", displayInfo.notes];
     self.changeModeButton.hidden = (mergeInfo.similarPasswordInfo == nil);
     self.similarTagLabel.hidden = isNew;

@@ -193,7 +193,7 @@
         IndexInfo *indexInfo = [IndexInfo new];
         indexInfo.title = passwordInfo.title;
         indexInfo.passwordUUID = passwordInfo.UUID;
-        indexInfo.iconType = passwordInfo.iconType;
+        indexInfo.passwordType = passwordInfo.type;
         NSMutableArray *tempList = [NSMutableArray arrayWithArray:_indexInfoList];
         [tempList addObject:indexInfo];
         
@@ -236,7 +236,7 @@
         for (IndexInfo *info in _indexInfoList) {
             if ([info.passwordUUID isEqualToString:passwordInfo.UUID]) {
                 info.title = passwordInfo.title;
-                info.iconType = passwordInfo.iconType;
+                info.passwordType = passwordInfo.type;
             }
         }
         

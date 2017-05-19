@@ -113,7 +113,7 @@
                 // 如果标题不相同，说明不是同一个项目，直接忽略掉
                 PasswordInfo *newPasswordInfo = newPasswordDict[newIndexInfo.passwordUUID];
                 PasswordInfo *originalPasswordInfo = originalPasswordDict[originalIndexInfo.passwordUUID];
-                if (newPasswordInfo.iconType == originalIndexInfo.iconType &&
+                if (newPasswordInfo.type == originalIndexInfo.passwordType &&
                     [newPasswordInfo.account    isEqualToString:originalPasswordInfo.account] &&
                     [newPasswordInfo.password   isEqualToString:originalPasswordInfo.password] &&
                     [newPasswordInfo.notes      isEqualToString:originalPasswordInfo.notes]) {
