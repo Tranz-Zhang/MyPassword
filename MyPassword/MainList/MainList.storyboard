@@ -45,7 +45,7 @@
                                                     <color key="textColor" white="0.1978980655" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="item_icon_default_small" translatesAutoresizingMaskIntoConstraints="NO" id="jAr-ZL-QRt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="jAr-ZL-QRt">
                                                     <rect key="frame" x="18" y="12" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="jAr-ZL-QRt" secondAttribute="height" id="4EI-YJ-Lt1"/>
@@ -84,7 +84,7 @@
                                                     <color key="textColor" white="0.1978980655" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="item_icon_default_small" translatesAutoresizingMaskIntoConstraints="NO" id="RZu-L3-7aX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="RZu-L3-7aX">
                                                     <rect key="frame" x="18" y="12" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="RZu-L3-7aX" secondAttribute="height" multiplier="1:1" id="PxD-bj-7hb"/>
@@ -215,7 +215,7 @@
                                                     <constraint firstAttribute="height" constant="64" id="BFb-aj-sh5"/>
                                                     <constraint firstAttribute="width" secondItem="UJZ-4h-Zzf" secondAttribute="height" multiplier="1:1" id="Rk1-rH-f69"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="input_boundary">
+                                                <state key="normal" backgroundImage="default_boundary">
                                                     <color key="titleColor" red="0.92034794939999998" green="0.91233183100000004" blue="0.88713494120000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -425,11 +425,11 @@
     <resources>
         <image name="add_password_icon" width="32" height="32"/>
         <image name="close_icon" width="32" height="32"/>
+        <image name="default_boundary" width="11" height="11"/>
         <image name="default_button" width="11" height="11"/>
         <image name="done_icon" width="32" height="32"/>
         <image name="edit_button" width="44" height="44"/>
         <image name="input_boundary" width="11" height="11"/>
-        <image name="item_icon_default_small" width="32" height="32"/>
         <image name="setting_icon" width="44" height="44"/>
     </resources>
 </document>

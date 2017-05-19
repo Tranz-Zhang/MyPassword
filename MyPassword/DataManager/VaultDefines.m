@@ -17,7 +17,7 @@ UIImage *IconImageWithType(PasswordType type) {
         case PasswordTypeOthers:
             return [UIImage imageNamed:@"item_icon_others"];
         default:
-            return [UIImage imageNamed:@"item_icon_default"];
+            return [UIImage imageNamed:@"default_boundary"];
     }
 }
 
@@ -25,13 +25,13 @@ UIImage *IconImageWithType(PasswordType type) {
 UIImage *SmallIconImageWithType(PasswordType type) {
     switch (type) {
         case PasswordTypeLogin:
-            return [UIImage imageNamed:@"item_icon_login"];
+            return [UIImage imageNamed:@"item_icon_login_small"];
         case PasswordTypeCreditCard:
-            return [UIImage imageNamed:@"item_icon_card"];
+            return [UIImage imageNamed:@"item_icon_card_small"];
         case PasswordTypeOthers:
-            return [UIImage imageNamed:@"item_icon_others"];
+            return [UIImage imageNamed:@"item_icon_others_small"];
         default:
-            return [UIImage imageNamed:@"item_icon_default"];
+            return [UIImage imageNamed:@"default_boundary"];
     }
 }
 
