@@ -25,6 +25,7 @@
 
 @property (nonatomic, strong) PasswordInfo *editingPassword;
 @property (nonatomic, weak) UIControl *editingTextView;
+@property (weak, nonatomic) IBOutlet UIView *styleView;
 
 @end
 
@@ -44,24 +45,63 @@
     
     // update UI
     if (self.password) {
-        self.title = @"Edit";
         self.titleTextField.text = self.password.title;
         self.accountTextField.text = self.password.account;
         self.passwordTextField.text = self.password.password;
         self.notesTextView.text = self.password.notes;
-        [self.iconView setBackgroundImage:IconImageWithType(self.password.iconType)
-                                 forState:UIControlStateNormal];
         self.iconView.tag = self.password.iconType;
+        [self changeStyleWithPasswordType:self.password.iconType];
         
     } else {
-        self.title = @"Add";
-        [self.iconView setBackgroundImage:IconImageWithType(self.password.iconType)
-                                 forState:UIControlStateNormal];
         [self.titleTextField becomeFirstResponder];
     }
     
     // add notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!self.password) {
+        [self changeStyleWithPasswordType:PasswordTypeLogin];
+    }
+}
+
+
+- (void)changeStyleWithPasswordType:(PasswordType)type {
+    // update title
+    CATransition *fadeTextAnimation = [CATransition animation];
+    fadeTextAnimation.duration = 0.3;
+    fadeTextAnimation.type = kCATransitionFade;
+    [self.navigationController.navigationBar.layer addAnimation: fadeTextAnimation forKey: @"fadeText"];
+    
+    switch (type) {
+        case PasswordTypeLogin:
+            self.navigationItem.title = @"Login Info";
+            break;
+        case PasswordTypeCreditCard:
+            self.navigationItem.title = @"Credit Card Info";
+            break;
+        case PasswordTypeOthers:
+            self.navigationItem.title = @"Other Info";
+            break;
+            
+        default:
+            self.navigationItem.title = self.password ? @"Edit" : @"Add";
+            break;
+    }
+    
+    [UIView transitionWithView:self.iconView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        UIColor *styleColor = StyleColorWithType(type);
+        self.styleView.backgroundColor = styleColor;
+        [self.iconView setBackgroundImage:IconImageWithType(type)
+                                 forState:UIControlStateNormal];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : styleColor}];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 
@@ -148,10 +188,9 @@
 
 
 - (IBAction)onIconViewClick:(UIButton *)button {
-    PasswordIconType nextIconType = (button.tag + 1) % PasswordIconCount;
-    [self.iconView setBackgroundImage:IconImageWithType(nextIconType)
-                             forState:UIControlStateNormal];
-    button.tag = nextIconType;
+    PasswordType nextPasswordType = (button.tag + 1) % PasswordTypeCount;
+    button.tag = nextPasswordType;
+    [self changeStyleWithPasswordType:nextPasswordType];
 }
 
 

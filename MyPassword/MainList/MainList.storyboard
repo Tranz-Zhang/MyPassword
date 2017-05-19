@@ -92,15 +92,15 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_button" translatesAutoresizingMaskIntoConstraints="NO" id="yzf-DE-qNe">
-                                                    <rect key="frame" x="18" y="84.5" width="964" height="40"/>
+                                                    <rect key="frame" x="18" y="84.5" width="339" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="olb-Bq-wrq"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bu-As-wS7">
-                                                    <rect key="frame" x="18" y="84.5" width="964" height="40"/>
+                                                    <rect key="frame" x="18" y="84.5" width="339" height="40"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <state key="normal" title="Button">
+                                                    <state key="normal" title="{Password}">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -108,7 +108,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2x-SN-M6K">
-                                                    <rect key="frame" x="948" y="8" width="44" height="44"/>
+                                                    <rect key="frame" x="323" y="8" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="ByF-2D-5it"/>
                                                         <constraint firstAttribute="width" constant="44" id="dfA-JL-GgX"/>
@@ -135,6 +135,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="yzf-DE-qNe" secondAttribute="bottom" constant="25" id="IML-fL-0bz"/>
                                                 <constraint firstItem="Etg-rH-5vx" firstAttribute="leading" secondItem="Odb-WU-irL" secondAttribute="leadingMargin" constant="12" id="USq-xB-FNR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="yzf-DE-qNe" secondAttribute="trailing" constant="10" id="Vlc-ta-juF"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="kGN-sY-0QT" secondAttribute="trailing" id="Ze2-Gz-DQe"/>
                                                 <constraint firstItem="kGN-sY-0QT" firstAttribute="leading" secondItem="yzf-DE-qNe" secondAttribute="leading" id="Zmz-8C-pTX"/>
                                                 <constraint firstAttribute="topMargin" secondItem="B2x-SN-M6K" secondAttribute="top" id="bWd-Sy-H9p"/>
                                                 <constraint firstItem="4bu-As-wS7" firstAttribute="height" secondItem="yzf-DE-qNe" secondAttribute="height" id="cXM-ft-2c2"/>
@@ -190,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="919" y="121"/>
         </scene>
-        <!--{Edit / Add}-->
+        <!--Edit View Controller-->
         <scene sceneID="8w6-fg-uy1">
             <objects>
                 <viewController storyboardIdentifier="EditViewController" id="IQl-l9-OPP" customClass="EditViewController" sceneMemberID="viewController">
@@ -214,7 +215,7 @@
                                                     <constraint firstAttribute="height" constant="64" id="BFb-aj-sh5"/>
                                                     <constraint firstAttribute="width" secondItem="UJZ-4h-Zzf" secondAttribute="height" multiplier="1:1" id="Rk1-rH-f69"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="item_icon_others">
+                                                <state key="normal" backgroundImage="input_boundary">
                                                     <color key="titleColor" red="0.92034794939999998" green="0.91233183100000004" blue="0.88713494120000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -336,17 +337,27 @@
                                     <constraint firstItem="wd9-Rc-eYp" firstAttribute="leading" secondItem="eOu-z3-NeE" secondAttribute="leading" id="Rfh-Lg-37R"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhj-G7-mrF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                                <color key="backgroundColor" white="0.84827938989999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="p1L-ml-j2C"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Hhj-G7-mrF" firstAttribute="width" secondItem="lQf-PS-8ob" secondAttribute="width" id="8bD-IS-5uv"/>
                             <constraint firstItem="wd9-Rc-eYp" firstAttribute="width" secondItem="lQf-PS-8ob" secondAttribute="width" id="E9Y-ho-xXv"/>
+                            <constraint firstItem="Hhj-G7-mrF" firstAttribute="top" secondItem="4kU-xS-ogU" secondAttribute="bottom" id="XxV-5L-WXk"/>
                             <constraint firstItem="eOu-z3-NeE" firstAttribute="top" secondItem="4kU-xS-ogU" secondAttribute="bottom" constant="-64" id="bPF-t6-hRV"/>
+                            <constraint firstItem="Hhj-G7-mrF" firstAttribute="leading" secondItem="lQf-PS-8ob" secondAttribute="leading" id="d6h-dx-Agc"/>
                             <constraint firstItem="eOu-z3-NeE" firstAttribute="width" secondItem="lQf-PS-8ob" secondAttribute="width" id="gaH-Sb-Oci"/>
                             <constraint firstItem="eOu-z3-NeE" firstAttribute="leading" secondItem="lQf-PS-8ob" secondAttribute="leadingMargin" constant="-16" id="vhm-mg-Huo"/>
                             <constraint firstItem="eOu-z3-NeE" firstAttribute="height" secondItem="lQf-PS-8ob" secondAttribute="height" id="wAj-N8-FZU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="{Edit / Add}" id="4Qq-hN-4Mp">
+                    <navigationItem key="navigationItem" id="4Qq-hN-4Mp">
                         <barButtonItem key="leftBarButtonItem" image="close_icon" id="71y-ze-01G">
                             <connections>
                                 <action selector="onCancel:" destination="IQl-l9-OPP" id="9hP-Io-zBY"/>
@@ -366,6 +377,7 @@
                         <outlet property="scrollContentView" destination="wd9-Rc-eYp" id="4oa-qI-EOh"/>
                         <outlet property="scrollView" destination="eOu-z3-NeE" id="8BM-SL-2Fc"/>
                         <outlet property="scrollViewHeight" destination="wAj-N8-FZU" id="7Ym-cl-RTl"/>
+                        <outlet property="styleView" destination="Hhj-G7-mrF" id="0ms-AO-czO"/>
                         <outlet property="titleTextField" destination="MXd-PN-NDP" id="wRQ-a7-U61"/>
                     </connections>
                 </viewController>
@@ -418,7 +430,6 @@
         <image name="edit_button" width="44" height="44"/>
         <image name="input_boundary" width="11" height="11"/>
         <image name="item_icon_default_small" width="32" height="32"/>
-        <image name="item_icon_others" width="64" height="64"/>
         <image name="setting_icon" width="44" height="44"/>
     </resources>
 </document>

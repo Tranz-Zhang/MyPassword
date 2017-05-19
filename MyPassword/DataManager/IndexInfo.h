@@ -12,7 +12,7 @@
 @interface IndexInfo : JSONModel
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, assign) PasswordIconType iconType;
+@property (nonatomic, assign) PasswordType iconType;
 @property (nonatomic, strong) NSString *passwordUUID;
 
 @end

@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, PasswordIconType) {
-    PasswordIconLogin = 0,
-    PasswordIconCreditCard,
-    PasswordIconOthers,
+typedef NS_ENUM(NSInteger, PasswordType) {
+    PasswordTypeLogin = 0,
+    PasswordTypeCreditCard,
+    PasswordTypeOthers,
     
-    PasswordIconCount,
+    PasswordTypeCount,
 };
 
-UIImage *IconImageWithType(PasswordIconType type);
-UIImage *SmallIconImageWithType(PasswordIconType type);
+UIImage *IconImageWithType(PasswordType type);
+UIImage *SmallIconImageWithType(PasswordType type);
+UIColor *StyleColorWithType(PasswordType type);
 
 
 NSString *GeneratePasswordUUID();

@@ -8,13 +8,13 @@
 
 #import "VaultDefines.h"
 
-UIImage *IconImageWithType(PasswordIconType type) {
+UIImage *IconImageWithType(PasswordType type) {
     switch (type) {
-        case PasswordIconLogin:
+        case PasswordTypeLogin:
             return [UIImage imageNamed:@"item_icon_login"];
-        case PasswordIconCreditCard:
+        case PasswordTypeCreditCard:
             return [UIImage imageNamed:@"item_icon_card"];
-        case PasswordIconOthers:
+        case PasswordTypeOthers:
             return [UIImage imageNamed:@"item_icon_others"];
         default:
             return [UIImage imageNamed:@"item_icon_default"];
@@ -22,16 +22,33 @@ UIImage *IconImageWithType(PasswordIconType type) {
 }
 
 
-UIImage *SmallIconImageWithType(PasswordIconType type) {
+UIImage *SmallIconImageWithType(PasswordType type) {
     switch (type) {
-        case PasswordIconLogin:
+        case PasswordTypeLogin:
             return [UIImage imageNamed:@"item_icon_login"];
-        case PasswordIconCreditCard:
+        case PasswordTypeCreditCard:
             return [UIImage imageNamed:@"item_icon_card"];
-        case PasswordIconOthers:
-            return [UIImage imageNamed:@"item_icon_others_small"];
+        case PasswordTypeOthers:
+            return [UIImage imageNamed:@"item_icon_others"];
         default:
-            return [UIImage imageNamed:@"item_icon_default_small"];
+            return [UIImage imageNamed:@"item_icon_default"];
+    }
+}
+
+
+UIColor *StyleColorWithType(PasswordType type) {
+    switch (type) {
+        case PasswordTypeLogin:
+            return [UIColor colorWithHue:203/360.f saturation:0.57 brightness:0.70 alpha:1];
+            
+        case PasswordTypeCreditCard:
+            return [UIColor colorWithHue:13/360.f saturation:62 brightness:0.78 alpha:1];
+            
+        case PasswordTypeOthers:
+            return [UIColor darkGrayColor];
+            
+        default:
+            return [UIColor darkGrayColor];
     }
 }
 
