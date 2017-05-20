@@ -22,9 +22,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%s", __FUNCTION__);
-    for (NSString *family in [UIFont familyNames]) {
-        NSLog(@"%@ - %@", family, [UIFont fontNamesForFamilyName:family]);
-    }
+//    for (NSString *family in [UIFont familyNames]) {
+//        NSLog(@"%@ - %@", family, [UIFont fontNamesForFamilyName:family]);
+//    }
     
     // custom theme
     UIColor *themeColor = [UIColor colorWithHue:214 / 360.0f saturation:0.41 brightness:0.33 alpha:1];
@@ -99,9 +99,6 @@
     [self.window.rootViewController presentViewController:importNV
                                                  animated:YES
                                                completion:nil];
-    //    我们需要一个导入界面，负责库的导入，融合，替换等功能
-    //    pop import view
-    
     return YES;
 }
 

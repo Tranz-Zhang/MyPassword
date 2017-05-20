@@ -15,6 +15,8 @@
 #import "VaultManager.h"
 #import "StoryboardLoader.h"
 
+#define kUserDefaultKey_LastExitTime @"LastExitTime"
+#define kDurationToLockVault 120
 
 @interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
     UINavigationController *_loginNC;
@@ -90,42 +92,29 @@
                                              selector:@selector(onDidFinishImportVault:)
                                                  name:kDidFinishImportVaultNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onApplicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onApplicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
 
-- (UIViewController *)childViewControllerWithClass:(Class)clazz {
-    for (UIViewController *childVC in self.childViewControllers) {
-        if ([childVC isKindOfClass:[clazz class]]) {
-            return childVC;
-        }
-        if ([childVC isKindOfClass:[UINavigationController class]]) {
-            UIViewController *rootVC = [[(UINavigationController *)childVC viewControllers] objectAtIndex:0];
-            if ([rootVC isKindOfClass:[clazz class]]) {
-                return rootVC;
-            }
-        }
-    }
-    
-    return nil;
+- (void)onApplicationDidEnterBackground:(NSNotification *)notification {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date]
+                                              forKey:kUserDefaultKey_LastExitTime];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
-- (void)removeChildViewControllerWithClass:(Class)clazz {
-    for (UIViewController *childVC in self.childViewControllers) {
-        BOOL shouldRemove = NO;
-        if ([childVC isKindOfClass:[clazz class]]) {
-            shouldRemove = YES;
-        }
-        if ([childVC isKindOfClass:[UINavigationController class]]) {
-            UIViewController *rootVC = [[(UINavigationController *)childVC viewControllers] objectAtIndex:0];
-            if ([rootVC isKindOfClass:[clazz class]]) {
-                shouldRemove = YES;
-            }
-        }
-        if (shouldRemove) {
-            [childVC removeFromParentViewController];
-            break;
-        }
+- (void)onApplicationWillEnterForeground:(NSNotification *)notification {
+    NSDate *lastExitDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_LastExitTime];
+    NSLog(@"%.2f", [lastExitDate timeIntervalSinceNow]);
+    if ([[NSDate date] timeIntervalSinceDate:lastExitDate] > kDurationToLockVault) {
+        [self logout];
     }
 }
 
@@ -220,6 +209,29 @@
         [_loginNC removeFromParentViewController];
         _loginNC = nil;
     }];
+}
+
+
+#pragma mark - Logout
+- (void)logout {
+    [_vault lock];
+    if (!_loginNC) {
+        _loginNC = [StoryboardLoader loadViewController:@"LoginNavigationController"
+                                           inStoryboard:@"Login"];
+        // show first view
+        [self addChildViewController:_loginNC];
+        _loginNC.view.frame = self.view.bounds;
+        _loginNC.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:_loginNC.view];
+    }
+    LoginViewController *loginVC = (LoginViewController *)_loginNC.viewControllers[0];
+    loginVC.accountName = _vault.name;
+    loginVC.vault = _vault;
+    loginVC.delegate = self;
+    
+    MainListViewController *mainListVC = _mainListNC.viewControllers[0];
+    mainListVC.vault = nil;
+    [mainListVC refreshList];
 }
 
 
