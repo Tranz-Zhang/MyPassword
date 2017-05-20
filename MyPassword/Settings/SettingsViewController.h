@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VaultManager.h"
+#import "SettingDefines.h"
 
 /**
  Functions:

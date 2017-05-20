@@ -135,6 +135,7 @@
 		4C7F03161EC076D7001FE3B5 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		4C7F03171EC076D7001FE3B5 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
 		4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListEmptyView.xib; sourceTree = "<group>"; };
+		4C821CD31ED0477100CDD246 /* SettingDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingDefines.h; sourceTree = "<group>"; };
 		4C8ED2CB1EC6F9DB00E17E71 /* MergeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfo.h; sourceTree = "<group>"; };
 		4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfo.m; sourceTree = "<group>"; };
 		4C916ECE1EC5603A00207ACB /* MergeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfoCell.h; sourceTree = "<group>"; };
@@ -395,6 +396,7 @@
 		4CDBDDD41EBD762C009701D9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4C821CD31ED0477100CDD246 /* SettingDefines.h */,
 				4CDBDDD51EBD7661009701D9 /* SettingsViewController.h */,
 				4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */,
 				4C7F03161EC076D7001FE3B5 /* ExportViewController.h */,

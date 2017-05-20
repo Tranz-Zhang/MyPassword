@@ -14,13 +14,19 @@
 
 @interface SettingsViewController ()
 
+@property (weak, nonatomic) IBOutlet UISwitch *sortByGroupSwitcher;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
 @end
 
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSNumber *enableSort = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_EnableSortByGroup];
+    self.sortByGroupSwitcher.on = [enableSort boolValue];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"Version: %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 }
 
 
@@ -35,7 +41,10 @@
 
 
 - (IBAction)onGroupSortingSwitherChanged:(UISwitch *)switcher {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@"onGroupSortingSwitherChanged: %@", switcher.on ? @"ON" : @"OFF");
+    [[NSUserDefaults standardUserDefaults] setObject:@(switcher.on)
+                                              forKey:kUserDefaultKey_EnableSortByGroup];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
