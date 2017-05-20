@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Password-->
+        <!--MyPassword-->
         <scene sceneID="mTG-Vr-7YX">
             <objects>
                 <viewController storyboardIdentifier="MainListViewController" id="FdB-C2-Z4I" customClass="MainListViewController" sceneMemberID="viewController">
@@ -39,8 +39,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Item Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrh-De-Txz">
-                                                    <rect key="frame" x="69" y="19.5" width="103" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon Main" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrh-De-Txz">
+                                                    <rect key="frame" x="69" y="19.5" width="110.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="0.1978980655" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亚马逊密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2f-pb-fOw">
-                                                    <rect key="frame" x="69" y="20" width="87" height="20.5"/>
+                                                    <rect key="frame" x="69" y="20" width="87" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="0.1978980655" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -99,8 +99,8 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bu-As-wS7">
                                                     <rect key="frame" x="18" y="84.5" width="339" height="40"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <state key="normal" title="{Password}">
+                                                    <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
+                                                    <state key="normal" title="{5******6}">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -171,7 +171,7 @@
                             <constraint firstItem="qq9-JQ-y0W" firstAttribute="height" secondItem="zdM-0Q-I8F" secondAttribute="height" id="tNr-Fz-chm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Password" id="yav-lD-lLM">
+                    <navigationItem key="navigationItem" title="MyPassword" id="yav-lD-lLM">
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="Yza-NW-8kY">
                             <connections>
                                 <action selector="onShowSettings:" destination="FdB-C2-Z4I" id="Nsa-qd-b8M"/>

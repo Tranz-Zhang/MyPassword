@@ -20,8 +20,10 @@
 
 @interface MainListViewController () <UITableViewDelegate, UITableViewDataSource,
 EditViewControllerDelegate, PasswordDetailCellDelegate> {
-    NSIndexPath *_detailIndexPath;
+    __weak UIView *_emptyView;
+    
     NSArray *_infoList;
+    NSIndexPath *_detailIndexPath;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,7 +35,11 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
+    footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
+    self.tableView.tableFooterView = footerView;
+    
 }
 
 - (IBAction)onAddNewPassword:(id)sender {
@@ -61,17 +67,31 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     
     _detailIndexPath = nil;
     _infoList = [self.vault indexInfoList];
-    // adjust footer view
-    if (_infoList.count && !self.tableView.tableFooterView) {
-        UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
-        footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
-        self.tableView.tableFooterView = footerView;
-        
-    } else if (!_infoList.count && self.tableView.tableFooterView ) {
-        self.tableView.tableFooterView = nil;
-    }
-    
     [self.tableView reloadData];
+    [self updateEmptyView];
+}
+
+
+- (void)updateEmptyView {
+    if (_infoList.count && _emptyView) {
+        [_emptyView removeFromSuperview];
+        _emptyView = nil;
+        self.tableView.userInteractionEnabled = YES;
+        
+    } else if (!_infoList.count && !_emptyView) {
+        UINib *nib = [UINib nibWithNibName:@"MainListEmptyView" bundle:[NSBundle mainBundle]];
+        UIView *emptyView = [[nib instantiateWithOwner:self options:nil] lastObject];
+        emptyView.frame = self.view.bounds;
+        [self.view addSubview:emptyView];
+        _emptyView = emptyView;
+        
+        _emptyView.alpha = 0;
+        [UIView animateWithDuration:0.3 animations:^{
+            _emptyView.alpha = 1;
+        }];
+        
+        self.tableView.userInteractionEnabled = NO;
+    }
 }
 
 
@@ -148,22 +168,9 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         }
         _infoList = [self.vault indexInfoList];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self updateEmptyView];
     }
 }
-
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"AddOrEditPassword"]) {
-//        UINavigationController *nv = segue.destinationViewController;
-//        EditViewController *editVC = nv.viewControllers[0];
-//        editVC.delegate = self;
-//        
-//    } else if ([segue.identifier isEqualToString:@"ShowSettingsVC"]) {
-//        UINavigationController *nv = segue.destinationViewController;
-//        SettingsViewController *editVC = nv.viewControllers[0];
-//        editVC.currentVault = self.vault;
-//    }
-//}
 
 
 #pragma mark - PasswordDetailCellDelegate

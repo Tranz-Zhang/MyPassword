@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="25" y="885"/>
         </scene>
-        <!--My Password-->
+        <!--MyPassword-->
         <scene sceneID="MCj-ET-44m">
             <objects>
                 <viewController id="dGl-Jo-aPu" customClass="LoginViewController" sceneMemberID="viewController">
@@ -78,7 +78,7 @@
                             <constraint firstItem="smj-AN-68E" firstAttribute="centerX" secondItem="Iuv-Va-tJI" secondAttribute="centerX" id="vCg-jh-cGG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Password" id="9b7-wQ-0kN"/>
+                    <navigationItem key="navigationItem" title="MyPassword" id="9b7-wQ-0kN"/>
                     <connections>
                         <outlet property="accountNameLabel" destination="smj-AN-68E" id="KPh-sn-54u"/>
                         <outlet property="iconCenterYConstraint" destination="C8r-rb-R0I" id="qtT-lA-1KO"/>
@@ -525,7 +525,7 @@
         <image name="default_button_clicked" width="16" height="16"/>
         <image name="done_icon" width="32" height="32"/>
         <image name="file_icon" width="160" height="160"/>
-        <image name="icon_big" width="640" height="640"/>
+        <image name="icon_big" width="150" height="150"/>
         <image name="input_boundary" width="11" height="11"/>
         <image name="item_icon_default_small" width="32" height="32"/>
         <image name="merge_cell_approx_icon" width="44" height="44"/>

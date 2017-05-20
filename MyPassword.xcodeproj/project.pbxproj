@@ -35,6 +35,7 @@
 		4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03121EC06B64001FE3B5 /* MainList.storyboard */; };
 		4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03141EC072C6001FE3B5 /* Setting.storyboard */; };
 		4C7F03181EC076D7001FE3B5 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03171EC076D7001FE3B5 /* ExportViewController.m */; };
+		4C821CD21ED0375800CDD246 /* MainListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */; };
 		4C8ED2CD1EC6F9DB00E17E71 /* MergeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */; };
 		4C916ED01EC5603A00207ACB /* MergeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */; };
 		4C916ED21EC564BE00207ACB /* merge_one.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C916ED11EC564BE00207ACB /* merge_one.vault */; };
@@ -133,6 +134,7 @@
 		4C7F03141EC072C6001FE3B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4C7F03161EC076D7001FE3B5 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		4C7F03171EC076D7001FE3B5 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
+		4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListEmptyView.xib; sourceTree = "<group>"; };
 		4C8ED2CB1EC6F9DB00E17E71 /* MergeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfo.h; sourceTree = "<group>"; };
 		4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfo.m; sourceTree = "<group>"; };
 		4C916ECE1EC5603A00207ACB /* MergeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfoCell.h; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				4C79D7D91E32061200D17CAA /* IconManager.h */,
 				4C79D7DA1E32061200D17CAA /* IconManager.m */,
 				4C7F03121EC06B64001FE3B5 /* MainList.storyboard */,
+				4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */,
 			);
 			path = MainList;
 			sourceTree = "<group>";
@@ -542,8 +545,8 @@
 					};
 					4C9269671DEDB76F006952B9 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = P5DSPX2CSH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 68VX6HX6SX;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -581,6 +584,7 @@
 				4C525A671EC43EE000F6E8F4 /* test.vault in Resources */,
 				4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
+				4C821CD21ED0375800CDD246 /* MainListEmptyView.xib in Resources */,
 				4CE5681F1EC2BB83005B10EB /* vault_file_icon_320x320.png in Resources */,
 				4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */,
 				4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */,
@@ -806,14 +810,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P5DSPX2CSH;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ea77f1f-5b9c-4f26-9f6c-136b89d9b996";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Development Wildcard";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -821,14 +826,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = P5DSPX2CSH;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ea77f1f-5b9c-4f26-9f6c-136b89d9b996";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Development Wildcard";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
