@@ -17,12 +17,26 @@
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
+#define kIndexStringOthers @"#"
+
+@interface IndexInfoGroup : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSMutableArray *indexList;
+
+@end
+
+
+@implementation IndexInfoGroup
+@end
+
 
 @interface MainListViewController () <UITableViewDelegate, UITableViewDataSource,
 EditViewControllerDelegate, PasswordDetailCellDelegate> {
     __weak UIView *_emptyView;
     
-    NSArray *_infoList;
+    NSArray *_infoGroupList;
+    NSArray *_sectionIndexTitles;
     NSIndexPath *_detailIndexPath;
 }
 
@@ -35,11 +49,10 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIView *footerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"footer_shadow"]];
-    footerView.frame = CGRectMake(0, 0, kLocalWidth, 5);
-    self.tableView.tableFooterView = footerView;
-    
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
 }
 
 - (IBAction)onAddNewPassword:(id)sender {
@@ -60,25 +73,48 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (void)refreshList {
     if (!_vault || _vault.isLocked) {
-        _infoList = nil;
+        _infoGroupList = nil;
         [self.tableView reloadData];
         return;
     }
     
     _detailIndexPath = nil;
-    _infoList = [self.vault indexInfoList];
+    _sectionIndexTitles = nil;
+    _infoGroupList = nil;
+    NSArray *indexList = [self.vault indexInfoList];
+    if (indexList.count) {
+        NSMutableDictionary *groupDict = [NSMutableDictionary dictionary];
+        for (IndexInfo *info in indexList) {
+            NSString *indexAlphabet = [self indexAlphabetWithString:info.title];
+            IndexInfoGroup *group = groupDict[indexAlphabet];
+            if (!group) {
+                group = [IndexInfoGroup new];
+                group.title = indexAlphabet;
+                group.indexList = [NSMutableArray array];
+                groupDict[indexAlphabet] = group;
+            }
+            [group.indexList addObject:info];
+        }
+        _sectionIndexTitles = [[groupDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        NSMutableArray *groupList = [NSMutableArray arrayWithCapacity:groupDict.count];
+        for (NSString *key in _sectionIndexTitles) {
+            [groupList addObject:groupDict[key]];
+        }
+        _infoGroupList = [groupList copy];
+    }
+    
     [self.tableView reloadData];
     [self updateEmptyView];
 }
 
 
 - (void)updateEmptyView {
-    if (_infoList.count && _emptyView) {
+    if (_infoGroupList.count && _emptyView) {
         [_emptyView removeFromSuperview];
         _emptyView = nil;
         self.tableView.userInteractionEnabled = YES;
         
-    } else if (!_infoList.count && !_emptyView) {
+    } else if (!_infoGroupList.count && !_emptyView) {
         UINib *nib = [UINib nibWithNibName:@"MainListEmptyView" bundle:[NSBundle mainBundle]];
         UIView *emptyView = [[nib instantiateWithOwner:self options:nil] lastObject];
         emptyView.frame = self.view.bounds;
@@ -95,10 +131,46 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 }
 
 
+- (NSString *)indexAlphabetWithString:(NSString *)contentString {
+    unichar indexAlphabet = -1;
+    NSMutableString *transformStr = [[NSMutableString alloc] initWithString:contentString];
+    if (CFStringTransform((__bridge CFMutableStringRef)transformStr, 0, kCFStringTransformToLatin, NO)) {
+        if (CFStringTransform((__bridge CFMutableStringRef)transformStr, 0, kCFStringTransformStripDiacritics, NO)) {
+            indexAlphabet = [transformStr characterAtIndex:0];
+        }
+    }
+    // from A to Z
+    if ((indexAlphabet >= 'a' && indexAlphabet <= 'z') ||
+        (indexAlphabet >= 'A' && indexAlphabet <= 'Z')) {
+        return [NSString stringWithFormat:@"%c", indexAlphabet > 'Z' ? indexAlphabet - ('a' - 'A') : indexAlphabet];
+        
+    } else {
+        return kIndexStringOthers;
+    }
+}
+
+
 #pragma mark - Table View
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return _infoGroupList.count;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    IndexInfoGroup *group = _infoGroupList[section];
+    return group.title;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _infoList.count;
+    IndexInfoGroup *group = _infoGroupList[section];
+    return group.indexList.count;
+}
+
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return _sectionIndexTitles;
 }
 
 
@@ -114,16 +186,17 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
+    IndexInfoGroup *group = _infoGroupList[indexPath.section];
+    IndexInfo *indexInfo = group.indexList[indexPath.row];
     if ([indexPath isEqual:_detailIndexPath]) {
         PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell" forIndexPath:indexPath];
         detailCell.delegate = self;
-        IndexInfo *indexInfo = _infoList[indexPath.row];
         detailCell.passwordInfo = [_vault passwordInfoWithUUID:indexInfo.passwordUUID];
         cell = detailCell;
         
     } else {
         PasswordInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordInfoCell"];
-        infoCell.indexInfo = _infoList[indexPath.row];;
+        infoCell.indexInfo = indexInfo;
         cell = infoCell;
     }
     
@@ -161,13 +234,26 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         return;
     }
     
-    IndexInfo *deletedIndex = _infoList[indexPath.row];
+    IndexInfoGroup *group = _infoGroupList[indexPath.section];
+    IndexInfo *deletedIndex = group.indexList[indexPath.row];
     if ([self.vault deletePasswordWithUUID:deletedIndex.passwordUUID]) {
         if ([indexPath isEqual:_detailIndexPath]) {
             _detailIndexPath = nil;
         }
-        _infoList = [self.vault indexInfoList];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [group.indexList removeObjectAtIndex:indexPath.row];
+        if (group.indexList.count) {
+            // remove row
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            
+        } else {
+            // remove section
+            NSMutableArray *tmp = [_infoGroupList mutableCopy];
+            [tmp removeObjectAtIndex:indexPath.section];
+            _infoGroupList = [tmp copy];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                          withRowAnimation:UITableViewRowAnimationFade];
+        }
         [self updateEmptyView];
     }
 }
@@ -208,3 +294,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 
 @end
+
+
+
+

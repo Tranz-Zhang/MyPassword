@@ -18,7 +18,9 @@
 /**
  TODO:
  - 后期完善
- 1. 主页排序
+ 1. 主页排序:采用通讯录的方式，并添加搜索栏。 
+ // ref:http://www.appcoda.com/ios-programming-index-list-uitableview/
+ 
  2. 图标切换提示 √
  3. 完成图标制作 √
  4. 退出屏蔽功能 ???

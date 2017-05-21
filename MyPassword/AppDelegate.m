@@ -26,6 +26,13 @@
 //        NSLog(@"%@ - %@", family, [UIFont fontNamesForFamilyName:family]);
 //    }
     
+    char indexAlphabet = 'v';
+    int range = 'a' - 'A';
+    if ((indexAlphabet >= 'a' && indexAlphabet <= 'z') ||
+        (indexAlphabet >= 'A' && indexAlphabet <= 'Z')) {
+        NSLog(@"test: %@",[NSString stringWithFormat:@"%c", indexAlphabet > 'Z' ? indexAlphabet - 32 : indexAlphabet]);
+    }
+    
     // custom theme
     UIColor *themeColor = [UIColor colorWithHue:214 / 360.0f saturation:0.41 brightness:0.33 alpha:1];
     self.window.tintColor = themeColor;
