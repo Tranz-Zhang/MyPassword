@@ -49,6 +49,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar_title"]];
 }
 
 - (void)awakeFromNib {

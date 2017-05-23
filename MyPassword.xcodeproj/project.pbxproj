@@ -547,8 +547,8 @@
 					};
 					4C9269671DEDB76F006952B9 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 68VX6HX6SX;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = J3RC3896Q4;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -813,14 +813,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J3RC3896Q4;
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "18851300-3ece-49da-a91a-6fc9489b6efe";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalDevProfile;
 			};
 			name = Debug;
 		};
@@ -829,13 +829,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J3RC3896Q4;
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "18851300-3ece-49da-a91a-6fc9489b6efe";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalDevProfile;
 			};
 			name = Release;
 		};
