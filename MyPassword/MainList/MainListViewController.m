@@ -17,6 +17,7 @@
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
+#define kTableViewHeaderIdentifier @"MainListHeader"
 #define kIndexStringOthers @"#"
 
 @interface IndexInfoGroup : NSObject
@@ -41,6 +42,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @end
 
@@ -50,6 +52,12 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar_title"]];
+    UINib *headerNib = [UINib nibWithNibName:@"MainListTableHeader3" bundle:[NSBundle mainBundle]];
+    [self.tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier:kTableViewHeaderIdentifier];
+    self.tableView.sectionHeaderHeight = 30;
+    self.tableView.sectionIndexTrackingBackgroundColor = [UIColor orangeColor];
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)awakeFromNib {
@@ -103,6 +111,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         }
         _infoGroupList = [groupList copy];
     }
+    self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)indexList.count, indexList.count > 1 ? "s" : ""];
     
     [self.tableView reloadData];
     [self updateEmptyView];
@@ -157,11 +166,25 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     return _infoGroupList.count;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 30;
+//}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    IndexInfoGroup *group = _infoGroupList[section];
-    return group.title;
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableViewHeaderIdentifier];
+    UILabel *titleLabel = [headerView viewWithTag:123];
+    if (titleLabel) {
+        IndexInfoGroup *group = _infoGroupList[section];
+        titleLabel.text = group.title;
+    }
+    return headerView;
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    IndexInfoGroup *group = _infoGroupList[section];
+//    return group.title;
+//}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -177,7 +200,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_detailIndexPath isEqual:indexPath]) {
-        return 158;
+        return 170;
         
     } else {
         return 60;
@@ -190,7 +213,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     IndexInfoGroup *group = _infoGroupList[indexPath.section];
     IndexInfo *indexInfo = group.indexList[indexPath.row];
     if ([indexPath isEqual:_detailIndexPath]) {
-        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell" forIndexPath:indexPath];
+        PasswordDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordDetailCell2" forIndexPath:indexPath];
         detailCell.delegate = self;
         detailCell.passwordInfo = [_vault passwordInfoWithUUID:indexInfo.passwordUUID];
         cell = detailCell;

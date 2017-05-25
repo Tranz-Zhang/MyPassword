@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UITableViewHeaderFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ia-OB-mFw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                    <color key="backgroundColor" white="0.97609827518463133" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5n-Bc-RJR">
+                    <rect key="frame" x="15" y="29" width="345" height="1"/>
+                    <color key="backgroundColor" white="0.80193452379999997" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8G5-f4-i6i"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Title}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLH-Cb-SjD">
+                    <rect key="frame" x="25" y="3.5" width="46.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footer_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="YIQ-GK-0AL">
+                    <rect key="frame" x="0.0" y="30" width="375" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="1p5-UG-oib"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SLH-Cb-SjD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-1" id="0UR-22-kfR"/>
+                <constraint firstItem="5Ia-OB-mFw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="5Vk-MG-aPg"/>
+                <constraint firstAttribute="bottom" secondItem="U5n-Bc-RJR" secondAttribute="bottom" id="AAD-be-If0"/>
+                <constraint firstItem="YIQ-GK-0AL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F1j-07-0nC"/>
+                <constraint firstItem="5Ia-OB-mFw" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Fe5-eB-auc"/>
+                <constraint firstItem="5Ia-OB-mFw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HKV-Dm-JGI"/>
+                <constraint firstItem="SLH-Cb-SjD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="Ono-lc-Qfc"/>
+                <constraint firstItem="U5n-Bc-RJR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="RpM-mK-M1R"/>
+                <constraint firstItem="YIQ-GK-0AL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="SR7-QA-E6c"/>
+                <constraint firstItem="5Ia-OB-mFw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bIW-gB-m2I"/>
+                <constraint firstItem="YIQ-GK-0AL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="hda-li-qwZ"/>
+                <constraint firstAttribute="trailing" secondItem="U5n-Bc-RJR" secondAttribute="trailing" constant="15" id="vbc-Dh-bsk"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-5" y="4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="footer_shadow" width="2" height="5"/>
+    </resources>
+</document>
