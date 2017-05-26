@@ -39,6 +39,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     NSArray *_infoGroupList;
     NSArray *_sectionIndexTitles;
     NSIndexPath *_detailIndexPath;
+    NSInteger _itemCount;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -111,7 +112,8 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         }
         _infoGroupList = [groupList copy];
     }
-    self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)indexList.count, indexList.count > 1 ? "s" : ""];
+    _itemCount = indexList.count;
+    self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)_itemCount, _itemCount > 1 ? "s" : ""];
     
     [self.tableView reloadData];
     [self updateEmptyView];
@@ -166,11 +168,6 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     return _infoGroupList.count;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 30;
-//}
-
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kTableViewHeaderIdentifier];
     UILabel *titleLabel = [headerView viewWithTag:123];
@@ -180,12 +177,6 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     }
     return headerView;
 }
-
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    IndexInfoGroup *group = _infoGroupList[section];
-//    return group.title;
-//}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     IndexInfoGroup *group = _infoGroupList[section];
@@ -200,7 +191,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_detailIndexPath isEqual:indexPath]) {
-        return 170;
+        return 180;
         
     } else {
         return 60;
@@ -277,7 +268,18 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
             _infoGroupList = [tmp copy];
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
                           withRowAnimation:UITableViewRowAnimationFade];
+            
+            // remove section index title
+            tmp = [_sectionIndexTitles mutableCopy];
+            [tmp removeObjectAtIndex:indexPath.section];
+            _sectionIndexTitles = [tmp copy];
+            [self.tableView reloadSectionIndexTitles];
         }
+        
+        // update item count
+        _itemCount--;
+        self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)_itemCount, _itemCount > 1 ? "s" : ""];
+        
         [self updateEmptyView];
     }
 }
@@ -314,7 +316,6 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     NSLog(@"Update password: %@", isOK ? [password toDictionary] : @"Fail");
 }
 
-//add empty view and footer view
 
 
 @end

@@ -19,49 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verson 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M8U-MY-QV6">
-                            <rect key="frame" x="0.0" y="231.5" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="124.5" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <sections>
-                            <tableViewSection headerTitle="List" id="CjF-25-qwk">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SortOptionCell" rowHeight="51" id="hAa-je-qe4">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="51"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hAa-je-qe4" id="xJp-Su-Typ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort Items by Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqF-Gi-IUB">
-                                                    <rect key="frame" x="16" y="14.5" width="162.5" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" white="0.20225074400000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Z4-st-l1Y">
-                                                    <rect key="frame" x="306" y="10" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="onGroupSortingSwitherChanged:" destination="UW2-y7-x67" eventType="valueChanged" id="WXK-QN-5no"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="0Z4-st-l1Y" firstAttribute="centerY" secondItem="xJp-Su-Typ" secondAttribute="centerY" id="6YW-Iw-gAX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="0Z4-st-l1Y" secondAttribute="trailing" constant="12" id="NfA-Jd-KX9"/>
-                                                <constraint firstItem="xqF-Gi-IUB" firstAttribute="leading" secondItem="xJp-Su-Typ" secondAttribute="leadingMargin" constant="8" id="wUO-Cm-pcx"/>
-                                                <constraint firstItem="xqF-Gi-IUB" firstAttribute="centerY" secondItem="xJp-Su-Typ" secondAttribute="centerY" id="woW-Wr-c4z"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Export Valut Data" id="17M-Cc-fXb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ExportVaultCell" rowHeight="51" id="32y-LG-aTF">
-                                        <rect key="frame" x="0.0" y="162.5" width="375" height="51"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="32y-LG-aTF" id="Ev2-gI-FQX">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
@@ -99,7 +67,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sortByGroupSwitcher" destination="0Z4-st-l1Y" id="w9E-21-42T"/>
                         <outlet property="versionLabel" destination="M8U-MY-QV6" id="7gt-6k-ctY"/>
                     </connections>
                 </tableViewController>

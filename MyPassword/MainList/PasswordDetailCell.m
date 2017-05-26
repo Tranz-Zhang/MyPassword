@@ -64,11 +64,10 @@
         
     } else {
         NSString *originalPwd = self.passwordInfo.password;
-        NSMutableString *hiddenPwd = [NSMutableString stringWithString:@"{ "];
+        NSMutableString *hiddenPwd = [NSMutableString string];
         [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:0]];
         [hiddenPwd appendString:@"********"];
         [hiddenPwd appendFormat:@"%c", (char)[originalPwd characterAtIndex:originalPwd.length - 1]];
-        [hiddenPwd appendString:@" }"];
         [self.passwordButton setTitle:[hiddenPwd copy]
                              forState:UIControlStateNormal];
         
