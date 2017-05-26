@@ -12,11 +12,12 @@
 #import "RegistViewController.h"
 #import "MainListViewController.h"
 #import "ImportViewController.h"
+#import "ChangePasswordViewController.h"
 #import "VaultManager.h"
 #import "StoryboardLoader.h"
 
 #define kUserDefaultKey_LastExitTime @"LastExitTime"
-#define kDurationToLockVault 120
+#define kDurationToLockVault 10
 
 @interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
     UINavigationController *_loginNC;
@@ -91,6 +92,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onDidFinishImportVault:)
                                                  name:kDidFinishImportVaultNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChangePassword:)
+                                                 name:kDidChangedPasswordNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onApplicationDidEnterBackground:)
@@ -232,11 +237,14 @@
     MainListViewController *mainListVC = _mainListNC.viewControllers[0];
     mainListVC.vault = nil;
     [mainListVC refreshList];
+    
+    if (self.presentedViewController) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 
-#pragma mark - On Import
-
+#pragma mark - OnImport
 - (void)onDidFinishImportVault:(NSNotification *)notification {
     if (_registNC) {
         [_registNC.view removeFromSuperview];
@@ -270,6 +278,12 @@
     MainListViewController *mainListVC = _mainListNC.viewControllers[0];
     mainListVC.vault = nil;
     [mainListVC refreshList];
+}
+
+
+#pragma mark - OnChangePassword
+- (void)onChangePassword:(NSNotification *)notification {
+    [self logout];
 }
 
 

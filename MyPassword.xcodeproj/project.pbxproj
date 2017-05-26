@@ -31,6 +31,7 @@
 		4C553C5A1DEDBD4D00764478 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C553C561DEDBD4D00764478 /* RNEncryptor.m */; };
 		4C5E19F81DF6FC83002E2A0E /* PasswordInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */; };
 		4C7446111EBC7CA1008F57C4 /* VaultDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7446101EBC7CA1008F57C4 /* VaultDefines.m */; };
+		4C79A9321ED815290051B17A /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79A9311ED815290051B17A /* ChangePasswordViewController.m */; };
 		4C79D7DB1E32061200D17CAA /* IconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79D7DA1E32061200D17CAA /* IconManager.m */; };
 		4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */; };
 		4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F030D1EC06717001FE3B5 /* Login.storyboard */; };
@@ -129,6 +130,8 @@
 		4C5E19F71DF6FC83002E2A0E /* PasswordInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInfoCell.m; sourceTree = "<group>"; };
 		4C74460F1EBC7CA1008F57C4 /* VaultDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultDefines.h; sourceTree = "<group>"; };
 		4C7446101EBC7CA1008F57C4 /* VaultDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultDefines.m; sourceTree = "<group>"; };
+		4C79A9301ED815290051B17A /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		4C79A9311ED815290051B17A /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		4C79D7D91E32061200D17CAA /* IconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconManager.h; sourceTree = "<group>"; };
 		4C79D7DA1E32061200D17CAA /* IconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconManager.m; sourceTree = "<group>"; };
 		4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				4CDBDDD61EBD7661009701D9 /* SettingsViewController.m */,
 				4C7F03161EC076D7001FE3B5 /* ExportViewController.h */,
 				4C7F03171EC076D7001FE3B5 /* ExportViewController.m */,
+				4C79A9301ED815290051B17A /* ChangePasswordViewController.h */,
+				4C79A9311ED815290051B17A /* ChangePasswordViewController.m */,
 				4C7F03141EC072C6001FE3B5 /* Setting.storyboard */,
 			);
 			path = Settings;
@@ -669,6 +674,7 @@
 				4C553C591DEDBD4D00764478 /* RNDecryptor.m in Sources */,
 				4C92696D1DEDB76F006952B9 /* main.m in Sources */,
 				4C7F03181EC076D7001FE3B5 /* ExportViewController.m in Sources */,
+				4C79A9321ED815290051B17A /* ChangePasswordViewController.m in Sources */,
 				4CDBDE0D1EBEFDA4009701D9 /* zip.c in Sources */,
 				4CDBDDD71EBD7661009701D9 /* SettingsViewController.m in Sources */,
 			);

@@ -8,13 +8,13 @@
 
 #import "SettingsViewController.h"
 #import "ExportViewController.h"
+#import "ChangePasswordViewController.h"
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
 
 @interface SettingsViewController ()
 
-@property (weak, nonatomic) IBOutlet UISwitch *sortByGroupSwitcher;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
@@ -23,8 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSNumber *enableSort = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_EnableSortByGroup];
-    self.sortByGroupSwitcher.on = [enableSort boolValue];
     
     self.versionLabel.text = [NSString stringWithFormat:@"Version: %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 }
@@ -40,21 +38,9 @@
 }
 
 
-- (IBAction)onGroupSortingSwitherChanged:(UISwitch *)switcher {
-    NSLog(@"onGroupSortingSwitherChanged: %@", switcher.on ? @"ON" : @"OFF");
-    [[NSUserDefaults standardUserDefaults] setObject:@(switcher.on)
-                                              forKey:kUserDefaultKey_EnableSortByGroup];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSLog(@"%s", __FUNCTION__);
-    
-//    if (indexPath.section == 1 && indexPath.row == 0) {
-//        [self onExportVaultData];
-//    }
 }
 
 
@@ -62,6 +48,10 @@
     if ([segue.identifier isEqualToString:@"ShowExportVC"]) {
         ExportViewController *exportVC = segue.destinationViewController;
         exportVC.exportVault = self.currentVault;
+    }
+    if ([segue.identifier isEqualToString:@"ShowChangePasswordVC"]) {
+        ChangePasswordViewController *changePasswordVC = segue.destinationViewController;
+        changePasswordVC.vault = self.currentVault;
     }
 }
 

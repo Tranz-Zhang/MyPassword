@@ -56,7 +56,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     UINib *headerNib = [UINib nibWithNibName:@"MainListTableHeader3" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier:kTableViewHeaderIdentifier];
     self.tableView.sectionHeaderHeight = 30;
-    self.tableView.sectionIndexTrackingBackgroundColor = [UIColor orangeColor];
+    self.tableView.sectionIndexTrackingBackgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -230,6 +230,10 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         _detailIndexPath = indexPath;
     }
     [tableView reloadRowsAtIndexPaths:reloadRows withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    if (_detailIndexPath) {
+        [self.tableView scrollToRowAtIndexPath:_detailIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
 }
 
 

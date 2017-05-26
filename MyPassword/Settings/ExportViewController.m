@@ -50,7 +50,7 @@
 
 - (BOOL)onExportVaultData {
     if (!self.exportVault) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Can not find your valut" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Can not find your vault" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];

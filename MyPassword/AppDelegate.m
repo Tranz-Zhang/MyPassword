@@ -36,8 +36,7 @@
     // custom theme
     UIColor *themeColor = [UIColor colorWithHue:214 / 360.0f saturation:0.41 brightness:0.33 alpha:1];
     self.window.tintColor = themeColor;
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : themeColor,
-//                                                           NSFontAttributeName:[UIFont fontWithName:@"Copperplate" size:21]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : themeColor}];
     
     // move file to temporary directory
 //    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"merge_one" withExtension:@"vault"];
