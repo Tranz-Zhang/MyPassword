@@ -9,6 +9,8 @@
 #import "SettingsViewController.h"
 #import "ExportViewController.h"
 #import "ChangePasswordViewController.h"
+#import "OpenSourceDeclarationViewController.h"
+
 
 #define kLocalWidth self.view.bounds.size.width
 #define kLocalHeight self.view.bounds.size.height
@@ -41,6 +43,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSLog(@"%s", __FUNCTION__);
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    if ([cell.reuseIdentifier isEqualToString:@"OpenSourceLibrariesCell"]) {
+//        OpenSourceDeclarationViewController *vc = [[OpenSourceDeclarationViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 

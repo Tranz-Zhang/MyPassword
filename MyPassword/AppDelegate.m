@@ -22,16 +22,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%s", __FUNCTION__);
+    
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"OpenSourceInfo" ofType:@"plist"];
+//    NSDictionary *declarationDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+//    NSArray *dictList = declarationDict[@"OpenSourceLibraries"];
+//    NSMutableArray *infoList = [NSMutableArray arrayWithCapacity:dictList.count];
+//    
+//    UIFont *defaultFont = [UIFont systemFontOfSize:11];
+//    CGSize defaultSize = CGSizeMake(350 - 80, CGFLOAT_MAX);
+//    for (NSDictionary *infoDict in dictList) {
+////        info.libraryName = infoDict[@"LibraryName"];
+//        NSString *declaration = infoDict[@"LicenceDeclaration"];
+////        info.licenceDeclaration = declaration;
+//        // calculate cell height
+//        CGRect textRect = [declaration boundingRectWithSize:defaultSize
+//                                                    options:NSStringDrawingUsesLineFragmentOrigin
+//                                                 attributes:@{NSFontAttributeName : defaultFont}
+//                                                    context:nil];
+////        info.contentHeight = textRect.size.height;
+////        [infoList addObject:info];
+//        NSLog(@"");
+//    }
+    
 //    for (NSString *family in [UIFont familyNames]) {
 //        NSLog(@"%@ - %@", family, [UIFont fontNamesForFamilyName:family]);
 //    }
     
-    char indexAlphabet = 'v';
-    int range = 'a' - 'A';
-    if ((indexAlphabet >= 'a' && indexAlphabet <= 'z') ||
-        (indexAlphabet >= 'A' && indexAlphabet <= 'Z')) {
-        NSLog(@"test: %@",[NSString stringWithFormat:@"%c", indexAlphabet > 'Z' ? indexAlphabet - 32 : indexAlphabet]);
-    }
+//    char indexAlphabet = 'v';
+//    int range = 'a' - 'A';
+//    if ((indexAlphabet >= 'a' && indexAlphabet <= 'z') ||
+//        (indexAlphabet >= 'A' && indexAlphabet <= 'Z')) {
+//        NSLog(@"test: %@",[NSString stringWithFormat:@"%c", indexAlphabet > 'Z' ? indexAlphabet - 32 : indexAlphabet]);
+//    }
     
     // custom theme
     UIColor *themeColor = [UIColor colorWithHue:214 / 360.0f saturation:0.41 brightness:0.33 alpha:1];
