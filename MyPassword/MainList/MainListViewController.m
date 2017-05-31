@@ -53,7 +53,7 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar_title"]];
-    UINib *headerNib = [UINib nibWithNibName:@"MainListTableHeader3" bundle:[NSBundle mainBundle]];
+    UINib *headerNib = [UINib nibWithNibName:@"MainListTableHeader" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier:kTableViewHeaderIdentifier];
     self.tableView.sectionHeaderHeight = 30;
     self.tableView.sectionIndexTrackingBackgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];

@@ -131,9 +131,11 @@
     NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", accountName, kVaultExtension];
     // check duplicated names
     if ([VaultManager verifyVaultWithPath:vaultPath]) {
-        NSString *message = [NSString stringWithFormat:@"Account name \'%@\' has already existed. Overwrite existed account?", accountName];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Duplicated Account" message:message preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Overwrite" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"MainList.AlertMessage.DuplicatedVault", nil), accountName];
+        NSString *alertTitle = NSLocalizedString(@"MainList.AlertTitle.DuplicatedVault", nil);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:UIAlertControllerStyleAlert];
+        NSString *actionTitle = NSLocalizedString(@"MainList.AlertButton01.DuplicatedVault", nil);
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"overwrite");
             [[NSFileManager defaultManager] removeItemAtPath:vaultPath error:nil];
             if ([self createVaultWithName:accountName password:password]) {
@@ -143,7 +145,8 @@
                 [self dismissRegistView];
             }
         }];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        NSString *cancelTitle = NSLocalizedString(@"MainList.AlertButton02.DuplicatedVault", nil);
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:ok];
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
@@ -170,7 +173,10 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail to create Account" message:@"Please try again. Or change another name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSString *alertTitle = NSLocalizedString(@"MainList.AlertTitle.CreateVault", nil);
+        NSString *alertMessage = NSLocalizedString(@"MainList.AlertMessage.CreateVault", nil);
+        NSString *buttonTitle = NSLocalizedString(@"MainList.AlertButton.CreateVault", nil);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:buttonTitle otherButtonTitles:nil];
         [alert show];
     }
     NSLog(@"Create vault: %@", isOK ? @"OK" : @"Fail");

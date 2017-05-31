@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  MyPassword
+
+  Created by chance on 31/5/2017.
+  Copyright © 2017 bychance. All rights reserved.
+*/
+
+/* MainListViewController */
+"MainList.AlertTitle.DuplicatedVault" = "Duplicated Account";
+"MainList.AlertMessage.DuplicatedVault" = "Account name \'%@\' has already existed. Overwrite existed account?";
+"MainList.AlertButton01.DuplicatedVault" = "Overwrite";
+"MainList.AlertButton02.DuplicatedVault" = "Cancel";
+
+"MainList.AlertTitle.CreateVault" = "Fail to create Account";
+"MainList.AlertMessage.CreateVault" = "Please try again. Or change another name.";
+"MainList.AlertButton.CreateVault" = "OK";

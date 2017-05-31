@@ -14,13 +14,14 @@
 		4C0273D91E0D9B0F008A3D4D /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273D31E0D9B0F008A3D4D /* JSONKeyMapper.m */; };
 		4C0273DA1E0D9B0F008A3D4D /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273D51E0D9B0F008A3D4D /* JSONValueTransformer.m */; };
 		4C0273DD1E0D9B55008A3D4D /* PasswordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0273DC1E0D9B55008A3D4D /* PasswordInfo.m */; };
+		4C2C728A1EDEBC7C00FB545E /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C728C1EDEBC7C00FB545E /* MainList.storyboard */; };
+		4C2C72901EDEC61700FB545E /* MainListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C72921EDEC61700FB545E /* MainListEmptyView.xib */; };
+		4C2C72981EDEC70100FB545E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C729A1EDEC70100FB545E /* Localizable.strings */; };
 		4C3C30401E10C729004788CF /* VaultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C303F1E10C729004788CF /* VaultInfo.m */; };
 		4C3C30461E111020004788CF /* VaultCrpytionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30451E111020004788CF /* VaultCrpytionUtils.m */; };
 		4C3C304E1E1138C4004788CF /* MyPasswordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C304D1E1138C4004788CF /* MyPasswordTests.m */; };
 		4C3C30561E1138DF004788CF /* VaultManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30551E1138DF004788CF /* VaultManagerTest.m */; };
-		4C43E7231ED5B5EA005066E9 /* MainListTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C43E7221ED5B5EA005066E9 /* MainListTableHeader.xib */; };
-		4C43E7281ED70A6E005066E9 /* MainListTableHeader2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C43E7271ED70A6E005066E9 /* MainListTableHeader2.xib */; };
-		4C43E72A1ED70C60005066E9 /* MainListTableHeader3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C43E7291ED70C60005066E9 /* MainListTableHeader3.xib */; };
+		4C43E72A1ED70C60005066E9 /* MainListTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C43E7291ED70C60005066E9 /* MainListTableHeader.xib */; };
 		4C4F8A2D1E2F4469007D5882 /* MainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */; };
 		4C4F8A311E2F5547007D5882 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4F8A2F1E2F5547007D5882 /* RegistViewController.m */; };
 		4C525A671EC43EE000F6E8F4 /* test.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C525A661EC43E5A00F6E8F4 /* test.vault */; };
@@ -38,10 +39,8 @@
 		4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */; };
 		4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F030D1EC06717001FE3B5 /* Login.storyboard */; };
 		4C7F03111EC06A3B001FE3B5 /* StoryboardLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */; };
-		4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03121EC06B64001FE3B5 /* MainList.storyboard */; };
 		4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03141EC072C6001FE3B5 /* Setting.storyboard */; };
 		4C7F03181EC076D7001FE3B5 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03171EC076D7001FE3B5 /* ExportViewController.m */; };
-		4C821CD21ED0375800CDD246 /* MainListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */; };
 		4C8ED2CD1EC6F9DB00E17E71 /* MergeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */; };
 		4C916ED01EC5603A00207ACB /* MergeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */; };
 		4C916ED21EC564BE00207ACB /* merge_one.vault in Resources */ = {isa = PBXBuildFile; fileRef = 4C916ED11EC564BE00207ACB /* merge_one.vault */; };
@@ -100,6 +99,13 @@
 		4C0273D51E0D9B0F008A3D4D /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
 		4C0273DB1E0D9B55008A3D4D /* PasswordInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordInfo.h; sourceTree = "<group>"; };
 		4C0273DC1E0D9B55008A3D4D /* PasswordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInfo.m; sourceTree = "<group>"; };
+		4C2C72891EDEBA5000FB545E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		4C2C728B1EDEBC7C00FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainList.storyboard; sourceTree = "<group>"; };
+		4C2C728E1EDEBC8200FB545E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainList.strings; sourceTree = "<group>"; };
+		4C2C728F1EDEBD0D00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainList.strings"; sourceTree = "<group>"; };
+		4C2C72911EDEC61700FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainListEmptyView.xib; sourceTree = "<group>"; };
+		4C2C72951EDEC62E00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainListEmptyView.xib"; sourceTree = "<group>"; };
+		4C2C72991EDEC70100FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C3C303E1E10C729004788CF /* VaultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultInfo.h; sourceTree = "<group>"; };
 		4C3C303F1E10C729004788CF /* VaultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultInfo.m; sourceTree = "<group>"; };
 		4C3C30441E111020004788CF /* VaultCrpytionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultCrpytionUtils.h; sourceTree = "<group>"; };
@@ -108,9 +114,7 @@
 		4C3C304D1E1138C4004788CF /* MyPasswordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPasswordTests.m; sourceTree = "<group>"; };
 		4C3C304F1E1138C4004788CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3C30551E1138DF004788CF /* VaultManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManagerTest.m; sourceTree = "<group>"; };
-		4C43E7221ED5B5EA005066E9 /* MainListTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListTableHeader.xib; sourceTree = "<group>"; };
-		4C43E7271ED70A6E005066E9 /* MainListTableHeader2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListTableHeader2.xib; sourceTree = "<group>"; };
-		4C43E7291ED70C60005066E9 /* MainListTableHeader3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListTableHeader3.xib; sourceTree = "<group>"; };
+		4C43E7291ED70C60005066E9 /* MainListTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListTableHeader.xib; sourceTree = "<group>"; };
 		4C4F8A2B1E2F4469007D5882 /* MainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainListViewController.h; sourceTree = "<group>"; };
 		4C4F8A2C1E2F4469007D5882 /* MainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainListViewController.m; sourceTree = "<group>"; };
 		4C4F8A2E1E2F5547007D5882 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
@@ -144,11 +148,9 @@
 		4C7F030D1EC06717001FE3B5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4C7F030F1EC06A3B001FE3B5 /* StoryboardLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardLoader.h; sourceTree = "<group>"; };
 		4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardLoader.m; sourceTree = "<group>"; };
-		4C7F03121EC06B64001FE3B5 /* MainList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainList.storyboard; sourceTree = "<group>"; };
 		4C7F03141EC072C6001FE3B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4C7F03161EC076D7001FE3B5 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		4C7F03171EC076D7001FE3B5 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
-		4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainListEmptyView.xib; sourceTree = "<group>"; };
 		4C821CD31ED0477100CDD246 /* SettingDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingDefines.h; sourceTree = "<group>"; };
 		4C8ED2CB1EC6F9DB00E17E71 /* MergeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfo.h; sourceTree = "<group>"; };
 		4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfo.m; sourceTree = "<group>"; };
@@ -303,11 +305,9 @@
 				4CFF40931E03D44F005BA735 /* PasswordDetailCell.m */,
 				4C79D7D91E32061200D17CAA /* IconManager.h */,
 				4C79D7DA1E32061200D17CAA /* IconManager.m */,
-				4C43E7221ED5B5EA005066E9 /* MainListTableHeader.xib */,
-				4C43E7271ED70A6E005066E9 /* MainListTableHeader2.xib */,
-				4C43E7291ED70C60005066E9 /* MainListTableHeader3.xib */,
-				4C7F03121EC06B64001FE3B5 /* MainList.storyboard */,
-				4C821CD11ED0375800CDD246 /* MainListEmptyView.xib */,
+				4C43E7291ED70C60005066E9 /* MainListTableHeader.xib */,
+				4C2C728C1EDEBC7C00FB545E /* MainList.storyboard */,
+				4C2C72921EDEC61700FB545E /* MainListEmptyView.xib */,
 			);
 			path = MainList;
 			sourceTree = "<group>";
@@ -511,6 +511,7 @@
 				4CE5681A1EC2BB83005B10EB /* vault_file_icon_64x64.png */,
 				4CE5681B1EC2BB83005B10EB /* vault_file_icon_320x320.png */,
 				4C79A9331ED91A810051B17A /* OpenSourceInfo.plist */,
+				4C2C729A1EDEC70100FB545E /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -581,6 +582,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4C92695F1DEDB76F006952B9;
 			productRefGroup = 4C9269691DEDB76F006952B9 /* Products */;
@@ -605,20 +607,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C43E72A1ED70C60005066E9 /* MainListTableHeader3.xib in Resources */,
+				4C43E72A1ED70C60005066E9 /* MainListTableHeader.xib in Resources */,
 				4C525A671EC43EE000F6E8F4 /* test.vault in Resources */,
 				4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */,
-				4C43E7231ED5B5EA005066E9 /* MainListTableHeader.xib in Resources */,
+				4C2C72981EDEC70100FB545E /* Localizable.strings in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
-				4C821CD21ED0375800CDD246 /* MainListEmptyView.xib in Resources */,
+				4C2C72901EDEC61700FB545E /* MainListEmptyView.xib in Resources */,
 				4C79A9341ED91A810051B17A /* OpenSourceInfo.plist in Resources */,
 				4CE5681F1EC2BB83005B10EB /* vault_file_icon_320x320.png in Resources */,
 				4C9269781DEDB76F006952B9 /* Assets.xcassets in Resources */,
 				4C9269761DEDB76F006952B9 /* Main.storyboard in Resources */,
 				4C916ED21EC564BE00207ACB /* merge_one.vault in Resources */,
 				4CE5681E1EC2BB83005B10EB /* vault_file_icon_64x64.png in Resources */,
-				4C43E7281ED70A6E005066E9 /* MainListTableHeader2.xib in Resources */,
-				4C7F03131EC06B64001FE3B5 /* MainList.storyboard in Resources */,
+				4C2C728A1EDEBC7C00FB545E /* MainList.storyboard in Resources */,
 				4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,10 +702,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4C2C728C1EDEBC7C00FB545E /* MainList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C728B1EDEBC7C00FB545E /* Base */,
+				4C2C728E1EDEBC8200FB545E /* en */,
+				4C2C728F1EDEBD0D00FB545E /* zh-Hans */,
+			);
+			name = MainList.storyboard;
+			sourceTree = "<group>";
+		};
+		4C2C72921EDEC61700FB545E /* MainListEmptyView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C72911EDEC61700FB545E /* Base */,
+				4C2C72951EDEC62E00FB545E /* zh-Hans */,
+			);
+			name = MainListEmptyView.xib;
+			sourceTree = "<group>";
+		};
+		4C2C729A1EDEC70100FB545E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C72991EDEC70100FB545E /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4C9269741DEDB76F006952B9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C9269751DEDB76F006952B9 /* Base */,
+				4C2C72891EDEBA5000FB545E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -750,6 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -798,6 +828,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

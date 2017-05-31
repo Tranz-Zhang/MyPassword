@@ -1,0 +1,12 @@
+/* Class = "UILabel"; text = "Notes"; ObjectID = "PFw-HT-DfR"; */
+"PFw-HT-DfR.text" = "备注";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "QF9-7d-nsn"; */
+"QF9-7d-nsn.text" = "账号名称";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "RaD-F6-WR4"; */
+"RaD-F6-WR4.text" = "标题";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "tqE-37-a1M"; */
+"tqE-37-a1M.text" = "密码";
+
