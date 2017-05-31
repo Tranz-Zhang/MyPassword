@@ -108,10 +108,16 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         _sectionIndexTitles = [[groupDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         NSMutableArray *groupList = [NSMutableArray arrayWithCapacity:groupDict.count];
         for (NSString *key in _sectionIndexTitles) {
-            [groupList addObject:groupDict[key]];
+            // sort index list
+            IndexInfoGroup *group = groupDict[key];
+            [group.indexList sortUsingComparator:^NSComparisonResult(IndexInfo *info1, IndexInfo *info2) {
+                return [info1.title compare:info2.title];
+            }];
+            [groupList addObject:group];
         }
         _infoGroupList = [groupList copy];
     }
+    
     _itemCount = indexList.count;
     self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)_itemCount, _itemCount > 1 ? "s" : ""];
     

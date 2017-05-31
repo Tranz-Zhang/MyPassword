@@ -17,7 +17,7 @@
 #import "StoryboardLoader.h"
 
 #define kUserDefaultKey_LastExitTime @"LastExitTime"
-#define kDurationToLockVault 10
+#define kDurationToLockVault 120
 
 @interface MainViewController () <RegistViewControllerDelegate, LoginViewControllerDelegate, UIAlertViewDelegate> {
     UINavigationController *_loginNC;
