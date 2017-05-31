@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPassword Verson 1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M8U-MY-QV6">
-                            <rect key="frame" x="0.0" y="290" width="375" height="40"/>
+                            <rect key="frame" x="0.0" y="389.5" width="375" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,10 +28,10 @@
                             <size key="shadowOffset" width="0.0" height="1"/>
                         </label>
                         <sections>
-                            <tableViewSection id="Bp7-i9-hPA">
+                            <tableViewSection headerTitle="Basic Settings" id="Bp7-i9-hPA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangePasswordCell" rowHeight="51" id="VD4-vH-2Mw">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="51"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VD4-vH-2Mw" id="GVw-Jr-zQj">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
@@ -55,17 +55,17 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="Export vault data which can be imported to other phone." id="17M-Cc-fXb">
+                            <tableViewSection headerTitle="Data Management" id="17M-Cc-fXb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ExportVaultCell" rowHeight="51" id="32y-LG-aTF">
-                                        <rect key="frame" x="0.0" y="122" width="375" height="51"/>
+                                        <rect key="frame" x="0.0" y="162.5" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="32y-LG-aTF" id="Ev2-gI-FQX">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNh-wa-ZP4">
-                                                    <rect key="frame" x="16" y="14.5" width="53.5" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNh-wa-ZP4">
+                                                    <rect key="frame" x="16" y="14.5" width="96" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="0.20225074400000001" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -80,12 +80,35 @@
                                             <segue destination="1Hs-zm-RHe" kind="show" identifier="ShowExportVC" id="5JJ-BA-oe8"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ExportVaultCell" rowHeight="51" id="eza-Cd-dXl">
+                                        <rect key="frame" x="0.0" y="213.5" width="375" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eza-Cd-dXl" id="UCn-L8-H9G">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to import Data ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDi-Vg-Zwk">
+                                                    <rect key="frame" x="16" y="14.5" width="171" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" white="0.20225074400000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eDi-Vg-Zwk" firstAttribute="leading" secondItem="UCn-L8-H9G" secondAttribute="leadingMargin" constant="8" id="FzJ-N8-VDA"/>
+                                                <constraint firstItem="eDi-Vg-Zwk" firstAttribute="centerY" secondItem="UCn-L8-H9G" secondAttribute="centerY" id="q42-gf-YSZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="B9z-RM-jJj" kind="show" id="sCg-KN-dwO"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="ysb-mY-tzP">
+                            <tableViewSection headerTitle="About" id="ysb-mY-tzP">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OpenSourceLibrariesCell" rowHeight="51" id="oiB-Hk-pEG">
-                                        <rect key="frame" x="0.0" y="221" width="375" height="51"/>
+                                        <rect key="frame" x="0.0" y="320.5" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oiB-Hk-pEG" id="B5Q-Kl-FE2">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
@@ -219,6 +242,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zv5-K1-Pka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3486" y="-1098"/>
+        </scene>
+        <!--How to Import?-->
+        <scene sceneID="rNO-TB-Z3c">
+            <objects>
+                <viewController title="How to Import?" id="B9z-RM-jJj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ey6-qy-MRR"/>
+                        <viewControllerLayoutGuide type="bottom" id="vxm-ZW-uHu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xnB-8D-HQI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="import_tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="J7K-4I-uOn">
+                                <rect key="frame" x="27.5" y="113.5" width="320" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="3d2-Hr-jN4"/>
+                                    <constraint firstAttribute="height" constant="400" id="biw-8I-l1T"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J7K-4I-uOn" firstAttribute="centerX" secondItem="xnB-8D-HQI" secondAttribute="centerX" id="hXU-SL-HgT"/>
+                            <constraint firstItem="J7K-4I-uOn" firstAttribute="centerY" secondItem="xnB-8D-HQI" secondAttribute="centerY" constant="-20" id="jul-zh-dpD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vYN-pJ-W3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4214" y="-1099"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="RW3-ff-VDf">
@@ -443,6 +497,7 @@
     <resources>
         <image name="close_icon" width="32" height="32"/>
         <image name="file_icon" width="160" height="160"/>
+        <image name="import_tutorial" width="320" height="400"/>
         <image name="input_boundary" width="11" height="11"/>
         <image name="rect_boundary" width="5" height="5"/>
     </resources>
