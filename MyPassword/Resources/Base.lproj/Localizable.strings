@@ -6,12 +6,104 @@
   Copyright © 2017 bychance. All rights reserved.
 */
 
-/* MainListViewController */
-"MainList.AlertTitle.DuplicatedVault" = "Duplicated Account";
-"MainList.AlertMessage.DuplicatedVault" = "Account name \'%@\' has already existed. Overwrite existed account?";
-"MainList.AlertButton01.DuplicatedVault" = "Overwrite";
-"MainList.AlertButton02.DuplicatedVault" = "Cancel";
+/* MainViewController */
+"Main.AlertTitle.DuplicatedVault" = "Duplicated Account";
+"Main.AlertMessage.DuplicatedVault" = "Account name \'%@\' has already existed. Overwrite existed account?";
+"Main.AlertButton01.DuplicatedVault" = "Overwrite";
+"Main.AlertButton02.DuplicatedVault" = "Cancel";
 
-"MainList.AlertTitle.CreateVault" = "Fail to create Account";
-"MainList.AlertMessage.CreateVault" = "Please try again. Or change another name.";
-"MainList.AlertButton.CreateVault" = "OK";
+"Main.AlertTitle.CreateVault" = "Fail to create Account";
+"Main.AlertMessage.CreateVault" = "Please try again. Or change another name.";
+"Main.AlertButton.CreateVault" = "OK";
+
+
+/* RegistViewController */
+"Regist.KeyboardButton" = "Confirm";
+
+
+/* LoginViewController */
+"Login.KeyboardButton" = "Unlock";
+
+
+/* ImportViewController */
+"Import.FailToUnlockMessage01" = "Fail to unlock vault file, please try another password.";
+"Import.FailToUnlockMessage02" = "Fail to unlock vault file, this vault has inconsistent password.";
+
+"Import.FailToAddMessage" = "Fail to add vault, please try again.";
+
+"Import.AlertTitle.ReplaceWarning" = "Do you want to replace current vault?";
+"Import.AlertMessage.ReplaceWarning" = "All your data in current vault \"%@\" will be deleted!";
+"Import.AlertButton01.ReplaceWarning" = "Replace";
+"Import.AlertButton02.ReplaceWarning" = "Cancel";
+"Import.FailToReplaceMessage" = "Fail to replace current vault, please try again.";
+
+"Import.AlertTitle.MergeWarning" = "You need to unlock current vault to continue merging";
+"Import.AlertMessage.MergeWarning" = "Enter password for vault: %@";
+"Import.AlertButton.MergeWarning" = "Unlock";
+"Import.FailToMergeMessage01" = "Can not find current vault, please try replace vault.";
+"Import.FailToMergeMessage02" = "Invalid password for vault: %@, please try again.";
+"Import.FailToMergeMessage03" = "Fail to unlock vault file, this vault has inconsistent password.";
+
+"Import.KeyboardButton" = "Unlock vault file";
+
+
+/* MergeViewController */
+"Merge.LoadingMessage" = "Calculating...";
+
+"Merge.AlertTitle.MergeFail" = "Fail to merge vaults";
+"Merge.AlertMessage.MergeFail" = "Some passwords can not be inserted to current vault. Please check current vault and try to merge again.";
+"Merge.AlertButton.MergeFail" = "OK";
+
+
+/* MergeInfoCell */
+"MergeCell.AccountLabel" = "Account: %@";
+"MergeCell.PasswordLabel" = "Password: %@";
+"MergeCell.NotesLabel" = "Notes: %@";
+
+
+/* MainListViewController */
+"MainList.ItemCount" = "%lu item%@";
+"MainList.ItemCountSubfix" = "s";
+
+
+/* EditViewController */
+"Edit.LoginTitle" = "Login Info";
+"Edit.BankAccountTitle" = "Bank Account";
+"Edit.OthersTitle" = "Other Info";
+"Edit.DefaultTitle.Add" = "Add";
+"Edit.DefaultTitle.Edit" = "Edit";
+
+
+/* PasswordDetailCell */
+"PasswordDetailCell.NoPassword" = "{ NO PASSWORD }";
+
+
+/* ExportViewController */
+"Export.AlertTitle.NoVault" = "Can not find your vault";
+"Export.AlertButton.NoVault" = "OK";
+"Export.KeyboardButton" = "Export";
+
+
+/* ChangePasswordViewController */
+"ChangePassword.KeyboardButton" = "Confirm";
+"ChangePassword.AlertButton" = "OK";
+
+"ChangePassword.AlertTitle.NoVault" = "Internal Error";
+"ChangePassword.AlertMessage.NoVault" = "Can not find your vault file";
+
+"ChangePassword.AlertTitle.WrongPassword" = "Wrong current password";
+"ChangePassword.AlertMessage.WrongPassword" = "Please make sure you has the correct password for current vault.";
+
+"ChangePassword.AlertTitle.SamePassword" = "Same Password";
+"ChangePassword.AlertMessage.SamePassword" = "New password is the same as the old one, please choose another password.";
+
+"ChangePassword.AlertTitle.FailToChange" = "Fail to change password";
+"ChangePassword.AlertMessage.FailToChange" = "Something very bad happened, please try again.";
+
+
+/* ImportTutorialViewController */
+"ImportTutorial.Image" = "import_tutorial";
+
+
+
+

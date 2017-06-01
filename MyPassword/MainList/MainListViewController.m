@@ -119,7 +119,9 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
     }
     
     _itemCount = indexList.count;
-    self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)_itemCount, _itemCount > 1 ? "s" : ""];
+    NSString *itemCountFormat = NSLocalizedString(@"MainList.ItemCount", nil);
+    NSString *itemCountSubfix = NSLocalizedString(@"MainList.ItemCountSubfix", nil);
+    self.footerLabel.text = [NSString stringWithFormat:itemCountFormat, (unsigned long)_itemCount, _itemCount > 1 ? itemCountSubfix : @""];
     
     [self.tableView reloadData];
     [self updateEmptyView];
@@ -288,7 +290,9 @@ EditViewControllerDelegate, PasswordDetailCellDelegate> {
         
         // update item count
         _itemCount--;
-        self.footerLabel.text = [NSString stringWithFormat:@"%lu item%s", (unsigned long)_itemCount, _itemCount > 1 ? "s" : ""];
+        NSString *itemCountFormat = NSLocalizedString(@"MainList.ItemCount", nil);
+        NSString *itemCountSubfix = NSLocalizedString(@"MainList.ItemCountSubfix", nil);
+        self.footerLabel.text = [NSString stringWithFormat:itemCountFormat, (unsigned long)_itemCount, _itemCount > 1 ? itemCountSubfix : @""];
         
         [self updateEmptyView];
     }

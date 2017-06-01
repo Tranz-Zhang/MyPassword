@@ -108,7 +108,8 @@
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Unlock" forState:UIControlStateNormal];
+        NSString *buttonTitle = NSLocalizedString(@"Login.KeyboardButton", nil);
+        [_confirmButton setTitle:buttonTitle forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onUnlockButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];

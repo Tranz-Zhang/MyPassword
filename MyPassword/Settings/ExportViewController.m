@@ -50,8 +50,10 @@
 
 - (BOOL)onExportVaultData {
     if (!self.exportVault) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Can not find your vault" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *alertTitle = NSLocalizedString(@"Export.AlertTitle.NoVault", nil);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:nil preferredStyle:UIAlertControllerStyleAlert];
+        NSString *buttonTitle = NSLocalizedString(@"Export.AlertButton.NoVault", nil);
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
         [alertController addAction:confrimAction];
@@ -126,7 +128,8 @@
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Export" forState:UIControlStateNormal];
+        NSString *title = NSLocalizedString(@"Export.KeyboardButton", nil);
+        [_confirmButton setTitle:title forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onExportButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];

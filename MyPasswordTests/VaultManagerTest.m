@@ -357,7 +357,7 @@
     updatedPassword.title = @"Changed password title";
     updatedPassword.account = @"another account";
     updatedPassword.password = @"another Password";
-    updatedPassword.iconType = PasswordTypeCreditCard;
+    updatedPassword.iconType = PasswordTypeBankAccount;
     XCTAssertTrue([vault updatePasswordInfo:[updatedPassword copy]]);
     // check actual update
     vault = nil;
@@ -373,7 +373,7 @@
     XCTAssertTrue(updatedPassword2.createdDate == updatedPassword.createdDate);
     XCTAssertTrue(updatedPassword2.updatedDate > updatedPassword.updatedDate);
     XCTAssertTrue([idxInfo.title isEqualToString:@"Changed password title"]);
-    XCTAssertTrue(idxInfo.iconType == PasswordTypeCreditCard);
+    XCTAssertTrue(idxInfo.iconType == PasswordTypeBankAccount);
     
     // set nil update
     updatedPassword2.title = nil;
@@ -404,7 +404,7 @@
     password.UUID = customUUID;
     password.account = @"chance";
     password.password = @"Test Password";
-    password.iconType = PasswordTypeCreditCard;
+    password.iconType = PasswordTypeBankAccount;
     password.createdDate = [[NSDate date] timeIntervalSince1970];
     password.updatedDate = [[NSDate date] timeIntervalSince1970];
     

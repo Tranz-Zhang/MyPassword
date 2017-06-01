@@ -38,10 +38,10 @@
     BOOL isNew = mergeInfo.displayMode == MergeCellDisplayNew;
     PasswordInfo *displayInfo = isNew ? mergeInfo.passwordInfo : mergeInfo.similarPasswordInfo;
     self.itemTitleLabel.text = displayInfo.title;
-    self.accountLabel.text = [NSString stringWithFormat:@"Account: %@", displayInfo.account];
-    self.passwordLabel.text = [NSString stringWithFormat:@"Password: %@", displayInfo.password];
+    self.accountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"MergeCell.AccountLabel", nil), displayInfo.account];
+    self.passwordLabel.text = [NSString stringWithFormat:NSLocalizedString(@"MergeCell.PasswordLabel", nil), displayInfo.password];
     self.iconView.image = SmallIconImageWithType(displayInfo.type);
-    self.notesLabel.text = [NSString stringWithFormat:@"Notes: %@", displayInfo.notes];
+    self.notesLabel.text = [NSString stringWithFormat:NSLocalizedString(@"MergeCell.NotesLabel", nil), displayInfo.notes];
     self.changeModeButton.hidden = (mergeInfo.similarPasswordInfo == nil);
     self.similarTagLabel.hidden = isNew;
     self.backgroundColor = isNew ? [UIColor whiteColor] : [UIColor colorWithWhite:0.95 alpha:1];

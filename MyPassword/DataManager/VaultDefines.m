@@ -12,7 +12,7 @@ UIImage *IconImageWithType(PasswordType type) {
     switch (type) {
         case PasswordTypeLogin:
             return [UIImage imageNamed:@"item_icon_login"];
-        case PasswordTypeCreditCard:
+        case PasswordTypeBankAccount:
             return [UIImage imageNamed:@"item_icon_card"];
         case PasswordTypeOthers:
             return [UIImage imageNamed:@"item_icon_others"];
@@ -26,7 +26,7 @@ UIImage *SmallIconImageWithType(PasswordType type) {
     switch (type) {
         case PasswordTypeLogin:
             return [UIImage imageNamed:@"item_icon_login_small"];
-        case PasswordTypeCreditCard:
+        case PasswordTypeBankAccount:
             return [UIImage imageNamed:@"item_icon_card_small"];
         case PasswordTypeOthers:
             return [UIImage imageNamed:@"item_icon_others_small"];
@@ -41,7 +41,7 @@ UIColor *StyleColorWithType(PasswordType type) {
         case PasswordTypeLogin:
             return [UIColor colorWithHue:203/360.f saturation:0.57 brightness:0.70 alpha:1];
             
-        case PasswordTypeCreditCard:
+        case PasswordTypeBankAccount:
             return [UIColor colorWithHue:13/360.f saturation:62 brightness:0.78 alpha:1];
             
         case PasswordTypeOthers:

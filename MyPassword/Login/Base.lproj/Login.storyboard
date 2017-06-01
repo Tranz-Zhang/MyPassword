@@ -104,7 +104,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqR-cA-srf">
                                 <rect key="frame" x="47.5" y="94" width="280" height="257"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Like Mark, Lucy, etc" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="35e-uf-p08">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="35e-uf-p08">
                                         <rect key="frame" x="0.0" y="36" width="280" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="8Ct-wE-mQG"/>
@@ -122,7 +122,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Only thing to remember" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="AAr-be-nkJ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="AAr-be-nkJ">
                                         <rect key="frame" x="0.0" y="113" width="280" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="pUL-xq-Jf9"/>
@@ -140,7 +140,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm your password" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="5wc-u1-tvg">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="input_boundary" translatesAutoresizingMaskIntoConstraints="NO" id="5wc-u1-tvg">
                                         <rect key="frame" x="0.0" y="190" width="280" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="YeY-Cm-LEW"/>

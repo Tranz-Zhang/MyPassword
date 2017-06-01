@@ -36,7 +36,7 @@
     
     CGRect frame = CGRectOffset(self.view.bounds, 0, -64);
     UILabel *loadLabel = [[UILabel alloc] initWithFrame:frame];
-    loadLabel.text = @"Calculating...";
+    loadLabel.text = NSLocalizedString(@"Merge.LoadingMessage", nil);
     loadLabel.font = [UIFont boldSystemFontOfSize:25];
     loadLabel.textColor = [UIColor grayColor];
     loadLabel.textAlignment = NSTextAlignmentCenter;
@@ -71,8 +71,11 @@
     }
     
     if (!mergeOK) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Fail to merge vaults " message:@"Some passwords can not be inserted to current vault. Please check current vault and try to merge again." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *alertTitle = NSLocalizedString(@"Merge.AlertTitle.MergeFail", nil);
+        NSString *alertMessage = NSLocalizedString(@"Merge.AlertMessage.MergeFail", nil);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+        NSString *confirmTitle = NSLocalizedString(@"Merge.AlertButton.MergeFail", nil);
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
         [alertController addAction:confrimAction];

@@ -1,0 +1,52 @@
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "vWX-El-pKG"; */
+"vWX-El-pKG.title" = "设置";
+
+/* Class = "UITableViewSection"; headerTitle = "Basic Settings"; ObjectID = "Bp7-i9-hPA"; */
+"Bp7-i9-hPA.headerTitle" = "基本设置";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "jFz-QV-zBz"; */
+"jFz-QV-zBz.text" = "修改密码";
+
+/* Class = "UITableViewSection"; headerTitle = "Data Management"; ObjectID = "17M-Cc-fXb"; */
+"17M-Cc-fXb.headerTitle" = "数据管理";
+
+/* Class = "UILabel"; text = "Export Data"; ObjectID = "DNh-wa-ZP4"; */
+"DNh-wa-ZP4.text" = "导出数据";
+
+/* Class = "UILabel"; text = "How to import Data ?"; ObjectID = "eDi-Vg-Zwk"; */
+"eDi-Vg-Zwk.text" = "如何导入数据?";
+
+/* Class = "UIViewController"; title = "How to Import?"; ObjectID = "B9z-RM-jJj"; */
+"B9z-RM-jJj.title" = "如何导入数据?";
+
+/* Class = "UINavigationItem"; title = "Change Password"; ObjectID = "QYo-OF-78i"; */
+"QYo-OF-78i.title" = "修改密码";
+
+/* Class = "UILabel"; text = "Current Password"; ObjectID = "qjd-Jn-XL9"; */
+"qjd-Jn-XL9.text" = "当前密码";
+
+/* Class = "UILabel"; text = "New Password"; ObjectID = "da6-bd-gON"; */
+"da6-bd-gON.text" = "新密码";
+
+/* Class = "UILabel"; text = "Confirm New Password"; ObjectID = "1zi-Ab-v4h"; */
+"1zi-Ab-v4h.text" = "确认新密码";
+
+
+/* Class = "UINavigationItem"; title = "Export"; ObjectID = "Vac-Uy-KVv"; */
+"Vac-Uy-KVv.title" = "导出";
+
+/* Class = "UITextField"; placeholder = "Password to export"; ObjectID = "BWk-mW-MrX"; */
+"BWk-mW-MrX.placeholder" = "输入当前密码";
+
+/* Class = "UILabel"; text = "Open Source Libraries"; ObjectID = "oKB-pn-ErW"; */
+"oKB-pn-ErW.text" = "开源库";
+
+/* Class = "UILabel"; text = "Libraries We Use"; ObjectID = "4dF-fY-KI1"; */
+"4dF-fY-KI1.text" = "Libraries We Use";
+
+/* Class = "UILabel"; text = "The following sets forth attribution notices for third party software that may be contained in portions of this product. We thank the open source commmunity for all of their contributions."; ObjectID = "N5V-Jc-Nyl"; */
+"N5V-Jc-Nyl.text" = "The following sets forth attribution notices for third party software that may be contained in portions of this product. We thank the open source commmunity for all of their contributions.";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "ysb-mY-tzP"; */
+"ysb-mY-tzP.headerTitle" = "关于";
+

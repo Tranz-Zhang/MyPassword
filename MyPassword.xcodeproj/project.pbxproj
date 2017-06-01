@@ -17,6 +17,9 @@
 		4C2C728A1EDEBC7C00FB545E /* MainList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C728C1EDEBC7C00FB545E /* MainList.storyboard */; };
 		4C2C72901EDEC61700FB545E /* MainListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C72921EDEC61700FB545E /* MainListEmptyView.xib */; };
 		4C2C72981EDEC70100FB545E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C729A1EDEC70100FB545E /* Localizable.strings */; };
+		4C2C729B1EDEF5B800FB545E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C729D1EDEF5B800FB545E /* Login.storyboard */; };
+		4C2C72A01EDFBA3A00FB545E /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C72A21EDFBA3A00FB545E /* Setting.storyboard */; };
+		4C2C72AA1EDFEBDD00FB545E /* ImportTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C72A91EDFEBDD00FB545E /* ImportTutorialViewController.m */; };
 		4C3C30401E10C729004788CF /* VaultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C303F1E10C729004788CF /* VaultInfo.m */; };
 		4C3C30461E111020004788CF /* VaultCrpytionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C30451E111020004788CF /* VaultCrpytionUtils.m */; };
 		4C3C304E1E1138C4004788CF /* MyPasswordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C304D1E1138C4004788CF /* MyPasswordTests.m */; };
@@ -37,9 +40,7 @@
 		4C79A9371ED92A150051B17A /* OpenSourceDeclarationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79A9361ED92A150051B17A /* OpenSourceDeclarationViewController.m */; };
 		4C79D7DB1E32061200D17CAA /* IconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79D7DA1E32061200D17CAA /* IconManager.m */; };
 		4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */; };
-		4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F030D1EC06717001FE3B5 /* Login.storyboard */; };
 		4C7F03111EC06A3B001FE3B5 /* StoryboardLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */; };
-		4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7F03141EC072C6001FE3B5 /* Setting.storyboard */; };
 		4C7F03181EC076D7001FE3B5 /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F03171EC076D7001FE3B5 /* ExportViewController.m */; };
 		4C8ED2CD1EC6F9DB00E17E71 /* MergeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8ED2CC1EC6F9DB00E17E71 /* MergeInfo.m */; };
 		4C916ED01EC5603A00207ACB /* MergeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */; };
@@ -101,11 +102,17 @@
 		4C0273DC1E0D9B55008A3D4D /* PasswordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordInfo.m; sourceTree = "<group>"; };
 		4C2C72891EDEBA5000FB545E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4C2C728B1EDEBC7C00FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainList.storyboard; sourceTree = "<group>"; };
-		4C2C728E1EDEBC8200FB545E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainList.strings; sourceTree = "<group>"; };
 		4C2C728F1EDEBD0D00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainList.strings"; sourceTree = "<group>"; };
 		4C2C72911EDEC61700FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainListEmptyView.xib; sourceTree = "<group>"; };
 		4C2C72951EDEC62E00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainListEmptyView.xib"; sourceTree = "<group>"; };
 		4C2C72991EDEC70100FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C2C729C1EDEF5B800FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		4C2C729F1EDEF5BC00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Login.strings"; sourceTree = "<group>"; };
+		4C2C72A11EDFBA3A00FB545E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
+		4C2C72A41EDFBA3D00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Setting.strings"; sourceTree = "<group>"; };
+		4C2C72A51EDFBC5F00FB545E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4C2C72A81EDFEBDD00FB545E /* ImportTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportTutorialViewController.h; sourceTree = "<group>"; };
+		4C2C72A91EDFEBDD00FB545E /* ImportTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportTutorialViewController.m; sourceTree = "<group>"; };
 		4C3C303E1E10C729004788CF /* VaultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultInfo.h; sourceTree = "<group>"; };
 		4C3C303F1E10C729004788CF /* VaultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultInfo.m; sourceTree = "<group>"; };
 		4C3C30441E111020004788CF /* VaultCrpytionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultCrpytionUtils.h; sourceTree = "<group>"; };
@@ -145,10 +152,8 @@
 		4C79D7DA1E32061200D17CAA /* IconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconManager.m; sourceTree = "<group>"; };
 		4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
 		4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
-		4C7F030D1EC06717001FE3B5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4C7F030F1EC06A3B001FE3B5 /* StoryboardLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardLoader.h; sourceTree = "<group>"; };
 		4C7F03101EC06A3B001FE3B5 /* StoryboardLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardLoader.m; sourceTree = "<group>"; };
-		4C7F03141EC072C6001FE3B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4C7F03161EC076D7001FE3B5 /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		4C7F03171EC076D7001FE3B5 /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
 		4C821CD31ED0477100CDD246 /* SettingDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingDefines.h; sourceTree = "<group>"; };
@@ -287,7 +292,7 @@
 				4C7F030A1EC0669E001FE3B5 /* ImportViewController.h */,
 				4C7F030B1EC0669E001FE3B5 /* ImportViewController.m */,
 				4C916ED31EC59B5700207ACB /* Merge */,
-				4C7F030D1EC06717001FE3B5 /* Login.storyboard */,
+				4C2C729D1EDEF5B800FB545E /* Login.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -420,9 +425,11 @@
 				4C7F03171EC076D7001FE3B5 /* ExportViewController.m */,
 				4C79A9301ED815290051B17A /* ChangePasswordViewController.h */,
 				4C79A9311ED815290051B17A /* ChangePasswordViewController.m */,
+				4C2C72A81EDFEBDD00FB545E /* ImportTutorialViewController.h */,
+				4C2C72A91EDFEBDD00FB545E /* ImportTutorialViewController.m */,
 				4C79A9351ED92A150051B17A /* OpenSourceDeclarationViewController.h */,
 				4C79A9361ED92A150051B17A /* OpenSourceDeclarationViewController.m */,
-				4C7F03141EC072C6001FE3B5 /* Setting.storyboard */,
+				4C2C72A21EDFBA3A00FB545E /* Setting.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -609,7 +616,7 @@
 			files = (
 				4C43E72A1ED70C60005066E9 /* MainListTableHeader.xib in Resources */,
 				4C525A671EC43EE000F6E8F4 /* test.vault in Resources */,
-				4C7F030E1EC06717001FE3B5 /* Login.storyboard in Resources */,
+				4C2C729B1EDEF5B800FB545E /* Login.storyboard in Resources */,
 				4C2C72981EDEC70100FB545E /* Localizable.strings in Resources */,
 				4C92697B1DEDB76F006952B9 /* LaunchScreen.storyboard in Resources */,
 				4C2C72901EDEC61700FB545E /* MainListEmptyView.xib in Resources */,
@@ -620,7 +627,7 @@
 				4C916ED21EC564BE00207ACB /* merge_one.vault in Resources */,
 				4CE5681E1EC2BB83005B10EB /* vault_file_icon_64x64.png in Resources */,
 				4C2C728A1EDEBC7C00FB545E /* MainList.storyboard in Resources */,
-				4C7F03151EC072C6001FE3B5 /* Setting.storyboard in Resources */,
+				4C2C72A01EDFBA3A00FB545E /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +655,7 @@
 				4CDBDE0A1EBEFDA4009701D9 /* ioapi.c in Sources */,
 				4CDBDE261EBEFE01009701D9 /* aescrypt.c in Sources */,
 				4CDBDE2D1EBEFE01009701D9 /* pwd2key.c in Sources */,
+				4C2C72AA1EDFEBDD00FB545E /* ImportTutorialViewController.m in Sources */,
 				4C0273D71E0D9B0F008A3D4D /* JSONModelClassProperty.m in Sources */,
 				4C9269731DEDB76F006952B9 /* MainViewController.m in Sources */,
 				4C7F030C1EC0669E001FE3B5 /* ImportViewController.m in Sources */,
@@ -706,7 +714,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C2C728B1EDEBC7C00FB545E /* Base */,
-				4C2C728E1EDEBC8200FB545E /* en */,
 				4C2C728F1EDEBD0D00FB545E /* zh-Hans */,
 			);
 			name = MainList.storyboard;
@@ -725,8 +732,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C2C72991EDEC70100FB545E /* Base */,
+				4C2C72A51EDFBC5F00FB545E /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4C2C729D1EDEF5B800FB545E /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C729C1EDEF5B800FB545E /* Base */,
+				4C2C729F1EDEF5BC00FB545E /* zh-Hans */,
+			);
+			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		4C2C72A21EDFBA3A00FB545E /* Setting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C72A11EDFBA3A00FB545E /* Base */,
+				4C2C72A41EDFBA3D00FB545E /* zh-Hans */,
+			);
+			name = Setting.storyboard;
 			sourceTree = "<group>";
 		};
 		4C9269741DEDB76F006952B9 /* Main.storyboard */ = {

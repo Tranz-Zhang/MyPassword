@@ -131,10 +131,10 @@
     NSString *vaultPath = [_documentPath stringByAppendingFormat:@"/%@.%@", accountName, kVaultExtension];
     // check duplicated names
     if ([VaultManager verifyVaultWithPath:vaultPath]) {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"MainList.AlertMessage.DuplicatedVault", nil), accountName];
-        NSString *alertTitle = NSLocalizedString(@"MainList.AlertTitle.DuplicatedVault", nil);
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Main.AlertMessage.DuplicatedVault", nil), accountName];
+        NSString *alertTitle = NSLocalizedString(@"Main.AlertTitle.DuplicatedVault", nil);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:UIAlertControllerStyleAlert];
-        NSString *actionTitle = NSLocalizedString(@"MainList.AlertButton01.DuplicatedVault", nil);
+        NSString *actionTitle = NSLocalizedString(@"Main.AlertButton01.DuplicatedVault", nil);
         UIAlertAction *ok = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"overwrite");
             [[NSFileManager defaultManager] removeItemAtPath:vaultPath error:nil];
@@ -145,7 +145,7 @@
                 [self dismissRegistView];
             }
         }];
-        NSString *cancelTitle = NSLocalizedString(@"MainList.AlertButton02.DuplicatedVault", nil);
+        NSString *cancelTitle = NSLocalizedString(@"Main.AlertButton02.DuplicatedVault", nil);
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:ok];
         [alert addAction:cancel];
@@ -173,9 +173,9 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else {
-        NSString *alertTitle = NSLocalizedString(@"MainList.AlertTitle.CreateVault", nil);
-        NSString *alertMessage = NSLocalizedString(@"MainList.AlertMessage.CreateVault", nil);
-        NSString *buttonTitle = NSLocalizedString(@"MainList.AlertButton.CreateVault", nil);
+        NSString *alertTitle = NSLocalizedString(@"Main.AlertTitle.CreateVault", nil);
+        NSString *alertMessage = NSLocalizedString(@"Main.AlertMessage.CreateVault", nil);
+        NSString *buttonTitle = NSLocalizedString(@"Main.AlertButton.CreateVault", nil);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:buttonTitle otherButtonTitles:nil];
         [alert show];
     }

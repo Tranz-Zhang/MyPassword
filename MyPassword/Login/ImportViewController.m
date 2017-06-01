@@ -97,14 +97,14 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
                                         error:&error];
     if (!isOK || error) {
         NSLog(@"Fail to unzip temp vault: %@", error);
-        [self showAlertMessage:@"Fail to unlock vault file, please try another password."];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToUnlockMessage01", nil)];
         return NO;
     }
     
     VaultManager *importedVault = [[VaultManager alloc] initWithVaultPath:_unzipFilePath];
     if (![importedVault unlockWithPassword:self.passwordTextField.text]) {
         NSLog(@"Fail to unlock temp vault");
-        [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToUnlockMessage02", nil)];
         [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
         return NO;
     }
@@ -179,7 +179,7 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
                                                          error:&error];
     NSLog(@"Add vault: %@", isOK ? @"OK" : error);
     if (!isOK || error) {
-        [self showAlertMessage:@"Fail to add vault, please try again"];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToAddMessage", nil)];
         return;
     }
     
@@ -197,15 +197,19 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 
 - (IBAction)onReplaceVault:(UIButton *)sender {
     NSString *currentVaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
-    NSString *message = [NSString stringWithFormat:@"All your data in current vault \"%@\" will be deleted!", currentVaultName];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Do you want to replace current vault?" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"Replace" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Import.AlertMessage.ReplaceWarning", nil), currentVaultName];
+    NSString *alertTitle = NSLocalizedString(@"Import.AlertTitle.ReplaceWarning", nil);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:UIAlertControllerStyleAlert];
+    NSString *confirmTitle = NSLocalizedString(@"Import.AlertButton01.ReplaceWarning", nil);
+    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
         // do replace
         [self replaceCurrentVault];
     }];
     [alertController addAction:confrimAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    NSString *cancelTitle = NSLocalizedString(@"Import.AlertButton02.ReplaceWarning", nil);
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
     [alertController addAction:cancelAction];
@@ -227,7 +231,7 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     BOOL isOK = [fileManager moveItemAtPath:_unzipFilePath toPath:newVaultPath error:&error];
     NSLog(@"Replace vault: %@", isOK ? @"OK" : error);
     if (!isOK || error) {
-        [self showAlertMessage:@"Fail to replace current vault, please try again"];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToReplaceMessage", nil)];
         return;
     }
 
@@ -255,24 +259,26 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
 - (IBAction)onMergeVault:(UIButton *)sender {
     MainViewController *mainVC = (MainViewController *)[[[UIApplication sharedApplication].delegate window] rootViewController];
     if (!mainVC.vault) {
-        [self showAlertMessage:@"Can not find current vault, please try replace vault."];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToMergeMessage01", nil)];
         return;
     }
     
     VaultManager *currentVault = mainVC.vault;
-    [currentVault unlockWithPassword:@"123"];
     if ([currentVault isLocked]) {
         // check if current vault is locked
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You need to unlock current vault to continue merging" message:[NSString stringWithFormat:@"Enter password for vault: %@", currentVault.name] preferredStyle:UIAlertControllerStyleAlert];
+        NSString *alertTitle = NSLocalizedString(@"Import.AlertTitle.MergeWarning", nil);
+        NSString *alertMessage = NSLocalizedString(@"Import.AlertMessage.MergeWarning", nil);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:[NSString stringWithFormat:alertMessage, currentVault.name] preferredStyle:UIAlertControllerStyleAlert];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.secureTextEntry = YES;
         }];
-        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"Unlock" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *confirmTitle = NSLocalizedString(@"Import.AlertButton.MergeWarning", nil);
+        UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
             
             if (![currentVault unlockWithPassword:[alertController.textFields[0] text]]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self showAlertMessage:[NSString stringWithFormat:@"Invalid password for vault: %@, please try again.", currentVault.name]];
+                    [self showAlertMessage:[NSString stringWithFormat:NSLocalizedString(@"Import.FailToMergeMessage02", nil), currentVault.name]];
                 });
                 
             } else {
@@ -293,7 +299,7 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     VaultManager *importedVault = [[VaultManager alloc] initWithVaultPath:_unzipFilePath];
     if (![importedVault unlockWithPassword:self.passwordTextField.text]) {
         NSLog(@"Fail to unlock temp vault");
-        [self showAlertMessage:@"Fail to unlock vault file, this vault has inconsistent password."];
+        [self showAlertMessage:NSLocalizedString(@"Import.FailToMergeMessage03", nil)];
         [[NSFileManager defaultManager] removeItemAtPath:_unzipFilePath error:nil];
         return;
     }
@@ -323,7 +329,8 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Unlock vault file" forState:UIControlStateNormal];
+        NSString *title = NSLocalizedString(@"Import.KeyboardButton", nil);
+        [_confirmButton setTitle:title forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onExportButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];

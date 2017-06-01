@@ -1,0 +1,41 @@
+/* Class = "UITextField"; placeholder = "Password to unlock"; ObjectID = "72N-hU-BtV"; */
+"72N-hU-BtV.placeholder" = "解锁密码";
+
+/* Class = "UILabel"; text = "Account Name"; ObjectID = "F9n-UP-fFt"; */
+"F9n-UP-fFt.text" = "账号名称";
+
+/* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "FlI-ju-I2f"; */
+"FlI-ju-I2f.normalTitle" = "创建账号";
+
+/* Class = "UILabel"; text = "Password info found in current vault"; ObjectID = "Kcd-KO-VJt"; */
+"Kcd-KO-VJt.text" = "相似的本地密码信息";
+
+/* Class = "UIButton"; normalTitle = "Replace"; ObjectID = "RAM-NE-1ji"; */
+"RAM-NE-1ji.normalTitle" = "替换";
+
+/* Class = "UINavigationItem"; title = "Merge Result"; ObjectID = "d4H-JW-kZ4"; */
+"d4H-JW-kZ4.title" = "合并结果";
+
+/* Class = "UINavigationItem"; title = "Import"; ObjectID = "f6a-Ne-HRf"; */
+"f6a-Ne-HRf.title" = "导入";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "h4C-g3-X64"; */
+"h4C-g3-X64.text" = "密码";
+
+/* Class = "UILabel"; text = "Confirm Password"; ObjectID = "hyI-an-hPV"; */
+"hyI-an-hPV.text" = "确认密码";
+
+/* Class = "UILabel"; text = "This vault is empty"; ObjectID = "iXO-gl-HGT"; */
+"iXO-gl-HGT.text" = "这个密码库是空的";
+
+/* Class = "UIButton"; normalTitle = "Merge"; ObjectID = "pPt-HO-nUt"; */
+"pPt-HO-nUt.normalTitle" = "合并";
+
+/* Class = "UITextField"; placeholder = "Password to unlock"; ObjectID = "ve2-nf-g5t"; */
+"ve2-nf-g5t.placeholder" = "解锁密码";
+
+/* Class = "UINavigationItem"; title = "Create Account"; ObjectID = "zKd-et-Mq0"; */
+"zKd-et-Mq0.title" = "创建账号";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "zhq-AG-qEr"; */
+"zhq-AG-qEr.normalTitle" = "添加";

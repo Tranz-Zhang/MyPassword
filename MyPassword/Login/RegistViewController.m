@@ -72,7 +72,8 @@
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
+        NSString *buttonTitle = NSLocalizedString(@"Regist.KeyboardButton", nil);
+        [_confirmButton setTitle:buttonTitle forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onConfirmButtonClick) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];

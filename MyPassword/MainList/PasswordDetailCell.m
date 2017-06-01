@@ -52,7 +52,8 @@
 
 - (void)updatePasswordVisiablilty {
     if (!self.passwordInfo.password.length) {
-        [self.passwordButton setTitle:@"{ NO PASSWORD }" forState:UIControlStateNormal];
+        NSString *title = NSLocalizedString(@"PasswordDetailCell.NoPassword", nil);
+        [self.passwordButton setTitle:title forState:UIControlStateNormal];
         self.passwordButton.enabled = NO;
         return;
     }

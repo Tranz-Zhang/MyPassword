@@ -11,7 +11,7 @@
 
 typedef NS_ENUM(NSInteger, PasswordType) {
     PasswordTypeLogin = 0,
-    PasswordTypeCreditCard,
+    PasswordTypeBankAccount,
     PasswordTypeOthers,
     
     PasswordTypeCount,

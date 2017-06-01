@@ -1,0 +1,112 @@
+/* 
+  Localizable.strings
+  MyPassword
+
+  Created by chance on 31/5/2017.
+  Copyright © 2017 bychance. All rights reserved.
+*/
+
+/* MainViewController */
+"Main.AlertTitle.DuplicatedVault" = "重复的账号";
+"Main.AlertMessage.DuplicatedVault" = "本地已经存在账号\'%@\'. 是否替换本地账号?";
+"Main.AlertButton01.DuplicatedVault" = "替换";
+"Main.AlertButton02.DuplicatedVault" = "取消";
+
+"Main.AlertTitle.CreateVault" = "创建账号失败";
+"Main.AlertMessage.CreateVault" = "请重新尝试，或者换一个账号名试试.";
+"Main.AlertButton.CreateVault" = "好的";
+
+
+/* RegistViewController */
+"Regist.KeyboardButton" = "确  认";
+
+
+/* LoginViewController */
+"Login.KeyboardButton" = "解  锁";
+
+
+/* ImportViewController */
+"Import.FailToUnlockMessage01" = "解锁密码库失败，请尝试其他密码.";
+"Import.FailToUnlockMessage02" = "解锁密码库失败, 当前文件内部密码不一致.";
+
+"Import.FailToAddMessage" = "添加密码库失败, 请重新尝试.";
+
+"Import.AlertTitle.ReplaceWarning" = "要替换掉本地所有密码吗?";
+"Import.AlertMessage.ReplaceWarning" = "保存在账号\"%@\"中的所有本地密码将会被删除.";
+"Import.AlertButton01.ReplaceWarning" = "替换";
+"Import.AlertButton02.ReplaceWarning" = "取消";
+"Import.FailToReplaceMessage" = "替换密码库失败，请重新尝试.";
+
+"Import.AlertTitle.MergeWarning" = "需要先解锁本地密码库";
+"Import.AlertMessage.MergeWarning" = "本地文件密码: %@";
+"Import.AlertButton.MergeWarning" = "解锁";
+"Import.FailToMergeMessage01" = "找不到本地密码库, 请尝试使用替换密码库.";
+"Import.FailToMergeMessage02" = "密码无法解锁账号: %@, 请重新尝试.";
+"Import.FailToMergeMessage03" = "解锁密码库失败, 当前文件内部密码不一致.";
+
+"Import.KeyboardButton" = "解锁文件";
+
+
+/* MergeViewController */
+"Merge.LoadingMessage" = "正在整理数据...";
+
+"Merge.AlertTitle.MergeFail" = "合并密码库失败";
+"Merge.AlertMessage.MergeFail" = "部分密码无法加到本地密码库中，请尝试重新导入.";
+"Merge.AlertButton.MergeFail" = "好吧...";
+
+
+/* MergeInfoCell */
+"MergeCell.AccountLabel" = "账号: %@";
+"MergeCell.PasswordLabel" = "密码: %@";
+"MergeCell.NotesLabel" = "备注: %@";
+
+
+/* MainListViewController */
+"MainList.ItemCount" = "%lu 个条目%@";
+"MainList.ItemCountSubfix" = "";
+
+
+/* EditViewController */
+"Edit.LoginTitle" = "登录信息";
+"Edit.BankAccountTitle" = "银行账号";
+"Edit.OthersTitle" = "其他信息";
+"Edit.DefaultTitle.Add" = "添加";
+"Edit.DefaultTitle.Edit" = "编辑";
+
+
+/* PasswordDetailCell */
+"PasswordDetailCell.NoPassword" = "{ 无密码 }";
+
+
+/* ExportViewController */
+"Export.AlertTitle.NoVault" = "找不到密码库";
+"Export.AlertButton.NoVault" = "好的";
+"Export.KeyboardButton" = "导  出";
+
+
+/* ChangePasswordViewController */
+"ChangePassword.KeyboardButton" = "确  认";
+"ChangePassword.AlertButton" = "好的";
+
+"ChangePassword.AlertTitle.NoVault" = "内部错误";
+"ChangePassword.AlertMessage.NoVault" = "找不到文件库.";
+
+"ChangePassword.AlertTitle.WrongPassword" = "当前密码错误";
+"ChangePassword.AlertMessage.WrongPassword" = "请确认你输入的是当前账号的解锁密码.";
+
+"ChangePassword.AlertTitle.SamePassword" = "相同的密码";
+"ChangePassword.AlertMessage.SamePassword" = "新密码与当前账号的密码是一样的，请选择一个不同的密码.";
+
+"ChangePassword.AlertTitle.FailToChange" = "修改密码失败";
+"ChangePassword.AlertMessage.FailToChange" = "我们不知道发生了什么，但就是失败了，请重新尝试.";
+
+
+/* ImportTutorialViewController */
+"ImportTutorial.Image" = "import_tutorial_cn";
+
+
+
+
+
+
+

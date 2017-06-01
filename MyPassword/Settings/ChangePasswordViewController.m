@@ -52,7 +52,8 @@ NSNotificationName const kDidChangedPasswordNotification = @"kDidChangedPassword
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.frame = CGRectMake(0, 0, kLocalWidth, 44);
         _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [_confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
+        NSString *title = NSLocalizedString(@"ChangePassword.KeyboardButton", nil);
+        [_confirmButton setTitle:title forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(onConfirmButtonClick) forControlEvents:UIControlEventTouchUpInside];
         UIImage *btnBG = [UIImage imageNamed:@"rect_button"];
         [_confirmButton setBackgroundImage:btnBG forState:UIControlStateNormal];
@@ -71,7 +72,8 @@ NSNotificationName const kDidChangedPasswordNotification = @"kDidChangedPassword
 
 - (void)onChangePassword {
     if (!self.vault) {
-        [self showAlertWithTitle:@"Internal Error" message:@"Can not find your vault"];
+        [self showAlertWithTitle:NSLocalizedString(@"ChangePassword.AlertTitle.NoVault", nil)
+                         message:NSLocalizedString(@"ChangePassword.AlertMessage.NoVault", nil)];
         return;
     }
     
@@ -92,13 +94,15 @@ NSNotificationName const kDidChangedPasswordNotification = @"kDidChangedPassword
     
     // verify current password
     if (![self.vault verifyPassword:self.currentPasswordField.text]) {
-        [self showAlertWithTitle:@"Wrong current password" message:@"Please make sure you has the correct password for current vault."];
+        [self showAlertWithTitle:NSLocalizedString(@"ChangePassword.AlertTitle.WrongPassword", nil)
+                         message:NSLocalizedString(@"ChangePassword.AlertMessage.WrongPassword", nil)];
         return;
     }
     
     // verify same password
     if ([self.currentPasswordField.text isEqualToString:self.newilyPasswordField.text]) {
-        [self showAlertWithTitle:@"Same Password" message:@"New password is the same as the old one, please choose another password."];
+        [self showAlertWithTitle:NSLocalizedString(@"ChangePassword.AlertTitle.SamePassword", nil)
+                         message:NSLocalizedString(@"ChangePassword.AlertMessage.SamePassword", nil)];
         return;
     }
     
@@ -112,15 +116,16 @@ NSNotificationName const kDidChangedPasswordNotification = @"kDidChangedPassword
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidChangedPasswordNotification object:nil];
         
     } else {
-        [self showAlertWithTitle:@"Fail to change password"
-                         message:@"Something very bad happened, please try again."];
+        [self showAlertWithTitle:NSLocalizedString(@"ChangePassword.AlertTitle.FailToChange", nil)
+                         message:NSLocalizedString(@"ChangePassword.AlertMessage.FailToChange", nil)];
     }
 }
 
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    NSString *buttonTitle = NSLocalizedString(@"ChangePassword.AlertButton", nil);
+    UIAlertAction *confrimAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
     [alertController addAction:confrimAction];

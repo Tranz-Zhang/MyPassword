@@ -78,16 +78,16 @@
                                                          forKey:@"fadeText"];
     switch (type) {
         case PasswordTypeLogin:
-            self.navigationItem.title = @"Login Info";
+            self.navigationItem.title = NSLocalizedString(@"Edit.LoginTitle", nil);
             break;
-        case PasswordTypeCreditCard:
-            self.navigationItem.title = @"Credit Card Info";
+        case PasswordTypeBankAccount:
+            self.navigationItem.title = NSLocalizedString(@"Edit.BankAccountTitle", nil);
             break;
         case PasswordTypeOthers:
-            self.navigationItem.title = @"Other Info";
+            self.navigationItem.title = NSLocalizedString(@"Edit.OthersTitle", nil);
             break;
         default:
-            self.navigationItem.title = self.password ? @"Edit" : @"Add";
+            self.navigationItem.title = self.password ? NSLocalizedString(@"Edit.DefaultTitle.Add", nil) : NSLocalizedString(@"Edit.DefaultTitle.Edit", nil);
             break;
     }
     
@@ -107,7 +107,6 @@
     if (self.scrollViewHeight.constant != -keyboardFrame.size.height) {
         self.scrollViewHeight.constant = -keyboardFrame.size.height;
         [self.view setNeedsLayout];
-        NSLog(@"%@", notification);
     }
 }
 
