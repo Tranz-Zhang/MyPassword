@@ -50,7 +50,7 @@
         }
         
         _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        _iconProcessQueue = dispatch_queue_create("com.MyPassword.IconProcessQueue", DISPATCH_QUEUE_SERIAL);
+        _iconProcessQueue = dispatch_queue_create("com.MiKeys.IconProcessQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }

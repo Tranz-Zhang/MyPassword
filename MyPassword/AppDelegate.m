@@ -23,6 +23,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%s", __FUNCTION__);
     
+//    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:@"en", nil] forKey:@"AppleLanguages"]; //switching to polish locale
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"OpenSourceInfo" ofType:@"plist"];
 //    NSDictionary *declarationDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
 //    NSArray *dictList = declarationDict[@"OpenSourceLibraries"];

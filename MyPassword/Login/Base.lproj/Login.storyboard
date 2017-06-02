@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="25" y="885"/>
         </scene>
-        <!--MyPassword-->
+        <!--Mikeys-->
         <scene sceneID="MCj-ET-44m">
             <objects>
                 <viewController id="dGl-Jo-aPu" customClass="LoginViewController" sceneMemberID="viewController">
@@ -78,7 +78,7 @@
                             <constraint firstItem="smj-AN-68E" firstAttribute="centerX" secondItem="Iuv-Va-tJI" secondAttribute="centerX" id="vCg-jh-cGG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MyPassword" id="9b7-wQ-0kN"/>
+                    <navigationItem key="navigationItem" title="Mikeys" id="9b7-wQ-0kN"/>
                     <connections>
                         <outlet property="accountNameLabel" destination="smj-AN-68E" id="KPh-sn-54u"/>
                         <outlet property="iconCenterYConstraint" destination="C8r-rb-R0I" id="qtT-lA-1KO"/>
@@ -362,7 +362,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Import" id="f6a-Ne-HRf">
-                        <barButtonItem key="rightBarButtonItem" image="done_icon" id="wCb-ur-cFo">
+                        <barButtonItem key="leftBarButtonItem" image="close_icon" id="wCb-ur-cFo">
                             <connections>
                                 <action selector="onFinishExport" destination="LDM-L1-p2B" id="aXq-Wt-7vQ"/>
                             </connections>
@@ -521,6 +521,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close_icon" width="32" height="32"/>
         <image name="default_button" width="11" height="11"/>
         <image name="default_button_clicked" width="16" height="16"/>
         <image name="done_icon" width="32" height="32"/>

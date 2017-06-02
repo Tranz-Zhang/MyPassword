@@ -238,7 +238,8 @@ NSNotificationName const kImportedVaultPathKey = @"kImportedVaultPathKey";
     // delete old vault
     NSString *oldVaultName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultKey_DefaultVaultName];
     NSString *oldVaultPath = [documentPath stringByAppendingFormat:@"/%@.%@", oldVaultName, kVaultExtension];
-    if ([fileManager fileExistsAtPath:oldVaultPath]) {
+    if (![oldVaultPath isEqualToString:newVaultPath] &&
+        [fileManager fileExistsAtPath:oldVaultPath]) {
         NSError *error;
         BOOL isOK = [fileManager removeItemAtPath:oldVaultPath error:&error];
         NSLog(@"Remove old vault: %@", isOK ? @"OK" : error);

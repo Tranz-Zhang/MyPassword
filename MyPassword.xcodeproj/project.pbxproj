@@ -117,7 +117,7 @@
 		4C3C303F1E10C729004788CF /* VaultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultInfo.m; sourceTree = "<group>"; };
 		4C3C30441E111020004788CF /* VaultCrpytionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaultCrpytionUtils.h; sourceTree = "<group>"; };
 		4C3C30451E111020004788CF /* VaultCrpytionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultCrpytionUtils.m; sourceTree = "<group>"; };
-		4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyPasswordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C3C304B1E1138C4004788CF /* MikeysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MikeysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3C304D1E1138C4004788CF /* MyPasswordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPasswordTests.m; sourceTree = "<group>"; };
 		4C3C304F1E1138C4004788CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3C30551E1138DF004788CF /* VaultManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VaultManagerTest.m; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		4C916ECE1EC5603A00207ACB /* MergeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeInfoCell.h; sourceTree = "<group>"; };
 		4C916ECF1EC5603A00207ACB /* MergeInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeInfoCell.m; sourceTree = "<group>"; };
 		4C916ED11EC564BE00207ACB /* merge_one.vault */ = {isa = PBXFileReference; lastKnownFileType = file; path = merge_one.vault; sourceTree = "<group>"; };
-		4C9269681DEDB76F006952B9 /* MyPassword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPassword.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C9269681DEDB76F006952B9 /* Mikeys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mikeys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C92696C1DEDB76F006952B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C92696E1DEDB76F006952B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C92696F1DEDB76F006952B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -360,8 +360,8 @@
 		4C9269691DEDB76F006952B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C9269681DEDB76F006952B9 /* MyPassword.app */,
-				4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */,
+				4C9269681DEDB76F006952B9 /* Mikeys.app */,
+				4C3C304B1E1138C4004788CF /* MikeysTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -526,9 +526,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C3C304A1E1138C4004788CF /* MyPasswordTests */ = {
+		4C3C304A1E1138C4004788CF /* MikeysTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MyPasswordTests" */;
+			buildConfigurationList = 4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MikeysTests" */;
 			buildPhases = (
 				4C3C30471E1138C4004788CF /* Sources */,
 				4C3C30481E1138C4004788CF /* Frameworks */,
@@ -539,14 +539,14 @@
 			dependencies = (
 				4C3C30511E1138C4004788CF /* PBXTargetDependency */,
 			);
-			name = MyPasswordTests;
+			name = MikeysTests;
 			productName = MyPasswordTests;
-			productReference = 4C3C304B1E1138C4004788CF /* MyPasswordTests.xctest */;
+			productReference = 4C3C304B1E1138C4004788CF /* MikeysTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4C9269671DEDB76F006952B9 /* MyPassword */ = {
+		4C9269671DEDB76F006952B9 /* Mikeys */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C92697F1DEDB76F006952B9 /* Build configuration list for PBXNativeTarget "MyPassword" */;
+			buildConfigurationList = 4C92697F1DEDB76F006952B9 /* Build configuration list for PBXNativeTarget "Mikeys" */;
 			buildPhases = (
 				4C9269641DEDB76F006952B9 /* Sources */,
 				4C9269651DEDB76F006952B9 /* Frameworks */,
@@ -556,9 +556,9 @@
 			);
 			dependencies = (
 			);
-			name = MyPassword;
+			name = Mikeys;
 			productName = MyPassword;
-			productReference = 4C9269681DEDB76F006952B9 /* MyPassword.app */;
+			productReference = 4C9269681DEDB76F006952B9 /* Mikeys.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -577,7 +577,7 @@
 					};
 					4C9269671DEDB76F006952B9 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = J3RC3896Q4;
+						DevelopmentTeam = 2YXPT6AD5R;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -596,8 +596,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C9269671DEDB76F006952B9 /* MyPassword */,
-				4C3C304A1E1138C4004788CF /* MyPasswordTests */,
+				4C9269671DEDB76F006952B9 /* Mikeys */,
+				4C3C304A1E1138C4004788CF /* MikeysTests */,
 			);
 		};
 /* End PBXProject section */
@@ -704,7 +704,7 @@
 /* Begin PBXTargetDependency section */
 		4C3C30511E1138C4004788CF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4C9269671DEDB76F006952B9 /* MyPassword */;
+			target = 4C9269671DEDB76F006952B9 /* Mikeys */;
 			targetProxy = 4C3C30501E1138C4004788CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -843,7 +843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -886,7 +886,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -898,14 +898,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J3RC3896Q4;
+				DEVELOPMENT_TEAM = 2YXPT6AD5R;
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "18851300-3ece-49da-a91a-6fc9489b6efe";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalDevProfile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MiKeys;
+				PRODUCT_NAME = Mikeys;
+				PROVISIONING_PROFILE = "cd7915b5-99fc-4e48-8b0d-3aa6cf70f10c";
+				PROVISIONING_PROFILE_SPECIFIER = "ByChance Development Profile";
 			};
 			name = Debug;
 		};
@@ -913,22 +913,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J3RC3896Q4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 2YXPT6AD5R;
 				INFOPLIST_FILE = MyPassword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MyPassword;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "18851300-3ece-49da-a91a-6fc9489b6efe";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalDevProfile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bychance.MiKeys;
+				PRODUCT_NAME = Mikeys;
+				PROVISIONING_PROFILE = "65b029a7-2e30-4bf4-8611-1f0af58f1905";
+				PROVISIONING_PROFILE_SPECIFIER = "ByChance Distribution Profile";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MyPasswordTests" */ = {
+		4C3C30521E1138C4004788CF /* Build configuration list for PBXNativeTarget "MikeysTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C3C30531E1138C4004788CF /* Debug */,
@@ -946,7 +946,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C92697F1DEDB76F006952B9 /* Build configuration list for PBXNativeTarget "MyPassword" */ = {
+		4C92697F1DEDB76F006952B9 /* Build configuration list for PBXNativeTarget "Mikeys" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C9269801DEDB76F006952B9 /* Debug */,

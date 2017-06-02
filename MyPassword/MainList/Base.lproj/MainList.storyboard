@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MyPassword-->
+        <!--Mikeys-->
         <scene sceneID="mTG-Vr-7YX">
             <objects>
                 <viewController storyboardIdentifier="MainListViewController" id="FdB-C2-Z4I" customClass="MainListViewController" sceneMemberID="viewController">
@@ -307,7 +307,7 @@
                             <constraint firstItem="qq9-JQ-y0W" firstAttribute="height" secondItem="zdM-0Q-I8F" secondAttribute="height" id="tNr-Fz-chm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MyPassword" id="yav-lD-lLM">
+                    <navigationItem key="navigationItem" title="Mikeys" id="yav-lD-lLM">
                         <barButtonItem key="leftBarButtonItem" image="setting_icon" id="Yza-NW-8kY">
                             <connections>
                                 <action selector="onShowSettings:" destination="FdB-C2-Z4I" id="Nsa-qd-b8M"/>
